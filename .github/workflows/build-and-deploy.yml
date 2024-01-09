@@ -18,7 +18,8 @@ jobs:
         id: require-secrets
         run: |
           echo "run-with-secrets=${{ steps.detect-secrets.outputs.has-secrets == 'true' }}" >> $GITHUB_OUTPUT
-          # echo "run-with-secrets=${{ steps.detect-secrets.outputs.has-secrets == 'true' && !github.event.repository.fork }}" >> $GITHUB_OUTPUT
+        # echo "run-with-secrets=${{ steps.detect-secrets.outputs.has-secrets == 'true' && !github.event.repository.fork }}" >> $GITHUB_OUTPUT
+
 
   staging-repo:
     runs-on: ubuntu-22.04
@@ -44,6 +45,7 @@ jobs:
       - uses: DanySK/build-check-deploy-gradle-action@2.2.12
         with:
           maven-central-password: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
+          maven-central-username: ${{ vars.MAVEN_CENTRAL_USERNAME }}
           should-run-codecov: false
           should-deploy: true
           build-command: true
@@ -74,7 +76,8 @@ jobs:
       fail-fast: false
       matrix:
         os: [ ubuntu-22.04 ]
-        # os: [ windows-2022, macos-12, ubuntu-22.04 ]
+        # [ windows-2022, macos-12, ubuntu-22.04 ]
+
     runs-on: ${{ matrix.os }}
     concurrency:
       group: build-${{ github.workflow }}-${{ matrix.os }}-${{ github.event.number || github.ref }}
@@ -92,6 +95,7 @@ jobs:
             ./gradlew $OVERRIDE_VERSION -PstagingRepositoryId=${{ needs.staging-repo.outputs.maven-central-repo-id }} uploadAll --parallel
           should-run-codecov: ${{ runner.os == 'Linux' }}
           should-deploy: ${{ contains(needs.staging-repo.result, 'success') }}
+          maven-central-username: ${{vars.MAVEN_CENTRAL_USERNAME}}
           maven-central-password: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
           signing-key: ${{ secrets.SIGNING_KEY }}
           signing-password: ${{ secrets.SIGNING_PASSWORD }}
@@ -108,6 +112,7 @@ jobs:
       - uses: DanySK/build-check-deploy-gradle-action@2.2.12
         with:
           maven-central-password: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
+          maven-central-username: ${{ vars.MAVEN_CENTRAL_USERNAME }}
           should-run-codecov: false
           should-deploy: true
           build-command: true
@@ -133,8 +138,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.1
-        with:
-          token: ${{ secrets.DEPLOYMENT_TOKEN }}
+        # with:
+          # token: ${{ secrets.DEPLOYMENT_TOKEN }}
       - name: Find the version of Node from package.json
         id: node-version
         run: echo "version=$(jq -r .engines.node package.json)" >> $GITHUB_OUTPUT
@@ -155,6 +160,7 @@ jobs:
           should-deploy: true
           github-token: ${{ github.token }}
           maven-central-password: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
+          maven-central-username: ${{ vars.MAVEN_CENTRAL_USERNAME }}
           npm-token: ${{ secrets.NPM_TOKEN }}
           signing-key: ${{ secrets.SIGNING_KEY }}
           signing-password: ${{ secrets.SIGNING_PASSWORD }}
