@@ -31,7 +31,7 @@ class MyCondorcetAlgorithm<S : ScoreMetrics>(
         require(votes.any())
         // if (votes.isEmpty()) throw IllegalArgumentException("Votes list cannot be empty")
 
-        when (pollAlgorithmParameters.count { it == ConstantParameters.MultipleVotesAllowed }) {
+        when (pollAlgorithmParameters.count { it == ConstantParameters.AllowMultipleVoteInPoll }) {
             0 -> {
                 if (votes.groupingBy { it.voter.identifier }.eachCount().any { it.value > 1 }) {
                     error("Each voter can vote only once")

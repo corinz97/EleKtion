@@ -32,7 +32,7 @@ fun main() {
                     }
                 }
                 -majorityVotesAlgorithm {
-                    +ConstantParameters.MultipleVotesAllowed
+                    +ConstantParameters.AllowMultipleVoteInPoll
                 }
 
                 +("compname1" votedBy "b")
@@ -57,7 +57,7 @@ fun main() {
                 }
 
                 -condorcetAlgorithm {
-                    +ConstantParameters.MultipleVotesAllowed
+                    +ConstantParameters.AllowMultipleVoteInPoll
                 }
 
                 +("compname1" then "compname2" votedBy "b")
