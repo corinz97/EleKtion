@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  gen-and-public:
+  generate-and-publish:
     runs-on: ubuntu-22.04
     steps:
 
