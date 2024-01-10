@@ -1,3 +1,17 @@
+## [1.9.0](https://github.com/corinz97/Kotlin-MP-Thesis-Library/compare/1.8.0...1.9.0) (2024-01-10)
+
+
+### Features
+
+* **commonMain:** refactor class name ([51e7290](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/51e7290ca04454ff252c6a59e497410c5e317807))
+
+
+### Build and continuous integration
+
+* **yaml:** docs workflow dispatch ([f9381ae](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/f9381aea4a6524c9158a9ba210952f2fcfd61424))
+* **yaml:** docs workflow dispatch ([9325944](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/9325944583890fcb9d0a3257131c0604653d6ccc))
+* **yaml:** docs workflow dispatch ([05554e7](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/05554e7fc044eb1d279564f3697458d836606988))
+
 ## [1.8.0](https://github.com/corinz97/Kotlin-MP-Thesis-Library/compare/1.7.0...1.8.0) (2024-01-10)
 
 
