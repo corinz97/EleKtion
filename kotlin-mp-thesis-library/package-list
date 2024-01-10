@@ -49,6 +49,9 @@ $dokka.location:entities.abstract/ScoreAbstraction/hashCode/#/PointingToDeclarat
 $dokka.location:entities.abstract/ScoreAbstraction/scoreValue/#/PointingToDeclaration/kotlin-mp-thesis-library/entities.abstract/-score-abstraction/score-value.html
 $dokka.location:entities.abstract/ScoreAbstraction/toString/#/PointingToDeclaration/kotlin-mp-thesis-library/entities.abstract/-score-abstraction/to-string.html
 $dokka.location:entities.implementations////PointingToDeclaration/kotlin-mp-thesis-library/entities.implementations/index.html
+$dokka.location:entities.implementations/CondorcetRanking///PointingToDeclaration/kotlin-mp-thesis-library/entities.implementations/-condorcet-ranking/index.html
+$dokka.location:entities.implementations/CondorcetRanking/CondorcetRanking/#kotlin.collections.List[kotlin.collections.Set[entities.interfaces.Competitor[TypeParam(bounds=[entities.types.ScoreMetric])]]]/PointingToDeclaration/kotlin-mp-thesis-library/entities.implementations/-condorcet-ranking/-condorcet-ranking.html
+$dokka.location:entities.implementations/CondorcetRanking/ranking/#/PointingToDeclaration/kotlin-mp-thesis-library/entities.implementations/-condorcet-ranking/ranking.html
 $dokka.location:entities.implementations/DefaultPollManager///PointingToDeclaration/kotlin-mp-thesis-library/entities.implementations/-default-poll-manager/index.html
 $dokka.location:entities.implementations/DefaultPollManager/DefaultPollManager/#/PointingToDeclaration/kotlin-mp-thesis-library/entities.implementations/-default-poll-manager/-default-poll-manager.html
 $dokka.location:entities.implementations/DefaultPollManager/computeAllPolls/#/PointingToDeclaration/kotlin-mp-thesis-library/entities.implementations/-default-poll-manager/compute-all-polls.html
@@ -80,9 +83,6 @@ $dokka.location:entities.implementations/MyCondorcetAlgorithm/MyCondorcetAlgorit
 $dokka.location:entities.implementations/MyCondorcetAlgorithm/candidates/#/PointingToDeclaration/kotlin-mp-thesis-library/entities.implementations/-my-condorcet-algorithm/candidates.html
 $dokka.location:entities.implementations/MyCondorcetAlgorithm/computeByAlgorithmRules/#kotlin.collections.List[entities.interfaces.ListOfPreferencesVote[TypeParam(bounds=[entities.types.ScoreMetric])]]/PointingToDeclaration/kotlin-mp-thesis-library/entities.implementations/-my-condorcet-algorithm/compute-by-algorithm-rules.html
 $dokka.location:entities.implementations/MyCondorcetAlgorithm/pollAlgorithmParameters/#/PointingToDeclaration/kotlin-mp-thesis-library/entities.implementations/-my-condorcet-algorithm/poll-algorithm-parameters.html
-$dokka.location:entities.implementations/MyCondorcetRanking///PointingToDeclaration/kotlin-mp-thesis-library/entities.implementations/-my-condorcet-ranking/index.html
-$dokka.location:entities.implementations/MyCondorcetRanking/MyCondorcetRanking/#kotlin.collections.List[kotlin.collections.Set[entities.interfaces.Competitor[TypeParam(bounds=[entities.types.ScoreMetric])]]]/PointingToDeclaration/kotlin-mp-thesis-library/entities.implementations/-my-condorcet-ranking/-my-condorcet-ranking.html
-$dokka.location:entities.implementations/MyCondorcetRanking/ranking/#/PointingToDeclaration/kotlin-mp-thesis-library/entities.implementations/-my-condorcet-ranking/ranking.html
 $dokka.location:entities.implementations/PollSimulation///PointingToDeclaration/kotlin-mp-thesis-library/entities.implementations/-poll-simulation/index.html
 $dokka.location:entities.implementations/PollSimulation/PollSimulation/#/PointingToDeclaration/kotlin-mp-thesis-library/entities.implementations/-poll-simulation/-poll-simulation.html
 $dokka.location:entities.implementations/PollSimulation/then/kotlin.String#kotlin.String/PointingToDeclaration/kotlin-mp-thesis-library/entities.implementations/-poll-simulation/then.html
