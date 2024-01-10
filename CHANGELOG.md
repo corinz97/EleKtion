@@ -1,3 +1,16 @@
+## [1.6.0](https://github.com/corinz97/Kotlin-MP-Thesis-Library/compare/1.5.0...1.6.0) (2024-01-10)
+
+
+### Features
+
+* **commonMain:** changed class name ([202058b](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/202058b00f209b567983a4e978c5a51b7d34d163))
+* **commonMain:** changed class name ([d394457](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/d394457508e6ec9bd747623c08528602ea9b66ec))
+
+
+### Build and continuous integration
+
+* **yaml:** passed PAT in docs action ([e42123f](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/e42123f313858bab54efbaf5a048a6c39680be54))
+
 ## [1.5.0](https://github.com/corinz97/Kotlin-MP-Thesis-Library/compare/1.4.1...1.5.0) (2024-01-10)
 
 
