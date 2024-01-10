@@ -1,3 +1,16 @@
+## [1.2.0](https://github.com/corinz97/Kotlin-MP-Thesis-Library/compare/1.1.0...1.2.0) (2024-01-10)
+
+
+### Features
+
+* **common:** changed algorithm parameter name ([1f78ad4](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/1f78ad407632c927719ad9ae3e6ae9b696067011))
+
+
+### Build and continuous integration
+
+* **yaml:** changed job name ([c15a864](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/c15a864056728ac812d743800c524c7ffad06ab8))
+* **yaml:** changed trigger ([08b9e5b](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/08b9e5b2786afa212fc17d7b90400069afcf5e98))
+
 ## [1.1.0](https://github.com/corinz97/Kotlin-MP-Thesis-Library/compare/1.0.0...1.1.0) (2024-01-10)
 
 
