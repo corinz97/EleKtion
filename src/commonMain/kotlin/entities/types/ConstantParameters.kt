@@ -10,8 +10,8 @@ sealed class ConstantParameters {
      * Given a competition and a voter, this type of parameter
      * represents the enabling to vote multiple times.
      */
-    data object AllowMultipleVoteInPoll : PollAlgorithmParameter {
+    data object AllowMultipleVoteInPollParameter : PollAlgorithmParameter {
         override val parameter: String
-            get() = "AllowMultipleVoteInPoll"
+            get() = "Parameter"
     }
 }
