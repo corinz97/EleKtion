@@ -133,7 +133,7 @@ class MajorityVotesAlgorithmTests : StringSpec({
             MajorityVotesAlgorithm<ScoreMetrics>(
                 listOf(
                     ConstantParameter.AllowMultipleVoteInPollParameter,
-        ConstantParameterntParameters.AllowMultipleVoteInPollParameter,
+                    ConstantParameter.AllowMultipleVoteInPollParameter,
                 ),
             )
                 .apply { this.candidates = candidates.toList() }
@@ -227,7 +227,7 @@ class MajorityVotesAlgorithmTests : StringSpec({
         val votes = listOf(v1, v2, v3)
 
         shouldThrowWithMessage<IllegalStateException>("Each voter can vote just once for each competitor") {
-            MajorityVotesAlgoritConstantParameteristOf(ConstantParameters.AllowMultipleVoteInPollParameter))
+            MajorityVotesAlgorithm<ScoreMetrics>(listOf(ConstantParameter.AllowMultipleVoteInPollParameter))
                 .apply { this.candidates = candidates.toList() }
                 .computeByAlgorithmRules(votes)
         }

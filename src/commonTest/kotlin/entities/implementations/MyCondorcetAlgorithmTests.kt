@@ -147,7 +147,8 @@ class MyCondorcetAlgorithmTests : StringSpec({
             .apply {
                 this.candidates = competitors.toList()
                 this.pollAlgorithmParameters = listOf(
-        ConstantParameterntParameters.AllowMultipleVoteInPollParametConstantParameter      ConstantParameters.AllowMultipleVoteInPollParameter,
+                    ConstantParameter.AllowMultipleVoteInPollParameter,
+                    ConstantParameter.AllowMultipleVoteInPollParameter,
                 )
             }
         val l = mutableListOf<ListOfPreferencesVote<BestTimeInMatch>>()
@@ -207,7 +208,7 @@ class MyCondorcetAlgorithmTests : StringSpec({
         val c = MyCondorcetAlgorithm<BestTimeInMatch>()
             .apply {
                 this.candidates = competitors.toList()
-                thConstantParameterrameters = listOf(ConstantParameters.AllowMultipleVoteInPollParameter)
+                this.pollAlgorithmParameters = listOf(ConstantParameter.AllowMultipleVoteInPollParameter)
             }
         val l = mutableListOf<ListOfPreferencesVote<BestTimeInMatch>>()
         for (i in 1..23) {
