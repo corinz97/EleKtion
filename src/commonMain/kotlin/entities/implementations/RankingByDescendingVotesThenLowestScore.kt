@@ -1,7 +1,7 @@
 package entities.implementations
 
 import entities.interfaces.Competitor
-import entities.types.Comparators
+import entities.types.Comparator
 import entities.types.ScoreMetric
 
 /**
@@ -25,7 +25,7 @@ class RankingByDescendingVotesThenLowestScore<S : ScoreMetric>(unorderedRanking:
         for ((competitorsSetWithSameVotesNumber, votes) in this) {
             val competitorWithRelativeLowestScore =
                 competitorsSetWithSameVotesNumber
-                    .associateWith { competitor -> competitor.scores.minWith(Comparators.HighestScore()) }
+                    .associateWith { competitor -> competitor.scores.minWith(Comparator.HighestScore()) }
 
             for ((competitor, lowestScore) in competitorWithRelativeLowestScore) {
                 competitor.scores = competitor.scores.filter { it == lowestScore }.distinct()

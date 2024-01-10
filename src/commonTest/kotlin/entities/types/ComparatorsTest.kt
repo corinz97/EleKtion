@@ -17,7 +17,7 @@ class ComparatorsTest : StringSpec({
         val s2 = object : ScoreAbstraction<BestTimeInMatch>() {
             override var scoreValue: BestTimeInMatch = BestTimeInMatch(2.toDuration(DurationUnit.HOURS))
         }
-        val comparator = Comparators.HighestScore<BestTimeInMatch>()
+        val comparator = Comparator.HighestScore<BestTimeInMatch>()
         comparator.compare(s1, s2) shouldBeLessThan 0
         comparator.compare(s2, s1) shouldBeGreaterThan 0
         comparator.compare(s1, s1) shouldBe 0

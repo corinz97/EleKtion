@@ -1,7 +1,7 @@
 package entities.implementations
 
 import entities.interfaces.Competitor
-import entities.types.Comparators
+import entities.types.Comparator
 import entities.types.ScoreMetric
 /**
  * Class which orders intermediate ranking by descending number of votes, then by highest score.
@@ -25,7 +25,7 @@ class RankingByDescendingVotesThenHighestScore<S : ScoreMetric>(unorderedRanking
         for ((competitorsSetWithSameVotesNumber, votes) in this) {
             val competitorWithRelativeHighestScore =
                 competitorsSetWithSameVotesNumber
-                    .associateWith { competitor -> competitor.scores.maxWith(Comparators.HighestScore()) }
+                    .associateWith { competitor -> competitor.scores.maxWith(Comparator.HighestScore()) }
 
             for ((competitor, highestScore) in competitorWithRelativeHighestScore) {
                 competitor.scores = competitor.scores.filter { it == highestScore }.distinct()

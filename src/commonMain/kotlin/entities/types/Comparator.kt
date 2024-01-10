@@ -1,11 +1,12 @@
 package entities.types
 
 import entities.interfaces.Score
+import kotlin.Comparator
 
 /**
- * Comparators for defined score metrics.
+ * Comparator for defined score metrics.
  */
-sealed class Comparators {
+sealed class Comparator {
     /**
      * Compare two scores and return the highest.
      */
