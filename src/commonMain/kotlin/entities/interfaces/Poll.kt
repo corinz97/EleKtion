@@ -1,8 +1,8 @@
 package entities.interfaces
 
 import entities.implementations.MajorityVotesAlgorithm
-import entities.implementations.MajorityVotesAndLowestScoreAlgorithm
 import entities.implementations.MajorityVotesThenHighestScoreAlgorithm
+import entities.implementations.MajorityVotesThenLowestScoreAlgorithm
 import entities.implementations.MyCondorcetAlgorithm
 import entities.types.ScoreMetric
 
@@ -45,7 +45,7 @@ interface Poll<S : ScoreMetric, V : Vote> {
     ): PollAlgorithm<S, SinglePreferenceVote<S>>
 
     /**
-     * DSL-function which initializes [MajorityVotesAndLowestScoreAlgorithm].
+     * DSL-function which initializes [MajorityVotesThenLowestScoreAlgorithm].
      */
     fun majorityVotesLScoreAlgorithm(
         algInit: PollAlgorithm<S, SinglePreferenceVote<S>>.() -> Unit,
