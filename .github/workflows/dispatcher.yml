@@ -26,3 +26,9 @@ jobs:
       - dispatcher
     uses: ./.github/workflows/build-and-deploy.yml
     secrets: inherit
+
+  docs:
+    needs:
+      - ci-cd
+    uses: ./.github/workflows/publish-docs.yml
+    secrets: inherit
