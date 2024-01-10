@@ -36,7 +36,7 @@ class MajorityVotesAndLowestScoreAlgorithm<S : ScoreMetrics>(
             error("Voted candidate doesn't exist as object")
         }
 
-        when (pollAlgorithmParameters.count { it == ConstantParameters.AllowMultipleVoteInPoll }) {
+        when (pollAlgorithmParameters.count { it == ConstantParameters.AllowMultipleVoteInPollParameter }) {
             0 -> {
                 if (votes.groupingBy { it.voter.identifier }.eachCount().any { it.value > 1 }) {
                     error("Each voter can vote only once")
