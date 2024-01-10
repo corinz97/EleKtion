@@ -21,7 +21,7 @@ class MyCondorcetLikeRankingTests : StringSpec({
         val m: List<Set<CompetitorAbstraction<WinsInCampionship>>> = listOf(
             setOf(comp1),
         )
-        val r = MyCondorcetLikeRanking(m)
+        val r = MyCondorcetRanking(m)
 
         r.ranking shouldHaveSize 1
         r.ranking.keys.first() shouldBe m.first()
