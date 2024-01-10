@@ -1,3 +1,17 @@
+## [1.7.0](https://github.com/corinz97/Kotlin-MP-Thesis-Library/compare/1.6.0...1.7.0) (2024-01-10)
+
+
+### Features
+
+* **commonMain:** changed class name ([df4f382](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/df4f38256ea7b7daa4d457a46ecee44833d2c594))
+* **project:** merge ([310c6dc](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/310c6dceada461f4d34c63e053a6f63f2741fb44))
+
+
+### Build and continuous integration
+
+* **yaml:** changed docs action trigger from release to push tags or wflow ([2e07032](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/2e07032dff84cf5a7b798693580b4b8fe43524f3))
+* **yaml:** changed from release to push tags ([11a4a32](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/11a4a32b21570bbe0adb5dd5a11522b3af049b4d))
+
 ## [1.6.0](https://github.com/corinz97/Kotlin-MP-Thesis-Library/compare/1.5.0...1.6.0) (2024-01-10)
 
 
