@@ -1,3 +1,24 @@
+## [1.1.0](https://github.com/corinz97/Kotlin-MP-Thesis-Library/compare/1.0.0...1.1.0) (2024-01-10)
+
+
+### Features
+
+* **ci:** pages deploy pipeline ([e11c9cc](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/e11c9ccf3a1a3f5dc5e6e7ece929342581cc8606))
+
+
+### Build and continuous integration
+
+* **yaml:** changed target folder, works just on master ([1cca8b1](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/1cca8b1f19229ab4ae48766f58e193f5a8d12a37))
+* **yaml:** changes ([db3c7f9](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/db3c7f9966ffcd779c85baa483b94957d4f7d88f))
+* **yaml:** changes ([8f4194a](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/8f4194a13fcff7788a29fbd796c1dff4fc0c9f9c))
+* **yaml:** changes in yaml ([09ccb02](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/09ccb02de339f4cdbba34abafc9adc97b4bc62ee))
+* **yaml:** fix structure ([cd6bb62](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/cd6bb626af52fb916897ad4a628e4da192575396))
+* **yaml:** fix structure ([2f9813d](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/2f9813d311868d5554baf9d0e10ca138407f405f))
+* **yaml:** indentation ([f85d0e5](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/f85d0e50c0e03125f61e63b1e541a08bdfcd92da))
+* **yaml:** moved 2 jobs in 1 ([046ec9f](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/046ec9f56a33d85ae76be03ace7a9247f11a0bf5))
+* **yaml:** structure ([abbed1f](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/abbed1fa2eccd040b0dcb74a42df25cbcda3d688))
+* **yaml:** structure ([8e36941](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/8e3694158cc4b3bed63abbb0d6da70b729090e7c))
+
 ## 1.0.0 (2024-01-09)
 
 
