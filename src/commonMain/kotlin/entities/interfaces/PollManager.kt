@@ -1,10 +1,10 @@
 package entities.interfaces
 
-import entities.types.ScoreMetrics
+import entities.types.ScoreMetric
 /**
  * This interface represents a manager that builds then executes one or more poll.
  */
-interface PollManager<S : ScoreMetrics, V : Vote> {
+interface PollManager<S : ScoreMetric, V : Vote> {
 
     /**
      * List of polls to be managed.

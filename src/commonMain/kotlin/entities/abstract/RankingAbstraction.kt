@@ -1,11 +1,11 @@
 package entities.abstract
 
 import entities.interfaces.Ranking
-import entities.types.ScoreMetrics
+import entities.types.ScoreMetric
 
 /**
  *
  */
-abstract class RankingAbstraction<S : ScoreMetrics> : Ranking<S> {
+abstract class RankingAbstraction<S : ScoreMetric> : Ranking<S> {
     override fun printRanking() = println(ranking.toString())
 }

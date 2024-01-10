@@ -1,12 +1,12 @@
 package entities.interfaces
 
-import entities.types.ScoreMetrics
+import entities.types.ScoreMetric
 
 /**
  * Interface which represents a vote composed by a list of preferences,
  * instead of a single one.
  */
-interface ListOfPreferencesVote<S : ScoreMetrics> : Vote {
+interface ListOfPreferencesVote<S : ScoreMetric> : Vote {
     /**
      * List of preferred competitors.
      */

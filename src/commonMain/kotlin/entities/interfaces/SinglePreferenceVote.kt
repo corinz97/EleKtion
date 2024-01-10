@@ -1,11 +1,11 @@
 package entities.interfaces
 
-import entities.types.ScoreMetrics
+import entities.types.ScoreMetric
 
 /**
  * Interface that represents a vote for a single competitor.
  */
-interface SinglePreferenceVote<S : ScoreMetrics> : Vote {
+interface SinglePreferenceVote<S : ScoreMetric> : Vote {
     /**
      * Competitor chosen in the vote.
      */

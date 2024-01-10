@@ -3,7 +3,7 @@ package entities.implementations
 import entities.abstract.CompetitorAbstraction
 import entities.abstract.ScoreAbstraction
 import entities.interfaces.Competitor
-import entities.types.ScoreMetrics
+import entities.types.ScoreMetric
 import entities.types.WinsInCampionship
 import io.kotest.assertions.throwables.shouldNotThrow
 import io.kotest.assertions.throwables.shouldThrow
@@ -21,7 +21,7 @@ class RankingByDescendingVotesTests : StringSpec(
         "CompetitorRankingByDescendingVotes cannot receive an empty ranking" {
             val exception =
                 shouldThrow<IllegalStateException> {
-                    RankingByDescendingVotes(emptyMap<Competitor<ScoreMetrics>, Int>())
+                    RankingByDescendingVotes(emptyMap<Competitor<ScoreMetric>, Int>())
                 }
             exception.message.shouldNotBeBlank()
             exception.message.shouldNotBeEmpty()

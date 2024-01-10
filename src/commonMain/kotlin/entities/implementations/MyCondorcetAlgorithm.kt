@@ -8,12 +8,12 @@ import entities.interfaces.PollAlgorithm
 import entities.interfaces.PollAlgorithmParameter
 import entities.interfaces.Ranking
 import entities.types.ConstantParameter
-import entities.types.ScoreMetrics
+import entities.types.ScoreMetric
 
 /**
  * Represents an algorithm implementing Condorcet logic.
  */
-class MyCondorcetAlgorithm<S : ScoreMetrics>(
+class MyCondorcetAlgorithm<S : ScoreMetric>(
     override var pollAlgorithmParameters: List<PollAlgorithmParameter> = listOf(),
 ) :
     PollAlgorithm<S, ListOfPreferencesVote<S>> {
@@ -76,7 +76,7 @@ class MyCondorcetAlgorithm<S : ScoreMetrics>(
         return MyCondorcetLikeRanking(result)
     }
 
-    private fun <S : ScoreMetrics> calculateVoteMatrix(
+    private fun <S : ScoreMetric> calculateVoteMatrix(
         candidates: List<Competitor<S>>,
         ballots: List<ListOfPreferencesVote<S>>,
     ): Array<IntArray> {
@@ -110,7 +110,7 @@ class MyCondorcetAlgorithm<S : ScoreMetrics>(
         return voteMatrix
     }
 
-    private fun <S : ScoreMetrics> roundWinner(cand: List<Competitor<S>>, matrix: Array<IntArray>): Competitor<S>? {
+    private fun <S : ScoreMetric> roundWinner(cand: List<Competitor<S>>, matrix: Array<IntArray>): Competitor<S>? {
         var maxVotes = 0
         cand.indices.forEach { i ->
             var victories = 0
@@ -136,7 +136,7 @@ class MyCondorcetAlgorithm<S : ScoreMetrics>(
         return null
     }
 
-    private fun <S : ScoreMetrics> calculateWinners(
+    private fun <S : ScoreMetric> calculateWinners(
         candidatesList: List<Competitor<S>>,
         ballots: List<ListOfPreferencesVote<S>>,
     ): List<Set<Competitor<S>>> {

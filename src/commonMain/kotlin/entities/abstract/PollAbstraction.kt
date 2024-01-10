@@ -11,12 +11,12 @@ import entities.interfaces.PollAlgorithm
 import entities.interfaces.Ranking
 import entities.interfaces.SinglePreferenceVote
 import entities.interfaces.Vote
-import entities.types.ScoreMetrics
+import entities.types.ScoreMetric
 
 /**
  *
  */
-abstract class PollAbstraction<S : ScoreMetrics, V : Vote> : Poll<S, V> {
+abstract class PollAbstraction<S : ScoreMetric, V : Vote> : Poll<S, V> {
     override lateinit var pollAlgorithm: PollAlgorithm<S, V>
     override lateinit var competition: Competition<S>
     override lateinit var votesList: List<V>

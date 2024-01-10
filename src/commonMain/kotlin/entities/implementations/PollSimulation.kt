@@ -6,12 +6,12 @@ import entities.interfaces.ListOfPreferencesVote
 import entities.interfaces.SinglePreferenceVote
 import entities.interfaces.Vote
 import entities.interfaces.Voter
-import entities.types.ScoreMetrics
+import entities.types.ScoreMetric
 
 /**
  * This class allows to create a poll with its mandatory members.
  */
-class PollSimulation<S : ScoreMetrics, V : Vote> : PollAbstraction<S, V>() {
+class PollSimulation<S : ScoreMetric, V : Vote> : PollAbstraction<S, V>() {
 
     override infix fun String.votedBy(voterIdentifier: String): SinglePreferenceVote<S> {
         val comp =

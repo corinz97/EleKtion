@@ -6,13 +6,13 @@ import kotlin.time.Duration
 /**
  * Represents a metric useful two compare and evaluate results among competitors.
  */
-abstract class ScoreMetrics : Comparable<Any>
+abstract class ScoreMetric : Comparable<Any>
 
 /**
  * This class represents an abstraction for best time realized during a match.
  * @param duration time, with time unit associated
  */
-data class BestTimeInMatch(val duration: Duration) : ScoreMetrics() {
+data class BestTimeInMatch(val duration: Duration) : ScoreMetric() {
     /**
      * Compare two objects.
      */
@@ -38,7 +38,7 @@ data class BestTimeInMatch(val duration: Duration) : ScoreMetrics() {
  * @param wins number of wins
  */
 
-data class WinsInCampionship(val wins: Int) : ScoreMetrics() {
+data class WinsInCampionship(val wins: Int) : ScoreMetric() {
     /**
      * Compare two objects.
      */

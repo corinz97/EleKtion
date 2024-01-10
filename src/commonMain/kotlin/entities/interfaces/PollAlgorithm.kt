@@ -1,11 +1,11 @@
 package entities.interfaces
 
-import entities.types.ScoreMetrics
+import entities.types.ScoreMetric
 
 /**
  * This interface represents the algorithm chosen to compute the final ranking.
  */
-interface PollAlgorithm<S : ScoreMetrics, V : Vote> {
+interface PollAlgorithm<S : ScoreMetric, V : Vote> {
     /**
      * List of parameters.
      */

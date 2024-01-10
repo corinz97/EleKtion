@@ -9,7 +9,7 @@ sealed class Comparators {
     /**
      * Compare two scores and return the highest.
      */
-    class HighestScore<S : ScoreMetrics> : Comparator<Score<S>> {
+    class HighestScore<S : ScoreMetric> : Comparator<Score<S>> {
         override fun compare(
             a: Score<S>,
             b: Score<S>,

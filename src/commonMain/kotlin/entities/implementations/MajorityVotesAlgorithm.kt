@@ -6,13 +6,13 @@ import entities.interfaces.PollAlgorithmParameter
 import entities.interfaces.Ranking
 import entities.interfaces.SinglePreferenceVote
 import entities.types.ConstantParameter
-import entities.types.ScoreMetrics
+import entities.types.ScoreMetric
 
 /**
  * Represents an algorithm which orders intermediate ranking by descending
  * number of votes.
  */
-class MajorityVotesAlgorithm<S : ScoreMetrics>(
+class MajorityVotesAlgorithm<S : ScoreMetric>(
     override var pollAlgorithmParameters: List<PollAlgorithmParameter> = listOf(),
 ) :
     PollAlgorithm<S, SinglePreferenceVote<S>> {

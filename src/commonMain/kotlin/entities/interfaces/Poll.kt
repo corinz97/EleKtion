@@ -4,12 +4,12 @@ import entities.implementations.MajorityVotesAlgorithm
 import entities.implementations.MajorityVotesAndHighestScoreAlgorithm
 import entities.implementations.MajorityVotesAndLowestScoreAlgorithm
 import entities.implementations.MyCondorcetAlgorithm
-import entities.types.ScoreMetrics
+import entities.types.ScoreMetric
 
 /**
  * This inteface represents the poll to be evaluated.
  */
-interface Poll<S : ScoreMetrics, V : Vote> {
+interface Poll<S : ScoreMetric, V : Vote> {
     /**
      * Algorithm chosen to compute the final ranking.
      */

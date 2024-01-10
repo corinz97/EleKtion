@@ -2,12 +2,12 @@ package entities.abstract
 
 import entities.interfaces.Competitor
 import entities.interfaces.Score
-import entities.types.ScoreMetrics
+import entities.types.ScoreMetric
 
 /**
  *
  */
-abstract class CompetitorAbstraction<S : ScoreMetrics> : Competitor<S> {
+abstract class CompetitorAbstraction<S : ScoreMetric> : Competitor<S> {
     override lateinit var name: String
     override var scores: List<Score<S>> = listOf()
 

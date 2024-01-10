@@ -7,7 +7,7 @@ import entities.interfaces.SinglePreferenceVote
 import entities.interfaces.Voter
 import entities.types.BestTimeInMatch
 import entities.types.ConstantParameter
-import entities.types.ScoreMetrics
+import entities.types.ScoreMetric
 import io.kotest.assertions.throwables.shouldThrowWithMessage
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.collections.shouldContainAll
@@ -19,13 +19,13 @@ class MajorityVotesAndLowestScoreAlgorithmTests : StringSpec({
 
     "Majority Algorithm should throw exception when candidates are declared more than once" {
 
-        val competitor2 = object : CompetitorAbstraction<ScoreMetrics>() {}
+        val competitor2 = object : CompetitorAbstraction<ScoreMetric>() {}
             .apply {
                 this.name = "Competitor 2"
                 this.scores = listOf()
             }
 
-        val competitor21 = object : CompetitorAbstraction<ScoreMetrics>() {}
+        val competitor21 = object : CompetitorAbstraction<ScoreMetric>() {}
             .apply {
                 this.name = "Competitor 2"
                 this.scores = listOf()
@@ -33,21 +33,21 @@ class MajorityVotesAndLowestScoreAlgorithmTests : StringSpec({
 
         val candidates = listOf(competitor2, competitor21)
 
-        val v1 = object : SinglePreferenceVote<ScoreMetrics> {
-            override var votedCompetitor: Competitor<ScoreMetrics> = competitor2
+        val v1 = object : SinglePreferenceVote<ScoreMetric> {
+            override var votedCompetitor: Competitor<ScoreMetric> = competitor2
             override var voter: Voter = object : Voter {
                 override val identifier: String = "anonym1"
             }
         }
 
-        val v2 = object : SinglePreferenceVote<ScoreMetrics> {
-            override var votedCompetitor: Competitor<ScoreMetrics> = competitor2
+        val v2 = object : SinglePreferenceVote<ScoreMetric> {
+            override var votedCompetitor: Competitor<ScoreMetric> = competitor2
             override var voter: Voter = object : Voter {
                 override val identifier: String = "anonym2"
             }
         }
-        val v3 = object : SinglePreferenceVote<ScoreMetrics> {
-            override var votedCompetitor: Competitor<ScoreMetrics> = competitor2
+        val v3 = object : SinglePreferenceVote<ScoreMetric> {
+            override var votedCompetitor: Competitor<ScoreMetric> = competitor2
             override var voter: Voter = object : Voter {
                 override val identifier: String = "anonym1"
             }
@@ -56,7 +56,7 @@ class MajorityVotesAndLowestScoreAlgorithmTests : StringSpec({
         val votes = listOf(v1, v2, v3)
 
         shouldThrowWithMessage<IllegalStateException>("Candidate already declared") {
-            MajorityVotesAndLowestScoreAlgorithm<ScoreMetrics>()
+            MajorityVotesAndLowestScoreAlgorithm<ScoreMetric>()
                 .apply { this.candidates = candidates.toList() }
                 .computeByAlgorithmRules(votes)
         }
@@ -64,13 +64,13 @@ class MajorityVotesAndLowestScoreAlgorithmTests : StringSpec({
 
     "Majority Algorithm should throw exception when multiple vote is not allowed" {
 
-        val competitor1 = object : CompetitorAbstraction<ScoreMetrics>() {}
+        val competitor1 = object : CompetitorAbstraction<ScoreMetric>() {}
             .apply {
                 this.name = "Competitor 1"
                 this.scores = listOf()
             }
 
-        val competitor2 = object : CompetitorAbstraction<ScoreMetrics>() {}
+        val competitor2 = object : CompetitorAbstraction<ScoreMetric>() {}
             .apply {
                 this.name = "Competitor 2"
                 this.scores = listOf()
@@ -78,22 +78,22 @@ class MajorityVotesAndLowestScoreAlgorithmTests : StringSpec({
 
         val candidates = listOf(competitor1, competitor2)
 
-        val v1 = object : SinglePreferenceVote<ScoreMetrics> {
-            override var votedCompetitor: Competitor<ScoreMetrics> = competitor2
+        val v1 = object : SinglePreferenceVote<ScoreMetric> {
+            override var votedCompetitor: Competitor<ScoreMetric> = competitor2
             override var voter: Voter = object : Voter {
                 override val identifier: String = "anonym1"
             }
         }
 
-        val v2 = object : SinglePreferenceVote<ScoreMetrics> {
-            override var votedCompetitor: Competitor<ScoreMetrics> = competitor2
+        val v2 = object : SinglePreferenceVote<ScoreMetric> {
+            override var votedCompetitor: Competitor<ScoreMetric> = competitor2
             override var voter: Voter = object : Voter {
                 override val identifier: String = "anonym2"
             }
         }
 
-        val v3 = object : SinglePreferenceVote<ScoreMetrics> {
-            override var votedCompetitor: Competitor<ScoreMetrics> = competitor1
+        val v3 = object : SinglePreferenceVote<ScoreMetric> {
+            override var votedCompetitor: Competitor<ScoreMetric> = competitor1
             override var voter: Voter = object : Voter {
                 override val identifier: String = "anonym1"
             }
@@ -102,7 +102,7 @@ class MajorityVotesAndLowestScoreAlgorithmTests : StringSpec({
         val votes = listOf(v1, v2, v3)
 
         shouldThrowWithMessage<IllegalStateException>("Each voter can vote only once") {
-            MajorityVotesAndLowestScoreAlgorithm<ScoreMetrics>()
+            MajorityVotesAndLowestScoreAlgorithm<ScoreMetric>()
                 .apply { this.candidates = candidates.toList() }
                 .computeByAlgorithmRules(votes)
         }
@@ -110,13 +110,13 @@ class MajorityVotesAndLowestScoreAlgorithmTests : StringSpec({
 
     "Majority Algorithm should throw exception when MultipleVotesParameter is repeated more than once" {
 
-        val competitor1 = object : CompetitorAbstraction<ScoreMetrics>() {}
+        val competitor1 = object : CompetitorAbstraction<ScoreMetric>() {}
             .apply {
                 this.name = "Competitor 1"
                 this.scores = listOf()
             }
 
-        val competitor2 = object : CompetitorAbstraction<ScoreMetrics>() {}
+        val competitor2 = object : CompetitorAbstraction<ScoreMetric>() {}
             .apply {
                 this.name = "Competitor 2"
                 this.scores = listOf()
@@ -124,22 +124,22 @@ class MajorityVotesAndLowestScoreAlgorithmTests : StringSpec({
 
         val candidates = listOf(competitor1, competitor2)
 
-        val v1 = object : SinglePreferenceVote<ScoreMetrics> {
-            override var votedCompetitor: Competitor<ScoreMetrics> = competitor2
+        val v1 = object : SinglePreferenceVote<ScoreMetric> {
+            override var votedCompetitor: Competitor<ScoreMetric> = competitor2
             override var voter: Voter = object : Voter {
                 override val identifier: String = "anonym1"
             }
         }
 
-        val v2 = object : SinglePreferenceVote<ScoreMetrics> {
-            override var votedCompetitor: Competitor<ScoreMetrics> = competitor2
+        val v2 = object : SinglePreferenceVote<ScoreMetric> {
+            override var votedCompetitor: Competitor<ScoreMetric> = competitor2
             override var voter: Voter = object : Voter {
                 override val identifier: String = "anonym1"
             }
         }
 
-        val v3 = object : SinglePreferenceVote<ScoreMetrics> {
-            override var votedCompetitor: Competitor<ScoreMetrics> = competitor1
+        val v3 = object : SinglePreferenceVote<ScoreMetric> {
+            override var votedCompetitor: Competitor<ScoreMetric> = competitor1
             override var voter: Voter = object : Voter {
                 override val identifier: String = "anonym1"
             }
@@ -148,7 +148,7 @@ class MajorityVotesAndLowestScoreAlgorithmTests : StringSpec({
         val votes = listOf(v1, v2, v3)
 
         shouldThrowWithMessage<IllegalArgumentException>("Parameter can't be repeated more than once") {
-            MajorityVotesAndLowestScoreAlgorithm<ScoreMetrics>(
+            MajorityVotesAndLowestScoreAlgorithm<ScoreMetric>(
                 listOf(
                     ConstantParameter.AllowMultipleVoteInPollParameter,
                     ConstantParameter.AllowMultipleVoteInPollParameter,
@@ -161,13 +161,13 @@ class MajorityVotesAndLowestScoreAlgorithmTests : StringSpec({
 
     "Majority Algorithm should throw exception when multiple vote is allowed but competitor is voted more than once" {
 
-        val competitor1 = object : CompetitorAbstraction<ScoreMetrics>() {}
+        val competitor1 = object : CompetitorAbstraction<ScoreMetric>() {}
             .apply {
                 this.name = "Competitor 1"
                 this.scores = listOf()
             }
 
-        val competitor2 = object : CompetitorAbstraction<ScoreMetrics>() {}
+        val competitor2 = object : CompetitorAbstraction<ScoreMetric>() {}
             .apply {
                 this.name = "Competitor 2"
                 this.scores = listOf()
@@ -175,22 +175,22 @@ class MajorityVotesAndLowestScoreAlgorithmTests : StringSpec({
 
         val candidates = listOf(competitor1, competitor2)
 
-        val v1 = object : SinglePreferenceVote<ScoreMetrics> {
-            override var votedCompetitor: Competitor<ScoreMetrics> = competitor2
+        val v1 = object : SinglePreferenceVote<ScoreMetric> {
+            override var votedCompetitor: Competitor<ScoreMetric> = competitor2
             override var voter: Voter = object : Voter {
                 override val identifier: String = "anonym1"
             }
         }
 
-        val v2 = object : SinglePreferenceVote<ScoreMetrics> {
-            override var votedCompetitor: Competitor<ScoreMetrics> = competitor2
+        val v2 = object : SinglePreferenceVote<ScoreMetric> {
+            override var votedCompetitor: Competitor<ScoreMetric> = competitor2
             override var voter: Voter = object : Voter {
                 override val identifier: String = "anonym1"
             }
         }
 
-        val v3 = object : SinglePreferenceVote<ScoreMetrics> {
-            override var votedCompetitor: Competitor<ScoreMetrics> = competitor1
+        val v3 = object : SinglePreferenceVote<ScoreMetric> {
+            override var votedCompetitor: Competitor<ScoreMetric> = competitor1
             override var voter: Voter = object : Voter {
                 override val identifier: String = "anonym1"
             }
@@ -199,7 +199,7 @@ class MajorityVotesAndLowestScoreAlgorithmTests : StringSpec({
         val votes = listOf(v1, v2, v3)
 
         shouldThrowWithMessage<IllegalStateException>("Each voter can vote just once for each competitor") {
-            MajorityVotesAndLowestScoreAlgorithm<ScoreMetrics>(
+            MajorityVotesAndLowestScoreAlgorithm<ScoreMetric>(
                 listOf(ConstantParameter.AllowMultipleVoteInPollParameter),
             )
                 .apply { this.candidates = candidates.toList() }
@@ -209,13 +209,13 @@ class MajorityVotesAndLowestScoreAlgorithmTests : StringSpec({
 
     "Majority Algorithm should throw exception when vote is about a not allowed candidate" {
 
-        val competitor1 = object : CompetitorAbstraction<ScoreMetrics>() {}
+        val competitor1 = object : CompetitorAbstraction<ScoreMetric>() {}
             .apply {
                 this.name = "Competitor 1"
                 this.scores = listOf()
             }
 
-        val competitor2 = object : CompetitorAbstraction<ScoreMetrics>() {}
+        val competitor2 = object : CompetitorAbstraction<ScoreMetric>() {}
             .apply {
                 this.name = "Competitor 2"
                 this.scores = listOf()
@@ -223,22 +223,22 @@ class MajorityVotesAndLowestScoreAlgorithmTests : StringSpec({
 
         val candidates = listOf(competitor1)
 
-        val v1 = object : SinglePreferenceVote<ScoreMetrics> {
-            override var votedCompetitor: Competitor<ScoreMetrics> = competitor2
+        val v1 = object : SinglePreferenceVote<ScoreMetric> {
+            override var votedCompetitor: Competitor<ScoreMetric> = competitor2
             override var voter: Voter = object : Voter {
                 override val identifier: String = "anonym1"
             }
         }
 
-        val v2 = object : SinglePreferenceVote<ScoreMetrics> {
-            override var votedCompetitor: Competitor<ScoreMetrics> = competitor2
+        val v2 = object : SinglePreferenceVote<ScoreMetric> {
+            override var votedCompetitor: Competitor<ScoreMetric> = competitor2
             override var voter: Voter = object : Voter {
                 override val identifier: String = "anonym1"
             }
         }
 
-        val v3 = object : SinglePreferenceVote<ScoreMetrics> {
-            override var votedCompetitor: Competitor<ScoreMetrics> = competitor1
+        val v3 = object : SinglePreferenceVote<ScoreMetric> {
+            override var votedCompetitor: Competitor<ScoreMetric> = competitor1
             override var voter: Voter = object : Voter {
                 override val identifier: String = "anonym1"
             }
@@ -247,7 +247,7 @@ class MajorityVotesAndLowestScoreAlgorithmTests : StringSpec({
         val votes = listOf(v1, v2, v3)
 
         shouldThrowWithMessage<IllegalStateException>("Voted candidate doesn't exist as object") {
-            MajorityVotesAndLowestScoreAlgorithm<ScoreMetrics>()
+            MajorityVotesAndLowestScoreAlgorithm<ScoreMetric>()
                 .apply { this.candidates = candidates.toList() }
                 .computeByAlgorithmRules(votes)
         }

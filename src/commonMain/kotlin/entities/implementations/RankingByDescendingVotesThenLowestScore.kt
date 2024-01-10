@@ -2,12 +2,12 @@ package entities.implementations
 
 import entities.interfaces.Competitor
 import entities.types.Comparators
-import entities.types.ScoreMetrics
+import entities.types.ScoreMetric
 
 /**
  * Class which orders intermediate ranking by descending number of votes, then by lowest score.
  */
-class RankingByDescendingVotesThenLowestScore<S : ScoreMetrics>(unorderedRanking: Map<Competitor<S>, Int>) :
+class RankingByDescendingVotesThenLowestScore<S : ScoreMetric>(unorderedRanking: Map<Competitor<S>, Int>) :
     RankingByDescendingVotes<S>(unorderedRanking) {
     init {
         val competitors = super.ranking.flatMap { it.key }

@@ -2,11 +2,11 @@ package entities.implementations
 
 import entities.abstract.RankingAbstraction
 import entities.interfaces.Competitor
-import entities.types.ScoreMetrics
+import entities.types.ScoreMetric
 /**
  * Class which orders intermediate ranking by descending number of votes.
  */
-open class RankingByDescendingVotes<S : ScoreMetrics>(private val unorderedRanking: Map<Competitor<S>, Int>) :
+open class RankingByDescendingVotes<S : ScoreMetric>(private val unorderedRanking: Map<Competitor<S>, Int>) :
     RankingAbstraction<S>() {
     init {
         if (unorderedRanking.isEmpty()) error("Ranking cannot be empty")

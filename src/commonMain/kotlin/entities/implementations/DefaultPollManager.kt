@@ -4,12 +4,12 @@ import entities.interfaces.Poll
 import entities.interfaces.PollManager
 import entities.interfaces.Ranking
 import entities.interfaces.Vote
-import entities.types.ScoreMetrics
+import entities.types.ScoreMetric
 
 /**
  * This class allows to define and execute multiple polls.
  */
-class DefaultPollManager<S : ScoreMetrics, V : Vote> : PollManager<S, V> {
+class DefaultPollManager<S : ScoreMetric, V : Vote> : PollManager<S, V> {
     override lateinit var pollList: List<Poll<S, V>>
 
     override fun computeAllPolls(): List<Ranking<S>> {

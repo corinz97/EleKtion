@@ -2,11 +2,11 @@ package entities.implementations
 
 import entities.interfaces.Competitor
 import entities.types.Comparators
-import entities.types.ScoreMetrics
+import entities.types.ScoreMetric
 /**
  * Class which orders intermediate ranking by descending number of votes, then by highest score.
  */
-class RankingByDescendingVotesThenHighestScore<S : ScoreMetrics>(unorderedRanking: Map<Competitor<S>, Int>) :
+class RankingByDescendingVotesThenHighestScore<S : ScoreMetric>(unorderedRanking: Map<Competitor<S>, Int>) :
     RankingByDescendingVotes<S>(unorderedRanking) {
     init {
 

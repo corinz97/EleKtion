@@ -1,11 +1,11 @@
 package entities.interfaces
 
-import entities.types.ScoreMetrics
+import entities.types.ScoreMetric
 
 /**
  * This interface represents a competitor.
  */
-interface Competitor<S : ScoreMetrics> {
+interface Competitor<S : ScoreMetric> {
     /**
      * Name of competitor.
      */

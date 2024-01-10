@@ -1,12 +1,12 @@
 package entities.abstract
 
 import entities.interfaces.Score
-import entities.types.ScoreMetrics
+import entities.types.ScoreMetric
 
 /**
  *
  */
-abstract class ScoreAbstraction<T : ScoreMetrics> : Score<T> {
+abstract class ScoreAbstraction<T : ScoreMetric> : Score<T> {
     override lateinit var scoreValue: T
 
     override fun equals(other: Any?): Boolean {
