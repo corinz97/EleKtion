@@ -7,7 +7,7 @@ import entities.interfaces.ListOfPreferencesVote
 import entities.interfaces.PollAlgorithm
 import entities.interfaces.PollAlgorithmParameter
 import entities.interfaces.Ranking
-import entities.types.ConstantParameters
+import entities.types.ConstantParameter
 import entities.types.ScoreMetrics
 
 /**
@@ -31,7 +31,7 @@ class MyCondorcetAlgorithm<S : ScoreMetrics>(
         require(votes.any())
         // if (votes.isEmpty()) throw IllegalArgumentException("Votes list cannot be empty")
 
-        when (pollAlgorithmParameters.count { it == ConstantParameters.AllowMultipleVoteInPollParameter }) {
+        when (pollAlgorithmParameters.count { it == ConstantParameter.AllowMultipleVoteInPollParameter }) {
             0 -> {
                 if (votes.groupingBy { it.voter.identifier }.eachCount().any { it.value > 1 }) {
                     error("Each voter can vote only once")

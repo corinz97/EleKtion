@@ -4,7 +4,7 @@ import entities.interfaces.ListOfPreferencesVote
 import entities.interfaces.SinglePreferenceVote
 import entities.types.BestTimeInMatch
 import entities.types.BestTimeInMatch.Companion.realized
-import entities.types.ConstantParameters
+import entities.types.ConstantParameter
 import entities.types.WinsInCampionship
 import entities.types.WinsInCampionship.Companion.realized
 import kotlin.time.DurationUnit
@@ -32,7 +32,7 @@ fun main() {
                     }
                 }
                 -majorityVotesAlgorithm {
-                    +ConstantParameters.AllowMultipleVoteInPollParameter
+                    +ConstantParameter.AllowMultipleVoteInPollParameter
                 }
 
                 +("compname1" votedBy "b")
@@ -57,7 +57,7 @@ fun main() {
                 }
 
                 -condorcetAlgorithm {
-                    +ConstantParameters.AllowMultipleVoteInPollParameter
+                    +ConstantParameter.AllowMultipleVoteInPollParameter
                 }
 
                 +("compname1" then "compname2" votedBy "b")

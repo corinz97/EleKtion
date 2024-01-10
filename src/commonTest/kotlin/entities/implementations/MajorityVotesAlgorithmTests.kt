@@ -4,7 +4,7 @@ import entities.abstract.CompetitorAbstraction
 import entities.interfaces.Competitor
 import entities.interfaces.SinglePreferenceVote
 import entities.interfaces.Voter
-import entities.types.ConstantParameters
+import entities.types.ConstantParameter
 import entities.types.ScoreMetrics
 import io.kotest.assertions.throwables.shouldThrowWithMessage
 import io.kotest.core.spec.style.StringSpec
@@ -132,8 +132,8 @@ class MajorityVotesAlgorithmTests : StringSpec({
         shouldThrowWithMessage<IllegalStateException>("Parameter can't be repeated more than once") {
             MajorityVotesAlgorithm<ScoreMetrics>(
                 listOf(
-                    ConstantParameters.AllowMultipleVoteInPollParameter,
-                    ConstantParameters.AllowMultipleVoteInPollParameter,
+                    ConstantParameter.AllowMultipleVoteInPollParameter,
+        ConstantParameterntParameters.AllowMultipleVoteInPollParameter,
                 ),
             )
                 .apply { this.candidates = candidates.toList() }
@@ -227,7 +227,7 @@ class MajorityVotesAlgorithmTests : StringSpec({
         val votes = listOf(v1, v2, v3)
 
         shouldThrowWithMessage<IllegalStateException>("Each voter can vote just once for each competitor") {
-            MajorityVotesAlgorithm<ScoreMetrics>(listOf(ConstantParameters.AllowMultipleVoteInPollParameter))
+            MajorityVotesAlgoritConstantParameteristOf(ConstantParameters.AllowMultipleVoteInPollParameter))
                 .apply { this.candidates = candidates.toList() }
                 .computeByAlgorithmRules(votes)
         }

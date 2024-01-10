@@ -5,7 +5,7 @@ import entities.interfaces.PollAlgorithmParameter
 /**
  * Contains value-independent parameters.
  */
-sealed class ConstantParameters {
+sealed class ConstantParameter {
     /**
      * Given a competition and a voter, this type of parameter
      * represents the enabling to vote multiple times.

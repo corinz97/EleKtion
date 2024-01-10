@@ -5,7 +5,7 @@ import entities.interfaces.ListOfPreferencesVote
 import entities.interfaces.SinglePreferenceVote
 import entities.types.BestTimeInMatch
 import entities.types.BestTimeInMatch.Companion.realized
-import entities.types.ConstantParameters
+import entities.types.ConstantParameter
 import entities.types.WinsInCampionship
 import entities.types.WinsInCampionship.Companion.realized
 import io.kotest.assertions.throwables.shouldNotThrowAny
@@ -211,7 +211,7 @@ class PollManagerTests : StringSpec({
                     }
                 }
                 -majorityVotesAlgorithm {
-                    +ConstantParameters.AllowMultipleVoteInPollParameter
+                    +ConstantParameter.AllowMultipleVoteInPollParameter
                 }
 
                 +("Competitor 2" votedBy "J")

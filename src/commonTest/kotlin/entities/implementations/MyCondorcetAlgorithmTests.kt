@@ -4,7 +4,7 @@ import entities.abstract.CompetitorAbstraction
 import entities.interfaces.ListOfPreferencesVote
 import entities.interfaces.Voter
 import entities.types.BestTimeInMatch
-import entities.types.ConstantParameters
+import entities.types.ConstantParameter
 import io.kotest.assertions.throwables.shouldThrowWithMessage
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.collections.shouldContainAll
@@ -38,7 +38,7 @@ class MyCondorcetAlgorithmTests : StringSpec({
         val c = MyCondorcetAlgorithm<BestTimeInMatch>()
             .apply {
                 this.candidates = competitors.toList()
-                this.pollAlgorithmParameters = listOf(ConstantParameters.AllowMultipleVoteInPollParameter)
+                this.pollAlgorithmParameters = listOf(ConstantParameter.AllowMultipleVoteInPollParameter)
             }
         val l = mutableListOf<ListOfPreferencesVote<BestTimeInMatch>>()
         for (i in 1..23) {
@@ -147,8 +147,7 @@ class MyCondorcetAlgorithmTests : StringSpec({
             .apply {
                 this.candidates = competitors.toList()
                 this.pollAlgorithmParameters = listOf(
-                    ConstantParameters.AllowMultipleVoteInPollParameter,
-                    ConstantParameters.AllowMultipleVoteInPollParameter,
+        ConstantParameterntParameters.AllowMultipleVoteInPollParametConstantParameter      ConstantParameters.AllowMultipleVoteInPollParameter,
                 )
             }
         val l = mutableListOf<ListOfPreferencesVote<BestTimeInMatch>>()
@@ -208,7 +207,7 @@ class MyCondorcetAlgorithmTests : StringSpec({
         val c = MyCondorcetAlgorithm<BestTimeInMatch>()
             .apply {
                 this.candidates = competitors.toList()
-                this.pollAlgorithmParameters = listOf(ConstantParameters.AllowMultipleVoteInPollParameter)
+                thConstantParameterrameters = listOf(ConstantParameters.AllowMultipleVoteInPollParameter)
             }
         val l = mutableListOf<ListOfPreferencesVote<BestTimeInMatch>>()
         for (i in 1..23) {
