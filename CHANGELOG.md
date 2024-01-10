@@ -1,3 +1,11 @@
+## [1.8.0](https://github.com/corinz97/Kotlin-MP-Thesis-Library/compare/1.7.0...1.8.0) (2024-01-10)
+
+
+### Features
+
+* **commonMain:** changed class name ([609047b](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/609047b79863b8637494991159a44c3de61b48d8))
+* **commonMain:** changed class name ([5a2b166](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/5a2b1669e4bcb6f55946e3a512976caae9015d4c))
+
 ## [1.7.0](https://github.com/corinz97/Kotlin-MP-Thesis-Library/compare/1.6.0...1.7.0) (2024-01-10)
 
 
