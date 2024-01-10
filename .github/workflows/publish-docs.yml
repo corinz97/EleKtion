@@ -1,7 +1,12 @@
 name: Publish docs on GH Pages
 
 on:
-  release:
+  push:
+    # Pattern matched against refs/tags
+    tags:
+      - '*'
+  workflow_dispatch:
+
 
 jobs:
   generate-and-publish:
@@ -10,7 +15,6 @@ jobs:
 
      - uses: actions/checkout@v4.1.1
        with:
-        token: ${{ secrets.DEPLOYMENT_TOKEN }}
         fetch-depth: 0
 
      - name: Generate API documentation
@@ -22,7 +26,6 @@ jobs:
      - uses: JamesIves/github-pages-deploy-action@v4
        name: Publish API documentation
        with:
-         token: ${{ secrets.DEPLOYMENT_TOKEN }}
          branch: gh-pages
          folder: build/dokka/html
          target-folder: ./
