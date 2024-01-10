@@ -18,6 +18,8 @@ jobs:
         fetch-depth: 0
         token: ${{ secrets.DEPLOYMENT_TOKEN }}
      - name: Generate API documentation
+       with:
+         token: ${{ secrets.DEPLOYMENT_TOKEN }}
        run: |
          VERSION=$(git tag --sort=committerdate | tail -1)
          echo Generating API documentation for version $VERSION
