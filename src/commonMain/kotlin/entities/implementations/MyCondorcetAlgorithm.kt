@@ -73,7 +73,7 @@ class MyCondorcetAlgorithm<S : ScoreMetric>(
 
         val result = calculateWinners(candidates.toList(), votes)
 
-        return MyCondorcetRanking(result)
+        return CondorcetRanking(result)
     }
 
     private fun <S : ScoreMetric> calculateVoteMatrix(
