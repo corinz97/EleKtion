@@ -1,3 +1,21 @@
+## [1.3.0](https://github.com/corinz97/Kotlin-MP-Thesis-Library/compare/1.2.0...1.3.0) (2024-01-10)
+
+
+### Features
+
+* **common:** changed class name ([794b7df](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/794b7df084334772fbd778f610c9f3b72f055f6f))
+
+
+### Bug Fixes
+
+* **common:** restored tests after wrong refactor ([231627d](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/231627d8e43de0835206bbcdfbf7ec91e92fab65))
+
+
+### Build and continuous integration
+
+* **yaml:** changed trigger rules ([33d1bae](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/33d1baeabf539306048c4e3447929e78ce763421))
+* **yaml:** changed trigger rules ([d73bc21](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/d73bc219320d417d43af0b66381e210e212eab9a))
+
 ## [1.2.0](https://github.com/corinz97/Kotlin-MP-Thesis-Library/compare/1.1.0...1.2.0) (2024-01-10)
 
 
