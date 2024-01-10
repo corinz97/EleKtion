@@ -211,7 +211,7 @@ class PollManagerTests : StringSpec({
                     }
                 }
                 -majorityVotesAlgorithm {
-                    +ConstantParameters.MultipleVotesAllowed
+                    +ConstantParameters.AllowMultipleVoteInPoll
                 }
 
                 +("Competitor 2" votedBy "J")

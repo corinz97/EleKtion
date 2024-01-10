@@ -132,8 +132,8 @@ class MajorityVotesAlgorithmTests : StringSpec({
         shouldThrowWithMessage<IllegalStateException>("Parameter can't be repeated more than once") {
             MajorityVotesAlgorithm<ScoreMetrics>(
                 listOf(
-                    ConstantParameters.MultipleVotesAllowed,
-                    ConstantParameters.MultipleVotesAllowed,
+                    ConstantParameters.AllowMultipleVoteInPoll,
+                    ConstantParameters.AllowMultipleVoteInPoll,
                 ),
             )
                 .apply { this.candidates = candidates.toList() }
@@ -227,7 +227,7 @@ class MajorityVotesAlgorithmTests : StringSpec({
         val votes = listOf(v1, v2, v3)
 
         shouldThrowWithMessage<IllegalStateException>("Each voter can vote just once for each competitor") {
-            MajorityVotesAlgorithm<ScoreMetrics>(listOf(ConstantParameters.MultipleVotesAllowed))
+            MajorityVotesAlgorithm<ScoreMetrics>(listOf(ConstantParameters.AllowMultipleVoteInPoll))
                 .apply { this.candidates = candidates.toList() }
                 .computeByAlgorithmRules(votes)
         }
