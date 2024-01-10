@@ -13,7 +13,7 @@ import entities.types.ScoreMetric
  * Represents an algorithm which orders intermediate ranking by descending
  * number of votes, then by highest score (about ties).
  */
-class MajorityVotesAndHighestScoreAlgorithm<S : ScoreMetric>(
+class MajorityVotesThenHighestScoreAlgorithm<S : ScoreMetric>(
     override var pollAlgorithmParameters: List<PollAlgorithmParameter> = listOf(),
 ) :
     PollAlgorithm<S, SinglePreferenceVote<S>> {

@@ -2,7 +2,6 @@ name: Publish docs on GH Pages
 
 on:
   release:
-    types: [created]
 
 jobs:
   generate-and-publish:

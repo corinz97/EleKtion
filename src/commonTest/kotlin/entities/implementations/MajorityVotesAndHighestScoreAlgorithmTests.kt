@@ -56,7 +56,7 @@ class MajorityVotesAndHighestScoreAlgorithmTests : StringSpec({
         val votes = listOf(v1, v2, v3)
 
         shouldThrowWithMessage<IllegalStateException>("Candidate already declared") {
-            MajorityVotesAndHighestScoreAlgorithm<ScoreMetric>()
+            MajorityVotesThenHighestScoreAlgorithm<ScoreMetric>()
                 .apply { this.candidates = candidates.toList() }
                 .computeByAlgorithmRules(votes)
         }
@@ -102,7 +102,7 @@ class MajorityVotesAndHighestScoreAlgorithmTests : StringSpec({
         val votes = listOf(v1, v2, v3)
 
         shouldThrowWithMessage<IllegalStateException>("Each voter can vote only once") {
-            MajorityVotesAndHighestScoreAlgorithm<ScoreMetric>()
+            MajorityVotesThenHighestScoreAlgorithm<ScoreMetric>()
                 .apply { this.candidates = candidates.toList() }
                 .computeByAlgorithmRules(votes)
         }
@@ -148,7 +148,7 @@ class MajorityVotesAndHighestScoreAlgorithmTests : StringSpec({
         val votes = listOf(v1, v2, v3)
 
         shouldThrowWithMessage<IllegalStateException>("Parameter can't be repeated more than once") {
-            MajorityVotesAndHighestScoreAlgorithm<ScoreMetric>(
+            MajorityVotesThenHighestScoreAlgorithm<ScoreMetric>(
                 listOf(
                     ConstantParameter.AllowMultipleVoteInPollParameter,
                     ConstantParameter.AllowMultipleVoteInPollParameter,
@@ -199,7 +199,7 @@ class MajorityVotesAndHighestScoreAlgorithmTests : StringSpec({
         val votes = listOf(v1, v2, v3)
 
         shouldThrowWithMessage<IllegalStateException>("Each voter can vote just once for each competitor") {
-            MajorityVotesAndHighestScoreAlgorithm<ScoreMetric>(
+            MajorityVotesThenHighestScoreAlgorithm<ScoreMetric>(
                 listOf(ConstantParameter.AllowMultipleVoteInPollParameter),
             )
                 .apply { this.candidates = candidates.toList() }
@@ -247,7 +247,7 @@ class MajorityVotesAndHighestScoreAlgorithmTests : StringSpec({
         val votes = listOf(v1, v2, v3)
 
         shouldThrowWithMessage<IllegalStateException>("Voted candidate doesn't exist as object") {
-            MajorityVotesAndHighestScoreAlgorithm<ScoreMetric>()
+            MajorityVotesThenHighestScoreAlgorithm<ScoreMetric>()
                 .apply { this.candidates = candidates.toList() }
                 .computeByAlgorithmRules(votes)
         }
@@ -302,7 +302,7 @@ class MajorityVotesAndHighestScoreAlgorithmTests : StringSpec({
 
         val votes = listOf(v1, v2, v3)
 
-        val ranking = MajorityVotesAndHighestScoreAlgorithm<BestTimeInMatch>()
+        val ranking = MajorityVotesThenHighestScoreAlgorithm<BestTimeInMatch>()
             .apply { this.candidates = candidates.toList() }
             .computeByAlgorithmRules(votes)
             .ranking
@@ -357,7 +357,7 @@ class MajorityVotesAndHighestScoreAlgorithmTests : StringSpec({
 
         val votes = listOf(v1, v2, v3)
 
-        val ranking = MajorityVotesAndHighestScoreAlgorithm<BestTimeInMatch>()
+        val ranking = MajorityVotesThenHighestScoreAlgorithm<BestTimeInMatch>()
             .apply { this.candidates = candidates.toList() }
             .computeByAlgorithmRules(votes)
             .ranking
@@ -437,7 +437,7 @@ class MajorityVotesAndHighestScoreAlgorithmTests : StringSpec({
 
         val votes = listOf(v1, v2, v3, v4, v5)
 
-        val ranking = MajorityVotesAndHighestScoreAlgorithm<BestTimeInMatch>()
+        val ranking = MajorityVotesThenHighestScoreAlgorithm<BestTimeInMatch>()
             .apply { this.candidates = candidates.toList() }
             .computeByAlgorithmRules(votes)
             .ranking
@@ -525,7 +525,7 @@ class MajorityVotesAndHighestScoreAlgorithmTests : StringSpec({
         }
         val votes = listOf(v1, v2, v3, v4, v5, v6)
 
-        val ranking = MajorityVotesAndHighestScoreAlgorithm<BestTimeInMatch>()
+        val ranking = MajorityVotesThenHighestScoreAlgorithm<BestTimeInMatch>()
             .apply { this.candidates = candidates.toList() }
             .computeByAlgorithmRules(votes)
             .ranking
