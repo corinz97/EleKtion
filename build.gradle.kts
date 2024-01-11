@@ -140,6 +140,9 @@ kotlin {
     }
 }
 
+tasks.dokkaHtml {
+    version = ""
+}
 tasks.dokkaJavadoc {
     enabled = false
 }
