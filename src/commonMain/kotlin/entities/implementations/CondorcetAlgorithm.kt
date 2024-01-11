@@ -13,7 +13,7 @@ import entities.types.ScoreMetric
 /**
  * Represents an algorithm implementing Condorcet logic.
  */
-class MyCondorcetAlgorithm<S : ScoreMetric>(
+class CondorcetAlgorithm<S : ScoreMetric>(
     override var pollAlgorithmParameters: List<PollAlgorithmParameter> = listOf(),
 ) :
     PollAlgorithm<S, ListOfPreferencesVote<S>> {

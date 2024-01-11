@@ -35,7 +35,7 @@ class MyCondorcetAlgorithmTests : StringSpec({
             },
         )
 
-        val c = MyCondorcetAlgorithm<BestTimeInMatch>()
+        val c = CondorcetAlgorithm<BestTimeInMatch>()
             .apply {
                 this.candidates = competitors.toList()
                 this.pollAlgorithmParameters = listOf(ConstantParameter.AllowMultipleVoteInPollParameter)
@@ -92,7 +92,7 @@ class MyCondorcetAlgorithmTests : StringSpec({
 
         )
 
-        val c = MyCondorcetAlgorithm<BestTimeInMatch>().apply { this.candidates = competitors.toList() }
+        val c = CondorcetAlgorithm<BestTimeInMatch>().apply { this.candidates = competitors.toList() }
         val l = mutableListOf<ListOfPreferencesVote<BestTimeInMatch>>()
         for (i in 1..23) {
             val dl = DescendingListOfPreferencesVote<BestTimeInMatch>().apply {
@@ -143,7 +143,7 @@ class MyCondorcetAlgorithmTests : StringSpec({
             },
         )
 
-        val c = MyCondorcetAlgorithm<BestTimeInMatch>()
+        val c = CondorcetAlgorithm<BestTimeInMatch>()
             .apply {
                 this.candidates = competitors.toList()
                 this.pollAlgorithmParameters = listOf(
@@ -205,7 +205,7 @@ class MyCondorcetAlgorithmTests : StringSpec({
             },
         )
 
-        val c = MyCondorcetAlgorithm<BestTimeInMatch>()
+        val c = CondorcetAlgorithm<BestTimeInMatch>()
             .apply {
                 this.candidates = competitors.toList()
                 this.pollAlgorithmParameters = listOf(ConstantParameter.AllowMultipleVoteInPollParameter)
@@ -263,7 +263,7 @@ class MyCondorcetAlgorithmTests : StringSpec({
             },
         )
         var counter = 0
-        val c = MyCondorcetAlgorithm<BestTimeInMatch>()
+        val c = CondorcetAlgorithm<BestTimeInMatch>()
             .apply { this.candidates = competitors.toList() }
         val l = mutableListOf<ListOfPreferencesVote<BestTimeInMatch>>()
         for (i in 1..23) {
@@ -406,7 +406,7 @@ class MyCondorcetAlgorithmTests : StringSpec({
             },
         )
         var counter = 0
-        val c = MyCondorcetAlgorithm<BestTimeInMatch>()
+        val c = CondorcetAlgorithm<BestTimeInMatch>()
             .apply { this.candidates = competitors.toList() }
         val l = mutableListOf<ListOfPreferencesVote<BestTimeInMatch>>()
         for (i in 1..23) {
@@ -546,7 +546,7 @@ class MyCondorcetAlgorithmTests : StringSpec({
         )
 
         var counter = 0
-        val c = MyCondorcetAlgorithm<BestTimeInMatch>()
+        val c = CondorcetAlgorithm<BestTimeInMatch>()
             .apply { this.candidates = competitors.toList() }
         val l = mutableListOf<ListOfPreferencesVote<BestTimeInMatch>>()
         for (i in 1..23) {
@@ -692,7 +692,7 @@ class MyCondorcetAlgorithmTests : StringSpec({
             },
         )
         var counter = 0
-        val c = MyCondorcetAlgorithm<BestTimeInMatch>()
+        val c = CondorcetAlgorithm<BestTimeInMatch>()
             .apply { this.candidates = competitors.toList() }
         val l = mutableListOf<ListOfPreferencesVote<BestTimeInMatch>>()
         for (i in 1..23) {

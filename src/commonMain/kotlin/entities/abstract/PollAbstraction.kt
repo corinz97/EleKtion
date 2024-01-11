@@ -1,9 +1,9 @@
 package entities.abstract
 
+import entities.implementations.CondorcetAlgorithm
 import entities.implementations.MajorityVotesAlgorithm
 import entities.implementations.MajorityVotesThenHighestScoreAlgorithm
 import entities.implementations.MajorityVotesThenLowestScoreAlgorithm
-import entities.implementations.MyCondorcetAlgorithm
 import entities.interfaces.Competition
 import entities.interfaces.ListOfPreferencesVote
 import entities.interfaces.Poll
@@ -76,7 +76,7 @@ abstract class PollAbstraction<S : ScoreMetric, V : Vote> : Poll<S, V> {
         algInit: PollAlgorithm<S, ListOfPreferencesVote<S>>.() -> Unit,
     ): PollAlgorithm<S, ListOfPreferencesVote<S>> {
         val a =
-            MyCondorcetAlgorithm<S>()
+            CondorcetAlgorithm<S>()
                 .apply {
                     this.candidates = this@PollAbstraction.competition.competitors
                 }
