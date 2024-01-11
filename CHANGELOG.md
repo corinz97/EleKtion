@@ -1,3 +1,15 @@
+## [1.10.0](https://github.com/corinz97/Kotlin-MP-Thesis-Library/compare/1.9.0...1.10.0) (2024-01-11)
+
+
+### Features
+
+* **commonMain:** Refactor class name ([580d690](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/580d690ee732ad51af5c9956c483982580cbcfb3))
+
+
+### Build and continuous integration
+
+* **yaml:** use action for getting tag ([0e50935](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/0e50935f3bcdc075343930bc4e9939ffb8d2b325))
+
 ## [1.9.0](https://github.com/corinz97/Kotlin-MP-Thesis-Library/compare/1.8.0...1.9.0) (2024-01-10)
 
 
