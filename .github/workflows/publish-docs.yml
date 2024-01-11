@@ -23,6 +23,8 @@ jobs:
 
        run: |
          echo Generating API documentation
+         git pull
+         git checkout master
          ./gradlew dokkaHtml
 
      - uses: JamesIves/github-pages-deploy-action@v4
