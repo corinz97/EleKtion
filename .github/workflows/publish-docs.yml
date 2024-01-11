@@ -25,6 +25,7 @@ jobs:
          echo Generating API documentation
          git checkout master
          git pull
+         git fetch --tags
          ./gradlew dokkaHtml
 
      - uses: JamesIves/github-pages-deploy-action@v4
