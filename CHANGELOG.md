@@ -1,3 +1,10 @@
+## [1.11.0](https://github.com/corinz97/Kotlin-MP-Thesis-Library/compare/1.10.4...1.11.0) (2024-01-11)
+
+
+### Features
+
+* **commonMain:** refactor class name ([eef6b72](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/eef6b723a989c4a87d0a6307ea963af4cd709a19))
+
 ## [1.10.0](https://github.com/corinz97/Kotlin-MP-Thesis-Library/compare/1.9.0...1.10.0) (2024-01-11)
 
 
