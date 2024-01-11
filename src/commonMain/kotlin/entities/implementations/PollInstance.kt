@@ -11,11 +11,11 @@ import entities.types.ScoreMetric
 /**
  * This class allows to create a poll with its mandatory members.
  */
-class PollSimulation<S : ScoreMetric, V : Vote> : PollAbstraction<S, V>() {
+class PollInstance<S : ScoreMetric, V : Vote> : PollAbstraction<S, V>() {
 
     override infix fun String.votedBy(voterIdentifier: String): SinglePreferenceVote<S> {
         val comp =
-            this@PollSimulation.competition.competitors.firstOrNull {
+            this@PollInstance.competition.competitors.firstOrNull {
                 it.name == this@votedBy
             } ?: throw NoSuchElementException("Voted candidate doesn't exist as object")
 
@@ -34,7 +34,7 @@ class PollSimulation<S : ScoreMetric, V : Vote> : PollAbstraction<S, V>() {
         if (this.isEmpty()) error("Votes list cannot be empty")
 
         val setOfCompetitors = this.toSet()
-        val candidates = this@PollSimulation.competition.competitors.map { it.name }.toSet()
+        val candidates = this@PollInstance.competition.competitors.map { it.name }.toSet()
 
         if (setOfCompetitors != candidates) { // mismatch between sets
             if ((setOfCompetitors - candidates).isNotEmpty()) {
@@ -55,7 +55,7 @@ class PollSimulation<S : ScoreMetric, V : Vote> : PollAbstraction<S, V>() {
         this.forEach { actualName ->
 
             listOfCompetitorObject +=
-                this@PollSimulation.competition.competitors.firstOrNull { comp ->
+                this@PollInstance.competition.competitors.firstOrNull { comp ->
                     comp.name == actualName
                 }.let {
                     it ?: throw NoSuchElementException("Voted candidate doesn't exist as object")

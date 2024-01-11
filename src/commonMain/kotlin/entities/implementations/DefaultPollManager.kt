@@ -31,6 +31,6 @@ class DefaultPollManager<S : ScoreMetric, V : Vote> : PollManager<S, V> {
     }
 
     override fun poll(newPoll: Poll<S, V>.() -> Unit): Poll<S, V> {
-        return PollSimulation<S, V>().apply(newPoll)
+        return PollInstance<S, V>().apply(newPoll)
     }
 }
