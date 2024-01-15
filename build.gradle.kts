@@ -19,7 +19,6 @@ group = "io.github.corinz97" // "org.jacopocorina"
 repositories {
     google()
     mavenCentral()
-    maven { url = uri("https://jitpack.io") }
 }
 
 kotlin {
@@ -34,9 +33,6 @@ kotlin {
 
     sourceSets {
         val commonMain by getting {
-            dependencies {
-                implementation("com.github.jcornaz:kondorcet:v1.0.0")
-            }
         }
         val commonTest by getting {
             dependencies {
@@ -45,11 +41,6 @@ kotlin {
             }
         }
 
-        val jvmMain by getting {
-            dependencies {
-                implementation("com.github.jcornaz:kondorcet:v1.0.0")
-            }
-        }
         val jvmTest by getting {
             dependencies {
                 implementation(libs.kotest.runner.junit5)
