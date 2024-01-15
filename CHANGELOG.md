@@ -1,3 +1,11 @@
+## [1.12.0](https://github.com/corinz97/Kotlin-MP-Thesis-Library/compare/1.11.0...1.12.0) (2024-01-15)
+
+
+### Features
+
+* **common:** renamed DefaultPollManager class, test class names renamed according to classes in commonMain ([16795a5](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/16795a523aa2b88bc97018676f70314d37aed6b6))
+* **gradle:** removed kondorcet library reference ([155d582](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/155d58237290d553f28fd5957778bb0090a1acb4))
+
 ## [1.11.0](https://github.com/corinz97/Kotlin-MP-Thesis-Library/compare/1.10.4...1.11.0) (2024-01-11)
 
 
