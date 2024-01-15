@@ -1,5 +1,5 @@
 
-import entities.implementations.DefaultPollManager
+import entities.implementations.PollManagerInstance
 import entities.interfaces.ListOfPreferencesVote
 import entities.interfaces.SinglePreferenceVote
 import entities.types.BestTimeInMatch
@@ -17,7 +17,7 @@ fun main() {
     println("Hello, ${Platform.name}!")
 
     val a =
-        DefaultPollManager<BestTimeInMatch, SinglePreferenceVote<BestTimeInMatch>>() initializedAs {
+        PollManagerInstance<BestTimeInMatch, SinglePreferenceVote<BestTimeInMatch>>() initializedAs {
             +poll {
                 -competition {
                     -"Race"
@@ -42,7 +42,7 @@ fun main() {
     a.computeAllPolls().forEach { println(it.ranking) }
 
     val b =
-        DefaultPollManager<WinsInCampionship, ListOfPreferencesVote<WinsInCampionship>>() initializedAs {
+        PollManagerInstance<WinsInCampionship, ListOfPreferencesVote<WinsInCampionship>>() initializedAs {
             +poll {
                 -competition {
                     -"Race"

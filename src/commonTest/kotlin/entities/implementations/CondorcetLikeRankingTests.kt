@@ -7,7 +7,7 @@ import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.maps.shouldHaveSize
 import io.kotest.matchers.shouldBe
 
-class MyCondorcetLikeRankingTests : StringSpec({
+class CondorcetLikeRankingTests : StringSpec({
 
     "Ranking shouldn't have any number of votes" {
         val s1 = object : ScoreAbstraction<WinsInCampionship>() {

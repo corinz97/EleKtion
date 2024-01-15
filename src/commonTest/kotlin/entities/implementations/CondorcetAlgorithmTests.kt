@@ -11,7 +11,7 @@ import io.kotest.matchers.collections.shouldContainAll
 import io.kotest.matchers.maps.shouldHaveSize
 import io.kotest.matchers.shouldBe
 
-class MyCondorcetAlgorithmTests : StringSpec({
+class CondorcetAlgorithmTests : StringSpec({
 
     "Majority Algorithm should throw exception when candidates are declared more than once" {
 

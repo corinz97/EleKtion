@@ -9,7 +9,7 @@ import io.kotest.matchers.shouldBe
 import kotlin.time.DurationUnit
 import kotlin.time.toDuration
 
-class ScoreMetricsTests : StringSpec({
+class ScoreMetricTests : StringSpec({
 
     "BestTimeInMatch should be comparable with same type" {
         val b1 = BestTimeInMatch(1.toDuration(DurationUnit.DAYS))

@@ -8,7 +8,7 @@ import io.kotest.matchers.shouldBe
 import kotlin.time.DurationUnit
 import kotlin.time.toDuration
 
-class ComparatorsTest : StringSpec({
+class ComparatorTest : StringSpec({
 
     "HighestScoreComparator should be a descending comparator" {
         val s1 = object : ScoreAbstraction<BestTimeInMatch>() {

@@ -15,7 +15,7 @@ import io.kotest.matchers.shouldBe
 import kotlin.time.DurationUnit
 import kotlin.time.toDuration
 
-class MajorityVotesAndLowestScoreAlgorithmTests : StringSpec({
+class MajorityVotesThenLowestScoreAlgorithmTests : StringSpec({
 
     "Majority Algorithm should throw exception when candidates are declared more than once" {
 

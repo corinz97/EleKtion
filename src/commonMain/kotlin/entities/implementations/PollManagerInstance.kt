@@ -9,7 +9,7 @@ import entities.types.ScoreMetric
 /**
  * This class allows to define and execute multiple polls.
  */
-class DefaultPollManager<S : ScoreMetric, V : Vote> : PollManager<S, V> {
+class PollManagerInstance<S : ScoreMetric, V : Vote> : PollManager<S, V> {
     override lateinit var pollList: List<Poll<S, V>>
 
     override fun computeAllPolls(): List<Ranking<S>> {
@@ -19,15 +19,15 @@ class DefaultPollManager<S : ScoreMetric, V : Vote> : PollManager<S, V> {
     }
 
     override infix fun initializedAs(initializer: PollManager<S, V>.() -> Unit): PollManager<S, V> {
-        return DefaultPollManager<S, V>()
+        return PollManagerInstance<S, V>()
             .apply(initializer)
     }
 
     override operator fun Poll<S, V>.unaryPlus() {
-        if (!this@DefaultPollManager::pollList.isInitialized) {
-            this@DefaultPollManager.pollList = listOf()
+        if (!this@PollManagerInstance::pollList.isInitialized) {
+            this@PollManagerInstance.pollList = listOf()
         }
-        this@DefaultPollManager.pollList += this@unaryPlus
+        this@PollManagerInstance.pollList += this@unaryPlus
     }
 
     override fun poll(newPoll: Poll<S, V>.() -> Unit): Poll<S, V> {
