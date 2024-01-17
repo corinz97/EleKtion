@@ -13,7 +13,7 @@ interface Ranking<S : ScoreMetric> {
     val ranking: Map<Set<Competitor<S>>, Int?>
 
     /**
-     * Prints the ranking.
+     * Print the ranking.
      */
     fun printRanking()
 }

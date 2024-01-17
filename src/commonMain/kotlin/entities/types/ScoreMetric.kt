@@ -2,6 +2,7 @@ package entities.types
 import entities.abstract.ScoreAbstraction
 import entities.interfaces.Score
 import kotlin.time.Duration
+import kotlin.time.DurationUnit
 
 /**
  * Represents a metric useful two compare and evaluate results among competitors.
@@ -19,6 +20,10 @@ data class BestTimeInMatch(val duration: Duration) : ScoreMetric() {
     override fun compareTo(other: Any): Int {
         require(other is BestTimeInMatch)
         return duration.compareTo(other.duration)
+    }
+
+    override fun toString(): String {
+        return "time = ${duration.inWholeSeconds} ${DurationUnit.SECONDS}"
     }
 
     companion object {
@@ -45,6 +50,10 @@ data class WinsInCampionship(val wins: Int) : ScoreMetric() {
     override fun compareTo(other: Any): Int {
         require(other is WinsInCampionship)
         return wins.compareTo(other.wins)
+    }
+
+    override fun toString(): String {
+        return "wins = $wins"
     }
 
     companion object {

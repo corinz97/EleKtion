@@ -18,6 +18,27 @@ class PollManagerInstance<S : ScoreMetric, V : Vote> : PollManager<S, V> {
         return rankings.toList()
     }
 
+    override fun printRankings() {
+        val rankings = computeAllPolls()
+        if (rankings.isEmpty()) println("Must compile polls first!")
+        var i = 1
+        println("*** Start of manager environment ***")
+        println()
+        println("** Start of rankings **")
+        rankings.forEach {
+            val rankingIndex = rankings.indexOf(it)
+            println("** Ranking #${i++} **")
+            println()
+            println("Used algorithm is ${pollList[rankingIndex].pollAlgorithm::class.simpleName}")
+            it.printRanking()
+            println()
+        }
+        println("** End of rankings **")
+
+        println("*** End of manager environment ***")
+        println()
+    }
+
     override infix fun initializedAs(initializer: PollManager<S, V>.() -> Unit): PollManager<S, V> {
         return PollManagerInstance<S, V>()
             .apply(initializer)

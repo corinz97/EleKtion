@@ -14,8 +14,6 @@ import kotlin.time.toDuration
  * Main fun.
  */
 fun main() {
-    println("Hello, ${Platform.name}!")
-
     val a =
         PollManagerInstance<BestTimeInMatch, SinglePreferenceVote<BestTimeInMatch>>() initializedAs {
             +poll {
@@ -38,8 +36,8 @@ fun main() {
                 +("compname1" votedBy "b")
             }
         }
-    println(a)
-    a.computeAllPolls().forEach { println(it.ranking) }
+
+    a.printRankings()
 
     val b =
         PollManagerInstance<WinsInCampionship, ListOfPreferencesVote<WinsInCampionship>>() initializedAs {
@@ -62,7 +60,6 @@ fun main() {
 
                 +("compname1" then "compname2" votedBy "b")
             }
-        } // .computeAllPolls()
-    println(b)
-    b.computeAllPolls().forEach { println(it.ranking) }
+        }
+    b.printRankings()
 }
