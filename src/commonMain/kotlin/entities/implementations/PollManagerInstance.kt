@@ -20,7 +20,6 @@ class PollManagerInstance<S : ScoreMetric, V : Vote> : PollManager<S, V> {
 
     override fun printRankings() {
         val rankings = computeAllPolls()
-        if (rankings.isEmpty()) println("Must compile polls first!")
         var i = 1
         println("*** Start of manager environment ***")
         println()

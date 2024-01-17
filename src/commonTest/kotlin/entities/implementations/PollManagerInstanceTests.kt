@@ -241,7 +241,7 @@ class PollManagerInstanceTests : StringSpec({
         }
         entry.key.map { it.name }.shouldContainAll(competitor2.name, competitor1.name)
 
-        shouldNotThrowAny { rankings.forEach { it.printRanking() } }
+        shouldNotThrowAny { a.printRankings() }
     }
 
     "Poll simulation should return a ranking, computed with MajorityVotesAndHighestScoreAlgorithm" {
