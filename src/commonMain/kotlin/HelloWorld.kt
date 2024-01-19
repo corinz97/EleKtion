@@ -202,7 +202,7 @@ fun main() {
 
                     +competitor {
                         -"competitor2"
-                        +(BestTimeInMatch realized ((0.1).toDuration(DurationUnit.HOURS)))
+                        +(BestTimeInMatch realized (T.toDuration(DurationUnit.HOURS)))
                     }
                 }
                 -majorityVotesLScoreAlgorithm {
