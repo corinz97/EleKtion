@@ -29,9 +29,9 @@ abstract class RankingAbstraction<S : ScoreMetric> : Ranking<S> {
             print(votesPrint)
             println()
 
-            group.forEach{competitor ->
+            group.forEach { competitor ->
                 println("${competitor.name} scores list :")
-                if(competitor.scores.isEmpty()){
+                if (competitor.scores.isEmpty()) {
                     println("\t - no score available")
                 }
 
@@ -43,7 +43,6 @@ abstract class RankingAbstraction<S : ScoreMetric> : Ranking<S> {
                 }
                 println()
             }
-
         }
     }
 }
