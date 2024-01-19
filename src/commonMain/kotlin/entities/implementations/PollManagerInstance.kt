@@ -27,8 +27,9 @@ class PollManagerInstance<S : ScoreMetric, V : Vote> : PollManager<S, V> {
         rankings.forEach {
             val rankingIndex = rankings.indexOf(it)
             println("** Ranking #${i++} **")
-            println()
+            println("Competition name is ${pollList[rankingIndex].competition.competitionName}")
             println("Used algorithm is ${pollList[rankingIndex].pollAlgorithm::class.simpleName}")
+            println()
             it.printRanking()
             println()
         }

@@ -28,14 +28,22 @@ abstract class RankingAbstraction<S : ScoreMetric> : Ranking<S> {
 
             print(votesPrint)
             println()
-            val scoresPrint = group.flatMap { it.scores }.toSet() // managing ties
-            scoresPrint.forEach {
-                print("\t  - Score type is ${it.scoreValue::class.simpleName} ")
-                print("with ${it.scoreValue}")
-                print(" -")
+
+            group.forEach{competitor ->
+                println("${competitor.name} scores list :")
+                if(competitor.scores.isEmpty()){
+                    println("\t - no score available")
+                }
+
+                competitor.scores.forEach { score ->
+                    print("\t  - Score type is ${score.scoreValue::class.simpleName} ")
+                    print("with ${score.scoreValue}")
+                    print(" -")
+                    println()
+                }
+                println()
             }
 
-            println()
         }
     }
 }
