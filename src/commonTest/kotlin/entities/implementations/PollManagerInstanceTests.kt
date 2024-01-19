@@ -382,79 +382,79 @@ class PollManagerInstanceTests : StringSpec({
                 -competition {
                     -"Sport match"
                     +competitor {
-                        -"C"
+                        -"competitorA"
                     }
 
                     +competitor {
-                        -"B"
+                        -"competitorB"
                     }
 
                     +competitor {
-                        -"A"
+                        -"competitorC"
                     }
                 }
                 -condorcetAlgorithm {}
 
-                +("A" then "C" then "B" votedBy "anonym"+counter++)
-                +("A" then "C" then "B" votedBy "anonym"+counter++)
-                +("A" then "C" then "B" votedBy "anonym"+counter++)
-                +("A" then "C" then "B" votedBy "anonym"+counter++)
-                +("A" then "C" then "B" votedBy "anonym"+counter++)
-                +("A" then "C" then "B" votedBy "anonym"+counter++)
-                +("A" then "C" then "B" votedBy "anonym"+counter++)
-                +("A" then "C" then "B" votedBy "anonym"+counter++)
-                +("A" then "C" then "B" votedBy "anonym"+counter++)
-                +("A" then "C" then "B" votedBy "anonym"+counter++)
-                +("A" then "C" then "B" votedBy "anonym"+counter++)
-                +("A" then "C" then "B" votedBy "anonym"+counter++)
-                +("A" then "C" then "B" votedBy "anonym"+counter++)
-                +("A" then "C" then "B" votedBy "anonym"+counter++)
-                +("A" then "C" then "B" votedBy "anonym"+counter++)
-                +("A" then "C" then "B" votedBy "anonym"+counter++)
-                +("A" then "C" then "B" votedBy "anonym"+counter++)
-                +("A" then "C" then "B" votedBy "anonym"+counter++)
-                +("A" then "C" then "B" votedBy "anonym"+counter++)
-                +("A" then "C" then "B" votedBy "anonym"+counter++)
-                +("A" then "C" then "B" votedBy "anonym"+counter++)
-                +("A" then "C" then "B" votedBy "anonym"+counter++)
-                +("A" then "C" then "B" votedBy "anonym"+counter++)
-                +("B" then "C" then "A" votedBy "anonym"+counter++)
-                +("B" then "C" then "A" votedBy "anonym"+counter++)
-                +("B" then "C" then "A" votedBy "anonym"+counter++)
-                +("B" then "C" then "A" votedBy "anonym"+counter++)
-                +("B" then "C" then "A" votedBy "anonym"+counter++)
-                +("B" then "C" then "A" votedBy "anonym"+counter++)
-                +("B" then "C" then "A" votedBy "anonym"+counter++)
-                +("B" then "C" then "A" votedBy "anonym"+counter++)
-                +("B" then "C" then "A" votedBy "anonym"+counter++)
-                +("B" then "C" then "A" votedBy "anonym"+counter++)
-                +("B" then "C" then "A" votedBy "anonym"+counter++)
-                +("B" then "C" then "A" votedBy "anonym"+counter++)
-                +("B" then "C" then "A" votedBy "anonym"+counter++)
-                +("B" then "C" then "A" votedBy "anonym"+counter++)
-                +("B" then "C" then "A" votedBy "anonym"+counter++)
-                +("B" then "C" then "A" votedBy "anonym"+counter++)
-                +("B" then "C" then "A" votedBy "anonym"+counter++)
-                +("B" then "C" then "A" votedBy "anonym"+counter++)
-                +("B" then "C" then "A" votedBy "anonym"+counter++)
-                +("C" then "B" then "A" votedBy "anonym"+counter++)
-                +("C" then "B" then "A" votedBy "anonym"+counter++)
-                +("C" then "B" then "A" votedBy "anonym"+counter++)
-                +("C" then "B" then "A" votedBy "anonym"+counter++)
-                +("C" then "B" then "A" votedBy "anonym"+counter++)
-                +("C" then "B" then "A" votedBy "anonym"+counter++)
-                +("C" then "B" then "A" votedBy "anonym"+counter++)
-                +("C" then "B" then "A" votedBy "anonym"+counter++)
-                +("C" then "B" then "A" votedBy "anonym"+counter++)
-                +("C" then "B" then "A" votedBy "anonym"+counter++)
-                +("C" then "B" then "A" votedBy "anonym"+counter++)
-                +("C" then "B" then "A" votedBy "anonym"+counter++)
-                +("C" then "B" then "A" votedBy "anonym"+counter++)
-                +("C" then "B" then "A" votedBy "anonym"+counter++)
-                +("C" then "B" then "A" votedBy "anonym"+counter++)
-                +("C" then "B" then "A" votedBy "anonym"+counter++)
-                +("C" then "A" then "B" votedBy "anonym"+counter++)
-                +("C" then "A" then "B" votedBy "anonym"+counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
+                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
+                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
+                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
+                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
+                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
+                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
+                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
+                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
+                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
+                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
+                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
+                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
+                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
+                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
+                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
+                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
+                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
+                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
+                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
+                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
+                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
+                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
+                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
+                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
+                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
+                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
+                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
+                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
+                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
+                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
+                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
+                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
+                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
+                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
+                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
+                +("competitorC" then "competitorA" then "competitorB" votedBy "anonym"+counter++)
+                +("competitorC" then "competitorA" then "competitorB" votedBy "anonym"+counter++)
             }
         }
 
@@ -466,22 +466,22 @@ class PollManagerInstanceTests : StringSpec({
         ranking shouldHaveSize 3
         ranking.values shouldContainAll setOf(null)
 
-        ranking.keys shouldBe setOf(
+        ranking.keys.toList() shouldBe listOf(
             setOf(
                 object : CompetitorAbstraction<BestTimeInMatch>() {}.apply {
-                    this.name = "C"
+                    this.name = "competitorC"
                     this.scores = listOf()
                 },
             ),
             setOf(
                 object : CompetitorAbstraction<BestTimeInMatch>() {}.apply {
-                    this.name = "A"
+                    this.name = "competitorB"
                     this.scores = listOf()
                 },
             ),
             setOf(
                 object : CompetitorAbstraction<BestTimeInMatch>() {}.apply {
-                    this.name = "B"
+                    this.name = "competitorA"
                     this.scores = listOf()
                 },
             ),
