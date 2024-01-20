@@ -57,9 +57,10 @@ fun main() {
                 +("competitor2" votedBy "voter3")
                 +("competitor2" votedBy "voter2")
                 +("competitor1" votedBy "voter2")
-            } // competitor1 and competitor2 tie in votes
+            } // competitor1 and competitor2 have tie in votes
         }
-
+    println("Example #1 MajorityVotesAlgorithm -> competitor1 wins")
+    println("Example #2 MajorityVotesAlgorithm -> competitor1 and competitor2 have tie in votes")
     a.printRankings()
 
     val b =
@@ -138,6 +139,9 @@ fun main() {
             } // same votes, same highest score
         }
 
+    println("Example #1 MajorityVotesThenHighestScoreAlgorithm -> same score, competitor2 has more votes")
+    println("Example #2 MajorityVotesThenHighestScoreAlgorithm -> same votes, competitor1 has the highest score")
+    println("Example #3 MajorityVotesThenHighestScoreAlgorithm -> same votes, same highest score")
     b.printRankings()
 
     val c =
@@ -215,6 +219,9 @@ fun main() {
                 +("competitor1" votedBy "voter2")
             } // same votes, same lowest score
         }
+    println("Example #1 MajorityVotesThenLowestScoreAlgorithm -> same score, competitor2 has more votes")
+    println("Example #2 MajorityVotesThenLowestScoreAlgorithm -> same votes, competitor1 has the lowest score")
+    println("Example #3 MajorityVotesThenLowestScoreAlgorithm -> same votes, same lowest score")
 
     c.printRankings()
 
@@ -300,5 +307,6 @@ fun main() {
                 +("competitorC" then "competitorA" then "competitorB" votedBy "anonym"+counter++)
             } // competitorC, competitorB, competitorA
         }
+    println("Example #1 CondorcetAlgorithm -> Condorcet result is competitorC - competitorB - competitorA")
     d.printRankings()
 }
