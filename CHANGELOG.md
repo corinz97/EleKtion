@@ -1,3 +1,27 @@
+## [1.13.0](https://github.com/corinz97/Kotlin-MP-Thesis-Library/compare/1.12.0...1.13.0) (2024-01-21)
+
+
+### Features
+
+* **main:** added explanation printings ([0bb4849](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/0bb48499a2627449903d0fede76b1e3fe54bf5a6))
+* **main:** added halt on end of main, executable release enable in build.gradle.kts ([bc4040e](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/bc4040e8ebfb654d8d8e9279597cef0c8ec23636))
+* **main:** begin of pretty print for demo ([dd7ec39](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/dd7ec390bb84d820c5004a59afb2079238180ab7))
+* **main:** main for demo ([fe85676](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/fe8567656b281ee48ddcaae47c79bf68815b5335))
+* **print:** better print on scores, print competition name ([30c9716](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/30c9716a540cf2827417ebda2f5bae2473b43e27))
+
+
+### Bug Fixes
+
+* **commonTest:** changed condorcet tests ([9765a4a](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/9765a4ac761dd6d826e4210e019c2ed4ec95fe8e))
+* **main:** fix magic number ([1d5d890](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/1d5d8909a2069f5bc2a1a6d841bdf6718b604b4f))
+* **test:** removed unrechable branch, printRankings test ([d65b31f](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/d65b31f0e8f013ce65d291eb9a88dd2e9ac287be))
+
+
+### Build and continuous integration
+
+* **yaml:** restored os matrix ([c74755a](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/c74755a0c64be8453679ef866fe8e5c704e45267))
+* **yaml:** run condition on job execution in publish-docs ([9d69033](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/9d69033bdd4da78c1cd43601f5cddbb7e12e179e))
+
 ## [1.12.0](https://github.com/corinz97/Kotlin-MP-Thesis-Library/compare/1.11.0...1.12.0) (2024-01-15)
 
 
