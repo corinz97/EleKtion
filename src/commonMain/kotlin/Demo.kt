@@ -11,7 +11,7 @@ import kotlin.time.toDuration
 private const val T = 0.1
 
 /**
- * Main fun.
+ * Demo main function.
  */
 fun main() {
     val a =
