@@ -309,4 +309,8 @@ fun main() {
         }
     println("Example #1 CondorcetAlgorithm -> Condorcet result is competitorC - competitorB - competitorA")
     d.printRankings()
+
+    println()
+    println("Press Enter key to close")
+    readln()
 }

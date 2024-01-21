@@ -23,6 +23,7 @@ repositories {
 
 kotlin {
     jvm {
+
         compilations.all {
             kotlinOptions.jvmTarget = "1.8"
         }
@@ -64,7 +65,7 @@ kotlin {
         compilations["main"].defaultSourceSet.dependsOn(kotlin.sourceSets["nativeMain"])
         compilations["test"].defaultSourceSet.dependsOn(kotlin.sourceSets["nativeTest"])
         binaries {
-            // executable()
+            executable()
             sharedLib()
             staticLib()
         }
@@ -136,6 +137,10 @@ tasks.dokkaHtml {
 }
 tasks.dokkaJavadoc {
     enabled = false
+}
+
+tasks.withType<JavaExec>().configureEach {
+    standardInput = System.`in`
 }
 
 tasks.withType<JavadocJar>().configureEach {
