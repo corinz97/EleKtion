@@ -161,8 +161,8 @@ publishOnCentral {
     projectLongName.set("Kotlin Multiplatform Thesis Project")
     projectDescription.set("Kotlin Multiplatform thesis project")
 
-    repository("https://maven.pkg.github.com/jcorina/${rootProject.name}".lowercase()) {
-        user.set("jcorina")
+    repository("https://maven.pkg.github.com/corinz97/${rootProject.name}".lowercase()) {
+        user.set("corinz97")
         password.set(System.getenv("GITHUB_TOKEN"))
     }
     publishing {
