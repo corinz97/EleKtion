@@ -88,6 +88,7 @@ $dokka.location:entities.implementations/PollManagerInstance/computeAllPolls/#/P
 $dokka.location:entities.implementations/PollManagerInstance/initializedAs/#kotlin.Function1[entities.interfaces.PollManager[TypeParam(bounds=[entities.types.ScoreMetric]),TypeParam(bounds=[entities.interfaces.Vote])],kotlin.Unit]/PointingToDeclaration/kotlin-mp-thesis-library/entities.implementations/-poll-manager-instance/initialized-as.html
 $dokka.location:entities.implementations/PollManagerInstance/poll/#kotlin.Function1[entities.interfaces.Poll[TypeParam(bounds=[entities.types.ScoreMetric]),TypeParam(bounds=[entities.interfaces.Vote])],kotlin.Unit]/PointingToDeclaration/kotlin-mp-thesis-library/entities.implementations/-poll-manager-instance/poll.html
 $dokka.location:entities.implementations/PollManagerInstance/pollList/#/PointingToDeclaration/kotlin-mp-thesis-library/entities.implementations/-poll-manager-instance/poll-list.html
+$dokka.location:entities.implementations/PollManagerInstance/printRankings/#/PointingToDeclaration/kotlin-mp-thesis-library/entities.implementations/-poll-manager-instance/print-rankings.html
 $dokka.location:entities.implementations/PollManagerInstance/unaryPlus/entities.interfaces.Poll[TypeParam(bounds=[entities.types.ScoreMetric]),TypeParam(bounds=[entities.interfaces.Vote])]#/PointingToDeclaration/kotlin-mp-thesis-library/entities.implementations/-poll-manager-instance/unary-plus.html
 $dokka.location:entities.implementations/RankingByDescendingVotes///PointingToDeclaration/kotlin-mp-thesis-library/entities.implementations/-ranking-by-descending-votes/index.html
 $dokka.location:entities.implementations/RankingByDescendingVotes/RankingByDescendingVotes/#kotlin.collections.Map[entities.interfaces.Competitor[TypeParam(bounds=[entities.types.ScoreMetric])],kotlin.Int]/PointingToDeclaration/kotlin-mp-thesis-library/entities.implementations/-ranking-by-descending-votes/-ranking-by-descending-votes.html
@@ -140,6 +141,7 @@ $dokka.location:entities.interfaces/PollManager/computeAllPolls/#/PointingToDecl
 $dokka.location:entities.interfaces/PollManager/initializedAs/#kotlin.Function1[entities.interfaces.PollManager[TypeParam(bounds=[entities.types.ScoreMetric]),TypeParam(bounds=[entities.interfaces.Vote])],kotlin.Unit]/PointingToDeclaration/kotlin-mp-thesis-library/entities.interfaces/-poll-manager/initialized-as.html
 $dokka.location:entities.interfaces/PollManager/poll/#kotlin.Function1[entities.interfaces.Poll[TypeParam(bounds=[entities.types.ScoreMetric]),TypeParam(bounds=[entities.interfaces.Vote])],kotlin.Unit]/PointingToDeclaration/kotlin-mp-thesis-library/entities.interfaces/-poll-manager/poll.html
 $dokka.location:entities.interfaces/PollManager/pollList/#/PointingToDeclaration/kotlin-mp-thesis-library/entities.interfaces/-poll-manager/poll-list.html
+$dokka.location:entities.interfaces/PollManager/printRankings/#/PointingToDeclaration/kotlin-mp-thesis-library/entities.interfaces/-poll-manager/print-rankings.html
 $dokka.location:entities.interfaces/PollManager/unaryPlus/entities.interfaces.Poll[TypeParam(bounds=[entities.types.ScoreMetric]),TypeParam(bounds=[entities.interfaces.Vote])]#/PointingToDeclaration/kotlin-mp-thesis-library/entities.interfaces/-poll-manager/unary-plus.html
 $dokka.location:entities.interfaces/Ranking///PointingToDeclaration/kotlin-mp-thesis-library/entities.interfaces/-ranking/index.html
 $dokka.location:entities.interfaces/Ranking/printRanking/#/PointingToDeclaration/kotlin-mp-thesis-library/entities.interfaces/-ranking/print-ranking.html
@@ -159,6 +161,7 @@ $dokka.location:entities.types/BestTimeInMatch///PointingToDeclaration/kotlin-m
 $dokka.location:entities.types/BestTimeInMatch/BestTimeInMatch/#kotlin.time.Duration/PointingToDeclaration/kotlin-mp-thesis-library/entities.types/-best-time-in-match/-best-time-in-match.html
 $dokka.location:entities.types/BestTimeInMatch/compareTo/#kotlin.Any/PointingToDeclaration/kotlin-mp-thesis-library/entities.types/-best-time-in-match/compare-to.html
 $dokka.location:entities.types/BestTimeInMatch/duration/#/PointingToDeclaration/kotlin-mp-thesis-library/entities.types/-best-time-in-match/duration.html
+$dokka.location:entities.types/BestTimeInMatch/toString/#/PointingToDeclaration/kotlin-mp-thesis-library/entities.types/-best-time-in-match/to-string.html
 $dokka.location:entities.types/Comparator.HighestScore///PointingToDeclaration/kotlin-mp-thesis-library/entities.types/-comparator/-highest-score/index.html
 $dokka.location:entities.types/Comparator.HighestScore/HighestScore/#/PointingToDeclaration/kotlin-mp-thesis-library/entities.types/-comparator/-highest-score/-highest-score.html
 $dokka.location:entities.types/Comparator.HighestScore/compare/#entities.interfaces.Score[TypeParam(bounds=[entities.types.ScoreMetric])]#entities.interfaces.Score[TypeParam(bounds=[entities.types.ScoreMetric])]/PointingToDeclaration/kotlin-mp-thesis-library/entities.types/-comparator/-highest-score/compare.html
@@ -173,6 +176,7 @@ $dokka.location:entities.types/WinsInCampionship.Companion/realized/entities.typ
 $dokka.location:entities.types/WinsInCampionship///PointingToDeclaration/kotlin-mp-thesis-library/entities.types/-wins-in-campionship/index.html
 $dokka.location:entities.types/WinsInCampionship/WinsInCampionship/#kotlin.Int/PointingToDeclaration/kotlin-mp-thesis-library/entities.types/-wins-in-campionship/-wins-in-campionship.html
 $dokka.location:entities.types/WinsInCampionship/compareTo/#kotlin.Any/PointingToDeclaration/kotlin-mp-thesis-library/entities.types/-wins-in-campionship/compare-to.html
+$dokka.location:entities.types/WinsInCampionship/toString/#/PointingToDeclaration/kotlin-mp-thesis-library/entities.types/-wins-in-campionship/to-string.html
 $dokka.location:entities.types/WinsInCampionship/wins/#/PointingToDeclaration/kotlin-mp-thesis-library/entities.types/-wins-in-campionship/wins.html
 entities.abstract
 entities.implementations
