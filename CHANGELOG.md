@@ -1,3 +1,16 @@
+## [1.14.0](https://github.com/corinz97/Kotlin-MP-Thesis-Library/compare/1.13.0...1.14.0) (2024-01-21)
+
+
+### Features
+
+* **main:** renamed helloworld class, deleted unused classes ([8517d12](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/8517d12b7efa55a456fe77785b85058cfcc906ac))
+
+
+### Build and continuous integration
+
+* **rule:** added gh packages publication ([581274e](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/581274e64925f7b54f61b8823e57ebc721af08a6))
+* **yaml:** set user for maven pkg ([2408e1a](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/2408e1a05ca46d76a261b61f7338053f30a8111b))
+
 ## [1.13.0](https://github.com/corinz97/Kotlin-MP-Thesis-Library/compare/1.12.0...1.13.0) (2024-01-21)
 
 
