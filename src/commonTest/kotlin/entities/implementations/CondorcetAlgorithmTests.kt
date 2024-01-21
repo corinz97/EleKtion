@@ -678,16 +678,16 @@ class CondorcetAlgorithmTests : StringSpec({
     "Algorithm should not throw exceptions and produce ranking" {
         val competitors = listOf(
             object : CompetitorAbstraction<BestTimeInMatch>() {}.apply {
-                this.name = "A"
+                this.name = "competitorC"
                 this.scores = listOf()
             },
             object : CompetitorAbstraction<BestTimeInMatch>() {}.apply {
-                this.name = "C"
+                this.name = "competitorB"
                 this.scores = listOf()
             },
 
             object : CompetitorAbstraction<BestTimeInMatch>() {}.apply {
-                this.name = "B"
+                this.name = "competitorA"
                 this.scores = listOf()
             },
         )
@@ -701,16 +701,16 @@ class CondorcetAlgorithmTests : StringSpec({
                     votedCompetitors =
                         listOf(
                             object : CompetitorAbstraction<BestTimeInMatch>() {}.apply {
-                                this.name = "A"
+                                this.name = "competitorA"
                                 this.scores = listOf()
                             },
                             object : CompetitorAbstraction<BestTimeInMatch>() {}.apply {
-                                this.name = "C"
+                                this.name = "competitorC"
                                 this.scores = listOf()
                             },
 
                             object : CompetitorAbstraction<BestTimeInMatch>() {}.apply {
-                                this.name = "B"
+                                this.name = "competitorB"
                                 this.scores = listOf()
                             },
                         )
@@ -729,16 +729,16 @@ class CondorcetAlgorithmTests : StringSpec({
                     votedCompetitors =
                         listOf(
                             object : CompetitorAbstraction<BestTimeInMatch>() {}.apply {
-                                this.name = "B"
+                                this.name = "competitorB"
                                 this.scores = listOf()
                             },
                             object : CompetitorAbstraction<BestTimeInMatch>() {}.apply {
-                                this.name = "C"
+                                this.name = "competitorC"
                                 this.scores = listOf()
                             },
 
                             object : CompetitorAbstraction<BestTimeInMatch>() {}.apply {
-                                this.name = "A"
+                                this.name = "competitorA"
                                 this.scores = listOf()
                             },
                         )
@@ -757,16 +757,16 @@ class CondorcetAlgorithmTests : StringSpec({
                     votedCompetitors =
                         listOf(
                             object : CompetitorAbstraction<BestTimeInMatch>() {}.apply {
-                                this.name = "C"
+                                this.name = "competitorC"
                                 this.scores = listOf()
                             },
                             object : CompetitorAbstraction<BestTimeInMatch>() {}.apply {
-                                this.name = "B"
+                                this.name = "competitorB"
                                 this.scores = listOf()
                             },
 
                             object : CompetitorAbstraction<BestTimeInMatch>() {}.apply {
-                                this.name = "A"
+                                this.name = "competitorA"
                                 this.scores = listOf()
                             },
                         )
@@ -785,16 +785,16 @@ class CondorcetAlgorithmTests : StringSpec({
                     votedCompetitors =
                         listOf(
                             object : CompetitorAbstraction<BestTimeInMatch>() {}.apply {
-                                this.name = "C"
+                                this.name = "competitorC"
                                 this.scores = listOf()
                             },
                             object : CompetitorAbstraction<BestTimeInMatch>() {}.apply {
-                                this.name = "A"
+                                this.name = "competitorA"
                                 this.scores = listOf()
                             },
 
                             object : CompetitorAbstraction<BestTimeInMatch>() {}.apply {
-                                this.name = "B"
+                                this.name = "competitorB"
                                 this.scores = listOf()
                             },
                         )
@@ -810,22 +810,22 @@ class CondorcetAlgorithmTests : StringSpec({
         val r = c.computeByAlgorithmRules(l)
         r.ranking shouldHaveSize 3
         r.ranking.values shouldContainAll setOf(null)
-        r.ranking.keys shouldBe setOf(
+        r.ranking.keys.toList() shouldBe listOf(
             setOf(
                 object : CompetitorAbstraction<BestTimeInMatch>() {}.apply {
-                    this.name = "C"
+                    this.name = "competitorC"
                     this.scores = listOf()
                 },
             ),
             setOf(
                 object : CompetitorAbstraction<BestTimeInMatch>() {}.apply {
-                    this.name = "A"
+                    this.name = "competitorB"
                     this.scores = listOf()
                 },
             ),
             setOf(
                 object : CompetitorAbstraction<BestTimeInMatch>() {}.apply {
-                    this.name = "B"
+                    this.name = "competitorA"
                     this.scores = listOf()
                 },
             ),

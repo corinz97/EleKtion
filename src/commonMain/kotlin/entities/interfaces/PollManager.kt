@@ -17,6 +17,11 @@ interface PollManager<S : ScoreMetric, V : Vote> {
     fun computeAllPolls(): List<Ranking<S>>
 
     /**
+     * Print all rankings.
+     */
+    fun printRankings()
+
+    /**
      * DSL-function useful to initialize the manager.
      */
     infix fun initializedAs(initializer: PollManager<S, V>.() -> Unit): PollManager<S, V>
