@@ -1,3 +1,15 @@
+## [1.17.0](https://github.com/corinz97/Kotlin-MP-Thesis-Library/compare/1.16.0...1.17.0) (2024-01-22)
+
+
+### Features
+
+* **main:** merge ([e2adf28](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/e2adf280255c8b334327f9c6e136affab08614d6))
+
+
+### Build and continuous integration
+
+* **yaml:** changed github publication ([45aed52](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/45aed52d8da8fa02a7cf1f4a5d4fa0f8b2692642))
+
 ## [1.16.0](https://github.com/corinz97/Kotlin-MP-Thesis-Library/compare/1.15.0...1.16.0) (2024-01-22)
 
 
