@@ -1,3 +1,10 @@
+## [1.15.0](https://github.com/corinz97/Kotlin-MP-Thesis-Library/compare/1.14.0...1.15.0) (2024-01-22)
+
+
+### Features
+
+* **main:** changed file name ([eea3703](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/eea3703d2484e82253ee4771941e73c5461ce960))
+
 ## [1.14.0](https://github.com/corinz97/Kotlin-MP-Thesis-Library/compare/1.13.0...1.14.0) (2024-01-21)
 
 
