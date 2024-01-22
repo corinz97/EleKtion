@@ -1,3 +1,15 @@
+## [1.18.0](https://github.com/corinz97/Kotlin-MP-Thesis-Library/compare/1.17.0...1.18.0) (2024-01-22)
+
+
+### Features
+
+* **main:** merge ([65ec975](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/65ec975cdbd86958d59a4ff3adb845652b4cb157))
+
+
+### Build and continuous integration
+
+* **yaml:** explicit publish methods on maven GH ([be5b13f](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/be5b13fa98360a5fb74c87453d084af0f01468a0))
+
 ## [1.17.0](https://github.com/corinz97/Kotlin-MP-Thesis-Library/compare/1.16.0...1.17.0) (2024-01-22)
 
 
