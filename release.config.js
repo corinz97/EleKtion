@@ -1,7 +1,7 @@
 var publishCmd = `
 ./gradlew -PstagingRepositoryId=\${process.env.STAGING_REPO_ID} releaseStagingRepositoryOnMavenCentral || exit 3
 ./gradlew publishJsPackageToNpmjsRegistry || exit 4
-./gradlew publishAllPublicationsToGitHubRepository || exit 5
+./gradlew publishAllPublicationsToGitHubRepository --continue || exit 5
 `
 var config = require('semantic-release-preconfigured-conventional-commits');
 config.plugins.push(
