@@ -1,3 +1,11 @@
+## [1.16.0](https://github.com/corinz97/Kotlin-MP-Thesis-Library/compare/1.15.0...1.16.0) (2024-01-22)
+
+
+### Features
+
+* **ci:** removed exit code on last publish ([6127dbc](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/6127dbc7371e3b8cc27c2e2eda9bc01571cc4f57))
+* **main:** merge ([f3cbcfc](https://github.com/corinz97/Kotlin-MP-Thesis-Library/commit/f3cbcfcabc22c38aa469e96266661f1672371ca8))
+
 ## [1.15.0](https://github.com/corinz97/Kotlin-MP-Thesis-Library/compare/1.14.0...1.15.0) (2024-01-22)
 
 
