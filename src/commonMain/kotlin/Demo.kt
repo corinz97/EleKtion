@@ -1,30 +1,35 @@
 
+
+
 import entities.implementations.PollManagerInstance
 import entities.interfaces.ListOfPreferencesVote
 import entities.interfaces.SinglePreferenceVote
 import entities.types.BestTimeInMatch
 import entities.types.BestTimeInMatch.Companion.realized
 import entities.types.ConstantParameter
+import io.ktor.client.*
+import io.ktor.client.engine.cio.*
+import io.ktor.client.request.*
+import io.ktor.client.statement.*
+import kotlinx.serialization.json.Json
 import kotlin.time.DurationUnit
 import kotlin.time.toDuration
+
 
 private const val T = 0.1
 
 /**
  * Demo main function.
  */
-fun main() {
+suspend fun main() {
     val a =
         PollManagerInstance<BestTimeInMatch, SinglePreferenceVote<BestTimeInMatch>>() initializedAs {
             +poll {
-                -competition {
-                    -"Race"
-                    +competitor {
-                        -"competitor1"
+                -competition("Race") {
+                    +competitor("competitor1") {
                     }
 
-                    +competitor {
-                        -"competitor2"
+                    +competitor("competitor2") {
                     }
                 }
                 -majorityVotesAlgorithm {
@@ -37,15 +42,12 @@ fun main() {
             } // competitor1 wins
 
             +poll {
-                -competition {
-                    -"Race"
-                    +competitor {
-                        -"competitor1"
+                -competition("Race") {
+                    +competitor("competitor1") {
                         +(BestTimeInMatch realized (1.toDuration(DurationUnit.HOURS)))
                     }
 
-                    +competitor {
-                        -"competitor2"
+                    +competitor("competitor2") {
                         +(BestTimeInMatch realized (2.toDuration(DurationUnit.HOURS)))
                     }
                 }
@@ -66,16 +68,13 @@ fun main() {
     val b =
         PollManagerInstance<BestTimeInMatch, SinglePreferenceVote<BestTimeInMatch>>() initializedAs {
             +poll {
-                -competition {
-                    -"Race"
-                    +competitor {
-                        -"competitor1"
+                -competition("Race") {
+                    +competitor("competitor1") {
                         +(BestTimeInMatch realized (1.toDuration(DurationUnit.HOURS)))
                         +(BestTimeInMatch realized (2.toDuration(DurationUnit.HOURS)))
                     }
 
-                    +competitor {
-                        -"competitor2"
+                    +competitor("competitor2") {
                         +(BestTimeInMatch realized (1.toDuration(DurationUnit.HOURS)))
                     }
                 }
@@ -89,17 +88,14 @@ fun main() {
             } // same score, competitor2 has more votes
 
             +poll {
-                -competition {
-                    -"Race"
-                    +competitor {
-                        -"competitor1"
+                -competition("Race") {
+                    +competitor("competitor1") {
                         +(BestTimeInMatch realized (T.toDuration(DurationUnit.HOURS)))
                         +(BestTimeInMatch realized (1.toDuration(DurationUnit.HOURS)))
                         +(BestTimeInMatch realized (2.toDuration(DurationUnit.HOURS)))
                     }
 
-                    +competitor {
-                        -"competitor2"
+                    +competitor("competitor2") {
                         +(BestTimeInMatch realized (1.toDuration(DurationUnit.HOURS)))
                     }
                 }
@@ -114,17 +110,14 @@ fun main() {
             } // same votes, competitor1 has the highest score
 
             +poll {
-                -competition {
-                    -"Race"
-                    +competitor {
-                        -"competitor1"
+                -competition("Race") {
+                    +competitor("competitor1") {
                         +(BestTimeInMatch realized (T.toDuration(DurationUnit.HOURS)))
                         +(BestTimeInMatch realized (1.toDuration(DurationUnit.HOURS)))
                         +(BestTimeInMatch realized (2.toDuration(DurationUnit.HOURS)))
                     }
 
-                    +competitor {
-                        -"competitor2"
+                    +competitor("competitor2") {
                         +(BestTimeInMatch realized (2.toDuration(DurationUnit.HOURS)))
                     }
                 }
@@ -147,16 +140,13 @@ fun main() {
     val c =
         PollManagerInstance<BestTimeInMatch, SinglePreferenceVote<BestTimeInMatch>>() initializedAs {
             +poll {
-                -competition {
-                    -"Race"
-                    +competitor {
-                        -"competitor1"
+                -competition("Race") {
+                    +competitor("competitor1") {
                         +(BestTimeInMatch realized (1.toDuration(DurationUnit.HOURS)))
                         +(BestTimeInMatch realized (2.toDuration(DurationUnit.HOURS)))
                     }
 
-                    +competitor {
-                        -"competitor2"
+                    +competitor("competitor2") {
                         +(BestTimeInMatch realized (1.toDuration(DurationUnit.HOURS)))
                     }
                 }
@@ -170,17 +160,14 @@ fun main() {
             } // same score, competitor2 has more votes
 
             +poll {
-                -competition {
-                    -"Race"
-                    +competitor {
-                        -"competitor1"
+                -competition("Race") {
+                    +competitor("competitor1") {
                         +(BestTimeInMatch realized (T.toDuration(DurationUnit.HOURS)))
                         +(BestTimeInMatch realized (1.toDuration(DurationUnit.HOURS)))
                         +(BestTimeInMatch realized (2.toDuration(DurationUnit.HOURS)))
                     }
 
-                    +competitor {
-                        -"competitor2"
+                    +competitor("competitor2") {
                         +(BestTimeInMatch realized (1.toDuration(DurationUnit.HOURS)))
                     }
                 }
@@ -195,17 +182,14 @@ fun main() {
             } // same votes, competitor1 has the lowest score
 
             +poll {
-                -competition {
-                    -"Race"
-                    +competitor {
-                        -"competitor1"
+                -competition("Race") {
+                    +competitor("competitor1") {
                         +(BestTimeInMatch realized (T.toDuration(DurationUnit.HOURS)))
                         +(BestTimeInMatch realized (1.toDuration(DurationUnit.HOURS)))
                         +(BestTimeInMatch realized (2.toDuration(DurationUnit.HOURS)))
                     }
 
-                    +competitor {
-                        -"competitor2"
+                    +competitor("competitor2") {
                         +(BestTimeInMatch realized (T.toDuration(DurationUnit.HOURS)))
                     }
                 }
@@ -229,88 +213,98 @@ fun main() {
     val d =
         PollManagerInstance<BestTimeInMatch, ListOfPreferencesVote<BestTimeInMatch>>() initializedAs {
             +poll {
-                -competition {
-                    -"Sport match"
-                    +competitor {
-                        -"competitorB"
+                -competition("Sport match") {
+                    +competitor("competitorB") {
                     }
 
-                    +competitor {
-                        -"competitorA"
+                    +competitor("competitorA") {
                     }
 
-                    +competitor {
-                        -"competitorC"
+                    +competitor("competitorC") {
                     }
                 }
                 -condorcetAlgorithm {}
 
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorC" then "competitorA" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorC" then "competitorA" then "competitorB" votedBy "anonym"+counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
+                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym" + counter++)
+                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym" + counter++)
+                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym" + counter++)
+                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym" + counter++)
+                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym" + counter++)
+                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym" + counter++)
+                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym" + counter++)
+                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym" + counter++)
+                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym" + counter++)
+                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym" + counter++)
+                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym" + counter++)
+                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym" + counter++)
+                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym" + counter++)
+                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym" + counter++)
+                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym" + counter++)
+                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym" + counter++)
+                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym" + counter++)
+                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym" + counter++)
+                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym" + counter++)
+                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym" + counter++)
+                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym" + counter++)
+                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym" + counter++)
+                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym" + counter++)
+                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym" + counter++)
+                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym" + counter++)
+                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym" + counter++)
+                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym" + counter++)
+                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym" + counter++)
+                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym" + counter++)
+                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym" + counter++)
+                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym" + counter++)
+                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym" + counter++)
+                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym" + counter++)
+                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym" + counter++)
+                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym" + counter++)
+                +("competitorC" then "competitorA" then "competitorB" votedBy "anonym" + counter++)
+                +("competitorC" then "competitorA" then "competitorB" votedBy "anonym" + counter++)
             } // competitorC, competitorB, competitorA
         }
     println("Example #1 CondorcetAlgorithm -> Condorcet result is competitorC - competitorB - competitorA")
     d.printRankings()
 
-    println()
+    val httpClient = HttpClient(CIO)
+    var response: HttpResponse = httpClient.get("https://ergast.com/api/f1/2023.json")
+
+    val listOfRaces = Json.decodeFromString<Root>(response.bodyAsText()).MRData!!.RaceTable!!.Races!!
+
+    listOfRaces.forEach {
+        //val raceIdentifier = (it.raceName + "-" + it.round + "-" + it.season).replace(" ", "-")
+        response = httpClient.get("https://ergast.com/api/f1/${it.season}/${it.round}/results.json")
+        println(response)
+        val listOfPlacements = Json.decodeFromString<Root>(response.bodyAsText()).MRData!!.RaceTable!!.Races!![0].
+
+    }
+
+
     println("Press Enter key to close")
     readln()
+    httpClient.close()
 }

@@ -11,10 +11,6 @@ abstract class CompetitorAbstraction<S : ScoreMetric> : Competitor<S> {
     override lateinit var name: String
     override var scores: List<Score<S>> = listOf()
 
-    override operator fun String.unaryMinus() {
-        this@CompetitorAbstraction.name = this@unaryMinus
-    }
-
     override operator fun Score<S>.unaryPlus() {
         this@CompetitorAbstraction.scores += this@unaryPlus
     }

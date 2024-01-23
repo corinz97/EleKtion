@@ -23,14 +23,6 @@ abstract class PollAbstraction<S : ScoreMetric, V : Vote> : Poll<S, V> {
 
     override fun computePoll(): Ranking<S> = pollAlgorithm.computeByAlgorithmRules(votesList)
 
-    abstract override infix fun List<String>.then(s: String): List<String>
-
-    abstract override infix fun String.then(s: String): List<String>
-
-    abstract override infix fun List<String>.votedBy(voterIdentifier: String): ListOfPreferencesVote<S>
-
-    abstract override infix fun String.votedBy(voterIdentifier: String): SinglePreferenceVote<S>
-
     private inline fun <reified A> Any.cast(): A? {
         if (this !is A) return null
         return this
@@ -92,8 +84,9 @@ abstract class PollAbstraction<S : ScoreMetric, V : Vote> : Poll<S, V> {
         this@PollAbstraction.competition = this@unaryMinus
     }
 
-    override fun competition(compInit: Competition<S>.() -> Unit): Competition<S> {
+    override fun competition(competitionName: String, compInit: Competition<S>.() -> Unit): Competition<S> {
         return object : CompetitionAbstraction<S>() {}
+            .apply { this.competitionName = competitionName }
             .apply(compInit)
     }
 

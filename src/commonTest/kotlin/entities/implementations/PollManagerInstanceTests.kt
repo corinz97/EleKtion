@@ -26,14 +26,11 @@ class PollManagerInstanceTests : StringSpec({
             PollManagerInstance<BestTimeInMatch, SinglePreferenceVote<BestTimeInMatch>>() initializedAs {
                 +poll {
 
-                    -competition {
-                        -"Sport match"
-                        +competitor {
-                            -"Competitor 1"
+                    -competition("Sport match") {
+                        +competitor("Competitor 1") {
                             +(BestTimeInMatch realized (1.toDuration(DurationUnit.DAYS)))
                         }
-                        +competitor {
-                            -"Competitor 1"
+                        +competitor("Competitor 1") {
                             +(BestTimeInMatch realized (1.toDuration(DurationUnit.DAYS)))
                         }
                     }
@@ -45,14 +42,11 @@ class PollManagerInstanceTests : StringSpec({
             PollManagerInstance<BestTimeInMatch, SinglePreferenceVote<BestTimeInMatch>>() initializedAs {
                 +poll {
 
-                    -competition {
-                        -"Sport match"
-                        +competitor {
-                            -"Competitor 1"
+                    -competition("Sport match") {
+                        +competitor("Competitor 1") {
                             +(BestTimeInMatch realized (1.toDuration(DurationUnit.DAYS)))
                         }
-                        +competitor {
-                            -"Competitor 1"
+                        +competitor("Competitor 1") {
                             +(BestTimeInMatch realized (1.toDuration(DurationUnit.DAYS)))
                         }
                     }
@@ -64,13 +58,10 @@ class PollManagerInstanceTests : StringSpec({
             PollManagerInstance<BestTimeInMatch, SinglePreferenceVote<BestTimeInMatch>>() initializedAs {
                 +poll {
 
-                    -competition {
-                        -"Sport match"
-                        +competitor {
-                            -"Competitor 1"
+                    -competition("Sport match") {
+                        +competitor("Competitor 1") {
                         }
-                        +competitor {
-                            -"Competitor 1"
+                        +competitor("Competitor 1") {
                         }
                     }
                     -majorityVotesLScoreAlgorithm {}
@@ -81,13 +72,10 @@ class PollManagerInstanceTests : StringSpec({
             PollManagerInstance<BestTimeInMatch, ListOfPreferencesVote<BestTimeInMatch>>() initializedAs {
                 +poll {
 
-                    -competition {
-                        -"Sport match"
-                        +competitor {
-                            -"C"
+                    -competition("Sport match") {
+                        +competitor("C") {
                         }
-                        +competitor {
-                            -"C"
+                        +competitor("C") {
                         }
                     }
                     -condorcetAlgorithm {}
@@ -102,14 +90,11 @@ class PollManagerInstanceTests : StringSpec({
             PollManagerInstance<BestTimeInMatch, SinglePreferenceVote<BestTimeInMatch>>() initializedAs {
                 +poll {
 
-                    -competition {
-                        -"Sport match"
-                        +competitor {
-                            -"Competitor 1"
+                    -competition("Sport match") {
+                        +competitor("Competitor 1") {
                             +(BestTimeInMatch realized (1.toDuration(DurationUnit.DAYS)))
                         }
-                        +competitor {
-                            -"Competitor 2"
+                        +competitor("Competitor 2") {
                             +(BestTimeInMatch realized (1.toDuration(DurationUnit.DAYS)))
                         }
                     }
@@ -127,13 +112,11 @@ class PollManagerInstanceTests : StringSpec({
             PollManagerInstance<BestTimeInMatch, ListOfPreferencesVote<BestTimeInMatch>>() initializedAs {
                 +poll {
 
-                    -competition {
-                        -"Sport match"
-                        +competitor {
-                            -"A"
+                    -competition("Sport match") {
+
+                        +competitor("A") {
                         }
-                        +competitor {
-                            -"C"
+                        +competitor("C") {
                         }
                     }
                     -condorcetAlgorithm {}
@@ -150,16 +133,12 @@ class PollManagerInstanceTests : StringSpec({
             PollManagerInstance<BestTimeInMatch, ListOfPreferencesVote<BestTimeInMatch>>() initializedAs {
                 +poll {
 
-                    -competition {
-                        -"Sport match"
-                        +competitor {
-                            -"A"
+                    -competition("Sport match") {
+                        +competitor("A") {
                         }
-                        +competitor {
-                            -"B"
+                        +competitor("B") {
                         }
-                        +competitor {
-                            -"C"
+                        +competitor("C") {
                         }
                     }
                     -condorcetAlgorithm {}
@@ -176,16 +155,12 @@ class PollManagerInstanceTests : StringSpec({
             PollManagerInstance<BestTimeInMatch, ListOfPreferencesVote<BestTimeInMatch>>() initializedAs {
                 +poll {
 
-                    -competition {
-                        -"Sport match"
-                        +competitor {
-                            -"A"
+                    -competition("Sport match") {
+                        +competitor("A") {
                         }
-                        +competitor {
-                            -"B"
+                        +competitor("B") {
                         }
-                        +competitor {
-                            -"C"
+                        +competitor("C") {
                         }
                     }
                     -condorcetAlgorithm {}
@@ -199,14 +174,11 @@ class PollManagerInstanceTests : StringSpec({
         val a = PollManagerInstance<BestTimeInMatch, SinglePreferenceVote<BestTimeInMatch>>() initializedAs {
             +poll {
 
-                -competition {
-                    -"Sport match"
-                    +competitor {
-                        -"Competitor 1"
+                -competition("Sport match") {
+                    +competitor("Competitor 1") {
                         +(BestTimeInMatch realized (1.toDuration(DurationUnit.DAYS)))
                     }
-                    +competitor {
-                        -"Competitor 2"
+                    +competitor("Competitor 2") {
                         +(BestTimeInMatch realized (20.toDuration(DurationUnit.HOURS)))
                     }
                 }
@@ -248,19 +220,15 @@ class PollManagerInstanceTests : StringSpec({
         val a = PollManagerInstance<BestTimeInMatch, SinglePreferenceVote<BestTimeInMatch>>() initializedAs {
             +poll {
 
-                -competition {
-                    -"Sport match"
-                    +competitor {
-                        -"Competitor 1"
+                -competition("Sport match") {
+                    +competitor("Competitor 1") {
                         +(BestTimeInMatch realized (1.toDuration(DurationUnit.DAYS)))
                     }
-                    +competitor {
-                        -"Competitor 2"
+                    +competitor("Competitor 2") {
                         +(BestTimeInMatch realized (1.toDuration(DurationUnit.DAYS)))
                         +(BestTimeInMatch realized (20.toDuration(DurationUnit.DAYS)))
                     }
-                    +competitor {
-                        -"Competitor 3"
+                    +competitor("Competitor 3") {
                         +(BestTimeInMatch realized (20.toDuration(DurationUnit.DAYS)))
                     }
                 }
@@ -313,19 +281,15 @@ class PollManagerInstanceTests : StringSpec({
         val a = PollManagerInstance<WinsInCampionship, SinglePreferenceVote<WinsInCampionship>>() initializedAs {
             +poll {
 
-                -competition {
-                    -"Sport match"
-                    +competitor {
-                        -"Competitor 1"
+                -competition("Sport match") {
+                    +competitor("Competitor 1") {
                         +(WinsInCampionship realized 20)
                     }
-                    +competitor {
-                        -"Competitor 2"
+                    +competitor("Competitor 2") {
                         +(WinsInCampionship realized 1)
                         +(WinsInCampionship realized 20)
                     }
-                    +competitor {
-                        -"Competitor 3"
+                    +competitor("Competitor 3") {
                         +(WinsInCampionship realized 1)
                     }
                 }
@@ -375,86 +339,81 @@ class PollManagerInstanceTests : StringSpec({
     }
 
     "Poll simulation should return a ranking, computed with MyCondorcetAlgorithm" {
-        var counter = 0
         val a = PollManagerInstance<BestTimeInMatch, ListOfPreferencesVote<BestTimeInMatch>>() initializedAs {
             +poll {
 
-                -competition {
-                    -"Sport match"
-                    +competitor {
-                        -"competitorA"
+                -competition("Sport match") {
+                    +competitor("competitorA") {
                     }
 
-                    +competitor {
-                        -"competitorB"
+                    +competitor("competitorB") {
                     }
 
-                    +competitor {
-                        -"competitorC"
+                    +competitor("competitorC") {
                     }
                 }
                 -condorcetAlgorithm {}
 
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym"+counter++)
-                +("competitorC" then "competitorA" then "competitorB" votedBy "anonym"+counter++)
-                +("competitorC" then "competitorA" then "competitorB" votedBy "anonym"+counter++)
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorB" then "competitorC" then "competitorA").asAnonymousVote())
+                +(("competitorB" then "competitorC" then "competitorA").asAnonymousVote())
+                +(("competitorB" then "competitorC" then "competitorA").asAnonymousVote())
+                +(("competitorB" then "competitorC" then "competitorA").asAnonymousVote())
+                +(("competitorB" then "competitorC" then "competitorA").asAnonymousVote())
+                +(("competitorB" then "competitorC" then "competitorA").asAnonymousVote())
+                +(("competitorB" then "competitorC" then "competitorA").asAnonymousVote())
+                +(("competitorB" then "competitorC" then "competitorA").asAnonymousVote())
+                +(("competitorB" then "competitorC" then "competitorA").asAnonymousVote())
+                +(("competitorB" then "competitorC" then "competitorA").asAnonymousVote())
+                +(("competitorB" then "competitorC" then "competitorA").asAnonymousVote())
+                +(("competitorB" then "competitorC" then "competitorA").asAnonymousVote())
+                +(("competitorB" then "competitorC" then "competitorA").asAnonymousVote())
+                +(("competitorB" then "competitorC" then "competitorA").asAnonymousVote())
+                +(("competitorB" then "competitorC" then "competitorA").asAnonymousVote())
+                +(("competitorB" then "competitorC" then "competitorA").asAnonymousVote())
+                +(("competitorB" then "competitorC" then "competitorA").asAnonymousVote())
+                +(("competitorB" then "competitorC" then "competitorA").asAnonymousVote())
+                +(("competitorB" then "competitorC" then "competitorA").asAnonymousVote())
+                +(("competitorC" then "competitorB" then "competitorA").asAnonymousVote())
+                +(("competitorC" then "competitorB" then "competitorA").asAnonymousVote())
+                +(("competitorC" then "competitorB" then "competitorA").asAnonymousVote())
+                +(("competitorC" then "competitorB" then "competitorA").asAnonymousVote())
+                +(("competitorC" then "competitorB" then "competitorA").asAnonymousVote())
+                +(("competitorC" then "competitorB" then "competitorA").asAnonymousVote())
+                +(("competitorC" then "competitorB" then "competitorA").asAnonymousVote())
+                +(("competitorC" then "competitorB" then "competitorA").asAnonymousVote())
+                +(("competitorC" then "competitorB" then "competitorA").asAnonymousVote())
+                +(("competitorC" then "competitorB" then "competitorA").asAnonymousVote())
+                +(("competitorC" then "competitorB" then "competitorA").asAnonymousVote())
+                +(("competitorC" then "competitorB" then "competitorA").asAnonymousVote())
+                +(("competitorC" then "competitorB" then "competitorA").asAnonymousVote())
+                +(("competitorC" then "competitorB" then "competitorA").asAnonymousVote())
+                +(("competitorC" then "competitorB" then "competitorA").asAnonymousVote())
+                +(("competitorC" then "competitorB" then "competitorA").asAnonymousVote())
+                +(("competitorC" then "competitorA" then "competitorB").asAnonymousVote())
+                +(("competitorC" then "competitorA" then "competitorB").asAnonymousVote())
             }
         }
 

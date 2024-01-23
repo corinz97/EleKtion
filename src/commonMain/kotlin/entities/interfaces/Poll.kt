@@ -76,7 +76,7 @@ interface Poll<S : ScoreMetric, V : Vote> {
     /**
      * DSL-function which initializes a [Competition].
      */
-    fun competition(compInit: Competition<S>.() -> Unit): Competition<S>
+    fun competition(competitionName: String, compInit: Competition<S>.() -> Unit): Competition<S>
 
     /**
      * Shortcut which allows competitors' name chaining in the list.
@@ -99,4 +99,16 @@ interface Poll<S : ScoreMetric, V : Vote> {
      * given the name of [Competitor] voted by a [Voter], distinguished by its identifier.
      */
     infix fun String.votedBy(voterIdentifier: String): SinglePreferenceVote<S>
+
+    /**
+     * This function allows a  shortcut to create a [ListOfPreferencesVote],
+     * given the name list of [Competitor]. [Voter] identifier is randomly generated.
+     */
+    fun List<String>.asAnonymousVote(): ListOfPreferencesVote<S>
+
+    /**
+     * This function allows a  shortcut to create a [SinglePreferenceVote],
+     * given the name of [Competitor]. [Voter] identifier is randomly generated.
+     */
+    fun String.asAnonymousVote(): SinglePreferenceVote<S>
 }

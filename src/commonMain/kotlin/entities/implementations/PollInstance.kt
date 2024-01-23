@@ -1,5 +1,6 @@
 package entities.implementations
 
+import com.benasher44.uuid.uuid4
 import entities.abstract.PollAbstraction
 import entities.interfaces.Competitor
 import entities.interfaces.ListOfPreferencesVote
@@ -13,24 +14,7 @@ import entities.types.ScoreMetric
  */
 class PollInstance<S : ScoreMetric, V : Vote> : PollAbstraction<S, V>() {
 
-    override infix fun String.votedBy(voterIdentifier: String): SinglePreferenceVote<S> {
-        val comp =
-            this@PollInstance.competition.competitors.firstOrNull {
-                it.name == this@votedBy
-            } ?: throw NoSuchElementException("Voted candidate doesn't exist as object")
-
-        return object : SinglePreferenceVote<S> {
-            override var voter: Voter =
-                object : Voter {
-                    override val identifier: String
-                        get() = voterIdentifier
-                }
-
-            override var votedCompetitor: Competitor<S> = comp
-        }
-    }
-
-    override infix fun List<String>.votedBy(voterIdentifier: String): ListOfPreferencesVote<S> {
+    override fun List<String>.asAnonymousVote(): ListOfPreferencesVote<S> {
         if (this.isEmpty()) error("Votes list cannot be empty")
 
         val setOfCompetitors = this.toSet()
@@ -66,9 +50,44 @@ class PollInstance<S : ScoreMetric, V : Vote> : PollAbstraction<S, V>() {
             voter =
                 object : Voter {
                     override val identifier: String
-                        get() = voterIdentifier
+                        get() = uuid4().toString()
                 }
             votedCompetitors = listOfCompetitorObject
+        }
+    }
+
+    override fun String.asAnonymousVote(): SinglePreferenceVote<S> {
+        val comp =
+            this@PollInstance.competition.competitors.firstOrNull {
+                it.name == this@asAnonymousVote
+            } ?: throw NoSuchElementException("Voted candidate doesn't exist as object")
+
+        return object : SinglePreferenceVote<S> {
+            override var voter: Voter =
+                object : Voter {
+                    override val identifier: String
+                        get() = uuid4().toString()
+                }
+
+            override var votedCompetitor: Competitor<S> = comp
+        }
+    }
+
+    override infix fun List<String>.votedBy(voterIdentifier: String): ListOfPreferencesVote<S> {
+        return this.asAnonymousVote().apply {
+            this.voter = object : Voter {
+                override val identifier: String
+                    get() = voterIdentifier
+            }
+        }
+    }
+
+    override infix fun String.votedBy(voterIdentifier: String): SinglePreferenceVote<S> {
+        return this.asAnonymousVote().apply {
+            this.voter = object : Voter {
+                override val identifier: String
+                    get() = voterIdentifier
+            }
         }
     }
 
