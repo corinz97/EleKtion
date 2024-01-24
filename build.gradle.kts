@@ -41,7 +41,7 @@ kotlin {
                 implementation("io.github.pdvrieze.xmlutil:serialization:0.86.3")
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
                 implementation("io.ktor:ktor-client-core:2.3.7")
-                implementation("io.ktor:ktor-client-cio:2.3.7")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines:0.19.2")
             }
         }
         val commonTest by getting {
@@ -51,6 +51,11 @@ kotlin {
             }
         }
 
+        val jvmMain by getting {
+            dependencies {
+                implementation("io.ktor:ktor-client-cio:2.3.7")
+            }
+        }
         val jvmTest by getting {
             dependencies {
                 implementation(libs.kotest.runner.junit5)
@@ -58,6 +63,10 @@ kotlin {
         }
         val nativeMain by creating {
             dependsOn(commonMain)
+        }.apply {
+            dependencies {
+                implementation("io.ktor:ktor-client-curl:2.3.7")
+            }
         }
         val nativeTest by creating {
             dependsOn(commonTest)
@@ -68,6 +77,9 @@ kotlin {
         browser()
         nodejs()
         binaries.library()
+        dependencies {
+            implementation("io.ktor:ktor-client-js:2.3.7")
+        }
     }
 
     val nativeSetup: KotlinNativeTarget.() -> Unit = {
@@ -89,7 +101,7 @@ kotlin {
     /*
      * Win 64
      */
-    mingwX64(nativeSetup)
+    // mingwX64(nativeSetup)
     /*
      * Apple OSs
      */
