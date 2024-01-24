@@ -1,14 +1,12 @@
 
-
-
 import entities.implementations.PollManagerInstance
 import entities.interfaces.ListOfPreferencesVote
 import entities.interfaces.SinglePreferenceVote
 import entities.types.BestTimeInMatch
 import entities.types.BestTimeInMatch.Companion.realized
 import entities.types.ConstantParameter
+import entities.pojos.*
 import io.ktor.client.*
-import io.ktor.client.engine.cio.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import kotlinx.serialization.json.Json
@@ -290,16 +288,19 @@ suspend fun main() {
     println("Example #1 CondorcetAlgorithm -> Condorcet result is competitorC - competitorB - competitorA")
     d.printRankings()
 
-    val httpClient = HttpClient(CIO)
+    val httpClient = HttpClient()
     var response: HttpResponse = httpClient.get("https://ergast.com/api/f1/2023.json")
 
-    val listOfRaces = Json.decodeFromString<Root>(response.bodyAsText()).MRData!!.RaceTable!!.Races!!
+    val listOfRaces = Json.decodeFromString<MRDataType>(response.bodyAsText()).MRData!!.RaceTable!!.Races!!
 
     listOfRaces.forEach {
         //val raceIdentifier = (it.raceName + "-" + it.round + "-" + it.season).replace(" ", "-")
         response = httpClient.get("https://ergast.com/api/f1/${it.season}/${it.round}/results.json")
         println(response)
-        val listOfPlacements = Json.decodeFromString<Root>(response.bodyAsText()).MRData!!.RaceTable!!.Races!![0].
+        val listOfRaces = Json.decodeFromString<Root>(response.bodyAsText()).MRData!!.RaceTable!!
+        val n = listOfRaces.R
+
+
 
     }
 

@@ -1,4 +1,4 @@
-import kotlinx.serialization.Serializable
+/*import kotlinx.serialization.Serializable
 @Serializable
 class Circuit {
     var circuitId: String? = null
@@ -102,4 +102,4 @@ class Sprint {
 class ThirdPractice {
     var date: String? = null
     var time: String? = null
-}
+}*/
