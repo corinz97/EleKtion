@@ -67,3 +67,32 @@ data class WinsInCampionship(val wins: Int) : ScoreMetric() {
             }
     }
 }
+
+/**
+ * This class represents an abstraction for average speed realized during the fastest lap in a race.
+ * @param speed average speed realized
+ */
+data class FastestLapAvgSpeed(val speed: Float) : ScoreMetric() {
+    /**
+     * Compare two objects.
+     */
+    override fun compareTo(other: Any): Int {
+        require(other is FastestLapAvgSpeed)
+        return speed.compareTo(other.speed)
+    }
+
+    override fun toString(): String {
+        return "fastestLapAvgSpeed = $speed"
+    }
+
+    companion object {
+        /**
+         * Returns an object which implements Score<FastestLapAvgSpeed>, given the speed.
+         *  @param speed average speed realized
+         */
+        infix fun Companion.realized(speed: Float): Score<FastestLapAvgSpeed> =
+            object : ScoreAbstraction<FastestLapAvgSpeed>() {
+                override var scoreValue: FastestLapAvgSpeed = FastestLapAvgSpeed(speed)
+            }
+    }
+}

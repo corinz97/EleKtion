@@ -123,36 +123,60 @@ class ResultType {
     // var status: String? = null
 
     // var Time: DurationType? = null
-
-    // var FastestLap: FastestLapType? = null
+    /**
+     * FastestLap node in Ergast API.
+     */
+    @SerialName("FastestLap")
+    var fastestLap: FastestLapType? = null
 }
 
-/* @Serializable
+/**
+ * FastestLap node in Ergast API.
+ */
+@Serializable
 class FastestLapType {
-    var time: DurationType? = null
+     /*
+      * Time in the fastest lap.
+      */
+    /*
+    @SerialName("Time")
+    var time: DurationType? = null*/
 
+    /**
+     * AverageSpeed node in Ergast API.
+     */
+    @SerialName("AverageSpeed")
     var averageSpeed: SpeedType? = null
 
-    var rank: Int? = null
+    // var rank: Int? = null
 
-    var lap: Int? = null
-}*/
+    // var lap: Int? = null
+}
 
 /* @Serializable
 class DurationType {
 
-    var value: String? = null
+    var time: String? = null
 
     var millis: Long? = null
 }*/
 
-/* @Serializable
+/**
+ * AverageSpeed node in Ergast API.
+ */
+@Serializable
 class SpeedType {
 
+    /**
+     * Speed value.
+     */
     var speed = 0f
 
+    /**
+     * Units of speed.
+     */
     var units: String? = null
-}*/
+}
 
 /* @Serializable
 class ConstructorType {
