@@ -86,7 +86,7 @@ kotlin {
         compilations["main"].defaultSourceSet.dependsOn(kotlin.sourceSets["nativeMain"])
         compilations["test"].defaultSourceSet.dependsOn(kotlin.sourceSets["nativeTest"])
         binaries {
-            executable()
+            // executable()
             sharedLib()
             staticLib()
         }
@@ -101,7 +101,7 @@ kotlin {
     /*
      * Win 64
      */
-    // mingwX64(nativeSetup)
+    mingwX64(nativeSetup)
     /*
      * Apple OSs
      */
