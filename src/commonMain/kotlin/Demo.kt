@@ -5,35 +5,30 @@ import entities.interfaces.SinglePreferenceVote
 import entities.types.BestTimeInMatch
 import entities.types.BestTimeInMatch.Companion.realized
 import entities.types.ConstantParameter
-import io.ktor.client.*
-import io.ktor.client.request.*
-import io.ktor.client.statement.*
-import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
+import io.ktor.client.HttpClient
+import io.ktor.client.request.get
+import io.ktor.client.statement.HttpResponse
+import io.ktor.client.statement.bodyAsText
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import kotlin.time.DurationUnit
 import kotlin.time.toDuration
 
 private const val T = 0.1
 
+@OptIn(ExperimentalSerializationApi::class)
 private val json = Json {
     isLenient = true
     ignoreUnknownKeys = true
+    decodeEnumsCaseInsensitive = true
     allowSpecialFloatingPointValues = true
 }
 
 /**
  * Demo main function.
  */
-@OptIn(DelicateCoroutinesApi::class)
+
 suspend fun main() {
-    executeMain()
-}
-
-@OptIn(DelicateCoroutinesApi::class)
-suspend fun executeMain() {
-
     val a =
         PollManagerInstance<BestTimeInMatch, SinglePreferenceVote<BestTimeInMatch>>() initializedAs {
             +poll {
@@ -304,37 +299,33 @@ suspend fun executeMain() {
 
     val httpClient = HttpClient()
 
+    var response: HttpResponse = httpClient.get("https://ergast.com/api/f1/2023.json")
+    println("Downloading championship data...")
 
+    val raceResults = emptyMap<String, List<String>>().toMutableMap()
 
-       var response: HttpResponse = GlobalScope.async { httpClient.get("https://ergast.com/api/f1/2023.json") }.await()
-       println("Downloading championship data...")
+    val root = json.decodeFromString<RootType>(response.bodyAsText())
+    val listOfRaces = root.mRData!!.raceTable!!.races!!
+    listOfRaces.forEach {
+        println("Downloading race data...")
+        response = httpClient.get("https://ergast.com/api/f1/${it.season}/${it.round}/results.json")
 
+        val resultsJson =
+            json
+                .decodeFromString<RootType>(response.bodyAsText()).mRData!!.raceTable!!
+                .races!![0].results!!
+        // println(resultsJson)
 
-       val raceResults = emptyMap<String, List<String>>().toMutableMap()
+        val raceIdentifier = (it.raceName + "-" + it.round + "-" + it.season).replace(" ", "-")
+        val resultsParsedStrings = mutableListOf<String>()
+        resultsJson.forEach { r ->
+            resultsParsedStrings += r.driver!!.givenName + "-" + r.driver!!.familyName // + "-" + r.position
+        }
 
+        raceResults += (raceIdentifier to resultsParsedStrings)
+    }
 
-       val root = json.decodeFromString<RootType>(response.bodyAsText())
-       val listOfRaces = root.MRData!!.RaceTable!!.Races!!
-       listOfRaces.forEach {
-           println("Downloading race data...")
-           response = httpClient.get("https://ergast.com/api/f1/${it.season}/${it.round}/results.json")
-
-           val resultsJson =
-               json
-                   .decodeFromString<RootType>(response.bodyAsText()).MRData!!.RaceTable!!
-                   .Races!![0].Results!!
-           // println(resultsJson)
-
-           val raceIdentifier = (it.raceName + "-" + it.round + "-" + it.season).replace(" ", "-")
-           val resultsParsedStrings = mutableListOf<String>()
-           resultsJson.forEach { r ->
-               resultsParsedStrings += r.Driver!!.givenName + "-" + r.Driver!!.familyName // + "-" + r.position
-           }
-
-           raceResults += (raceIdentifier to resultsParsedStrings)
-       }
-
-       println(raceResults)
+    println(raceResults)
 
        /* val s = mutableListOf<String>()
      for((_, value) in raceResults){
@@ -342,36 +333,34 @@ suspend fun executeMain() {
      }
 
      val alwaysPresentCounter = (s.groupingBy { it }.eachCount().toMap()).map { it.value }.max()
-     val alwaysPresentConcurrent = (s.groupingBy { it }.eachCount().toMap()).filter { it.value == alwaysPresentCounter }.keys
+     val alwaysPresentConcurrent = (s.groupingBy { it }.eachCount().toMap())
+     .filter { it.value == alwaysPresentCounter }.keys
      var validConcurrents = raceResults.mapValues { it.value.filter { it in alwaysPresentConcurrent } }
- */
-       val validConcurrents = raceResults
-       println(validConcurrents)
+        */
+    val validConcurrents = raceResults
+    println(validConcurrents)
 
-       val allConcurrents = validConcurrents.values.fold(setOf<String>()) { s, element -> s + element.toSet() }
-       val e =
-           PollManagerInstance<BestTimeInMatch, ListOfPreferencesVote<BestTimeInMatch>>() initializedAs {
-               +poll {
-                   -competition("F1 2023") {
-                       allConcurrents.forEach {
-                           +competitor(it) {
-                           }
-                       }
-                   }
-                   -condorcetAlgorithm {}
+    val allConcurrents = validConcurrents.values.fold(setOf<String>()) { s, element -> s + element.toSet() }
+    val e =
+        PollManagerInstance<BestTimeInMatch, ListOfPreferencesVote<BestTimeInMatch>>() initializedAs {
+            +poll {
+                -competition("F1 2023") {
+                    allConcurrents.forEach {
+                        +competitor(it) {
+                        }
+                    }
+                }
+                -condorcetAlgorithm {}
 
-                   validConcurrents.entries.forEach { (runningField, competitors) ->
-                       +(competitors.fold(listOf<String>()) { l, element -> l then element } votedBy runningField)
-                   }
-               }
-           }
-       println("Example #2 CondorcetAlgorithm -> ")
-       e.printRankings()
+                validConcurrents.entries.forEach { (runningField, competitors) ->
+                    +(competitors.fold(listOf<String>()) { l, element -> l then element } votedBy runningField)
+                }
+            }
+        }
+    println("Example #2 CondorcetAlgorithm -> ")
+    e.printRankings()
 
-       println("Press Enter key to close")
-       readln()
-       httpClient.close()
-
+    println("Press Enter key to close")
+    readln()
+    httpClient.close()
 }
-
-

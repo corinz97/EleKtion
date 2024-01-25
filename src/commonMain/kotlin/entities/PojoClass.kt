@@ -1,97 +1,133 @@
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-@Serializable
+
+/* @Serializable
 class CircuitType {
     var circuitId: String? = null
     var url: String? = null
     var circuitName: String? = null
 
     var Location: LocationType? = null
-}
+}*/
 
-@Serializable
+/* @Serializable
 class FirstPracticeType {
     var date: String? = null
     var time: String? = null
-}
+}*/
 
-@Serializable
+/* @Serializable
 class LocationType {
     var lat: String? = null
 
     var long: String? = null
     var locality: String? = null
     var country: String? = null
-}
-
+}*/
+/**
+ * Main node of Ergast API.
+ */
 @Serializable
 class MRDataType {
-    var xmlns: String? = null
-    var series: String? = null
-    var url: String? = null
-    var limit: String? = null
-    var offset: String? = null
-    var total: String? = null
+    // var xmlns: String? = null
+    // var series: String? = null
+    // var url: String? = null
+    // var limit: String? = null
+    // var offset: String? = null
+    // var total: String? = null
 
-    var RaceTable: RaceTableType? = null
+    /**
+     * Races container.
+     */
+    @SerialName("RaceTable")
+    var raceTable: RaceTableType? = null
 }
 
-@Serializable
-class QualifyingType {
+/* @Serializable
+ class QualifyingType {
     var date: String? = null
     var time: String? = null
-}
-
+}*/
+/**
+ * Race node of Ergast API.
+ */
 @Serializable
 class RaceType {
+    /**
+     * Championship season.
+     */
     var season: String? = null
+
+    /**
+     * Number of round in championship.
+     */
     var round: String? = null
-    var url: String? = null
+
+    // var url: String? = null
+
+    /**
+     * Place where round happens.
+     */
     var raceName: String? = null
 
-    var Results: Array<ResultType>? = null
-    var Circuit: CircuitType? = null
-    var date: String? = null
-    var time: String? = null
+    /**
+     * List of results.
+     */
+    @SerialName("Results")
+    var results: Array<ResultType>? = null
 
-    var FirstPractice: FirstPracticeType? = null
+    // var Circuit: CircuitType? = null
+    // var date: String? = null
+    // var time: String? = null
 
-    var SecondPractice: SecondPracticeType? = null
+    // var FirstPractice: FirstPracticeType? = null
 
-    var ThirdPractice: ThirdPracticeType? = null
+    // var SecondPractice: SecondPracticeType? = null
 
-    var Qualifying: QualifyingType? = null
+    // var ThirdPractice: ThirdPracticeType? = null
 
-    var Sprint: SprintType? = null
+    // var Qualifying: QualifyingType? = null
+
+    // var Sprint: SprintType? = null
 }
 
+/**
+ * Result node of Ergast API.
+ */
 @Serializable
 class ResultType {
 
+    /**
+     * Driver's number.
+     */
     var number: Int? = null
 
-    var position: Int? = null
+    // var position: Int? = null
 
-    var positionText: String? = null
+    // var positionText: String? = null
 
-    var points: Float? = null
+    // var points: Float? = null
+    /**
+     * Driver node of Ergast API.
+     */
+    @SerialName("Driver")
+    var driver: DriverType? = null
 
-    var Driver: DriverType? = null
+    // var Constructor: ConstructorType? = null
 
-    var Constructor: ConstructorType? = null
+    // var grid: Int? = null
 
-    var grid: Int? = null
+    // var laps: Int? = null
 
-    var laps: Int? = null
+    // var status: String? = null
 
-    var status: String? = null
+    // var Time: DurationType? = null
 
-    var Time: DurationType? = null
-
-    var FastestLap: FastestLapType? = null
+    // var FastestLap: FastestLapType? = null
 }
 
-@Serializable
+/* @Serializable
 class FastestLapType {
     var time: DurationType? = null
 
@@ -100,25 +136,25 @@ class FastestLapType {
     var rank: Int? = null
 
     var lap: Int? = null
-}
+}*/
 
-@Serializable
+/* @Serializable
 class DurationType {
 
     var value: String? = null
 
     var millis: Long? = null
-}
+}*/
 
-@Serializable
+/* @Serializable
 class SpeedType {
 
     var speed = 0f
 
     var units: String? = null
-}
+}*/
 
-@Serializable
+/* @Serializable
 class ConstructorType {
 
     var name: String? = null
@@ -128,52 +164,74 @@ class ConstructorType {
     var constructorId: String? = null
 
     var url: String? = null
-}
-
+}*/
+/**
+ * Driver node of Ergast API.
+ */
 @Serializable
 class DriverType {
-    var permanentNumber: Int? = null
-
+    // var permanentNumber: Int? = null
+    /**
+     * Driver's name.
+     */
     var givenName: String? = null
 
+    /**
+     * Driver's surname.
+     */
     var familyName: String? = null
 
-    var dateOfBirth: String? = null
+    // var dateOfBirth: String? = null
 
-    var nationality: String? = null
+    // var nationality: String? = null
 
-    var driverId: String? = null
+    // var driverId: String? = null
 
-    var url: String? = null
+    // var url: String? = null
 }
 
+/**
+ * /**
+ *  * RaceTable node of Ergast API.
+ *  */
+ */
 @Serializable
 class RaceTableType {
-    var season: String? = null
-    var round: String? = null
-    var Races: Array<RaceType>? = null
+    // var season: String? = null
+    // var round: String? = null
+    /**
+     * List of races.
+     */
+    @SerialName("Races")
+    var races: Array<RaceType>? = null
 }
 
+/**
+ * Entry point of Ergast API.
+ */
 @Serializable
 class RootType {
-
-    var MRData: MRDataType? = null
+    /**
+     * Main node of Ergast API.
+     */
+    @SerialName("MRData")
+    var mRData: MRDataType? = null
 }
 
-@Serializable
+/* @Serializable
 class SecondPracticeType {
     var date: String? = null
     var time: String? = null
-}
+}*/
 
-@Serializable
+/* @Serializable
 class SprintType {
     var date: String? = null
     var time: String? = null
-}
+}*/
 
-@Serializable
-class ThirdPracticeType {
+/* @Serializable
+ class ThirdPracticeType {
     var date: String? = null
     var time: String? = null
-}
+}*/
