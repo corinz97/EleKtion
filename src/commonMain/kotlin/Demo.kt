@@ -13,6 +13,8 @@ import io.ktor.client.statement.HttpResponse
 import io.ktor.client.statement.bodyAsText
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
+import kotlin.math.pow
+import kotlin.math.roundToInt
 import kotlin.time.DurationUnit
 import kotlin.time.toDuration
 
@@ -24,6 +26,27 @@ private val json = Json {
     ignoreUnknownKeys = true
     decodeEnumsCaseInsensitive = true
     allowSpecialFloatingPointValues = true
+}
+
+/**
+ * Return the float receiver as a string display with numOfDec after the decimal (rounded)
+ * (e.g. 35.72 with numOfDec = 1 will be 35.7, 35.78 with numOfDec = 2 will be 35.80)
+ *
+ * @param numOfDec number of decimal places to show (receiver is rounded to that number)
+ * @return the String representation of the receiver up to numOfDec decimal places
+ */
+private fun Float.toString(numOfDec: Int): String {
+    val integerDigits = this.toInt()
+    val floatDigits = ((this - integerDigits) * 10f.pow(numOfDec)).roundToInt()
+    return "${integerDigits}.${floatDigits}"
+}
+private fun normalize(
+    value: Float,
+    min: Float,
+    max: Float
+): Float {
+    val f =  (1 - (value - min) / (max - min))
+    return f.toString(3).toFloat()
 }
 
 /**
@@ -299,12 +322,13 @@ suspend fun main() {
     println("Example #1 CondorcetAlgorithm -> Condorcet result is competitorC - competitorB - competitorA")
     d.printRankings()
 
-    fun1()
+    // fun1()
     fun2()
     fun3()
+    fun4()
 }
 
-private suspend fun fun1() {
+/* private suspend fun fun1() {
     val httpClient = HttpClient()
 
     var response: HttpResponse = httpClient.get("https://ergast.com/api/f1/2023.json")
@@ -371,7 +395,7 @@ private suspend fun fun1() {
     println("Press Enter key to close")
     readln()
     httpClient.close()
-}
+}*/
 
 private suspend fun fun2() {
     val httpClient = HttpClient()
@@ -437,11 +461,10 @@ private suspend fun fun2() {
     println("Example #2 CondorcetAlgorithm -> ")
     e.printRankings()
 
-    println("Press Enter key to close")
+    println("Press Enter key to continue")
     readln()
     httpClient.close()
 }
-
 private suspend fun fun3() {
     val httpClient = HttpClient()
 
@@ -466,9 +489,9 @@ private suspend fun fun3() {
         val resultsParsedStrings = mutableListOf<Pair<String, Float>>()
         resultsJson.forEach { r ->
             resultsParsedStrings += (
-                (r.driver!!.givenName + "-" + r.driver!!.familyName)
-                    to (r.fastestLap?.averageSpeed?.speed ?: -1.0f)
-                )
+                    (r.driver!!.givenName + "-" + r.driver!!.familyName)
+                            to (r.fastestLap?.averageSpeed?.speed ?: -1.0f)
+                    )
         }
 
         val sortedBySpeed = resultsParsedStrings.sortedByDescending { r -> r.second }
@@ -501,6 +524,72 @@ private suspend fun fun3() {
     e.printRankings()
 
     println("Press Enter key to close")
+    readln()
+    httpClient.close()
+}
+private suspend fun fun4() {
+    val httpClient = HttpClient()
+
+    var response: HttpResponse = httpClient.get("https://ergast.com/api/f1/2018.json")
+    println("Downloading championship data...")
+
+    val raceResults = mutableMapOf<String, List<Pair<String, Float>>>()
+
+    val root = json.decodeFromString<RootType>(response.bodyAsText())
+    val listOfRaces = root.mRData!!.raceTable!!.races!!
+    listOfRaces.forEach {
+        println("Downloading race data...")
+        response = httpClient.get("https://ergast.com/api/f1/${it.season}/${it.round}/results.json")
+
+        val resultsJson =
+            json
+                .decodeFromString<RootType>(response.bodyAsText()).mRData!!.raceTable!!
+                .races!![0].results!!
+        // println(resultsJson)
+
+        val raceIdentifier = (it.raceName + "-" + it.round + "-" + it.season).replace(" ", "-")
+        var resultsParsedStrings = listOf<Pair<String, Float>>()
+        resultsJson.forEach { r ->
+            resultsParsedStrings = resultsParsedStrings + (
+                (r.driver!!.givenName + "-" + r.driver!!.familyName)
+                    to (r.fastestLap?.averageSpeed?.speed ?: -1.0f)
+                )
+        }
+
+        val maxSpeed = resultsParsedStrings.maxOfOrNull { v -> v.second }
+        val minSpeed =  resultsParsedStrings.minOfOrNull { v -> v.second }
+        resultsParsedStrings = resultsParsedStrings.
+        map {t -> t.first to normalize(value = t.second, min = minSpeed!!, max = maxSpeed!!) }
+        val sortedBySpeed = resultsParsedStrings.sortedByDescending{v -> v.second }
+           //  .sortedByDescending { r -> normalize(value = r.second, min = minSpeed!!, max = maxSpeed!!) }
+        raceResults += (raceIdentifier to sortedBySpeed)
+    }
+
+    println(raceResults)
+  val validConcurrents = raceResults.flatMap { it.value }.groupBy({ it.first }, { it.second })
+    println(validConcurrents)
+
+    val e =
+        PollManagerInstance<FastestLapAvgSpeed, ListOfPreferencesVote<FastestLapAvgSpeed>>() initializedAs {
+            +poll {
+                -competition("F1 2018") {
+                    validConcurrents.forEach {
+                        +competitor(it.key) {
+                            it.value.forEach { v -> +(FastestLapAvgSpeed realized v) }
+                        }
+                    }
+                }
+                -condorcetAlgorithm {}
+
+                raceResults.entries.forEach { (runningField, competitors) ->
+                    +(competitors.fold(listOf<String>()) { l, element -> l then element.first } votedBy runningField)
+                }
+            }
+        }
+    println("Example #4 CondorcetAlgorithm -> ")
+    e.printRankings()
+
+    println("Press Enter key to continue")
     readln()
     httpClient.close()
 }
