@@ -135,12 +135,12 @@ class ResultType {
  */
 @Serializable
 class FastestLapType {
-     /*
-      * Time in the fastest lap.
-      */
-    /*
+    /**
+     * Time in the fastest lap.
+     */
+
     @SerialName("Time")
-    var time: DurationType? = null*/
+    var time: DurationType? = null
 
     /**
      * AverageSpeed node in Ergast API.
@@ -153,13 +153,18 @@ class FastestLapType {
     // var lap: Int? = null
 }
 
-/* @Serializable
+/**
+ * Type of time in Ergast API.
+ */
+@Serializable
 class DurationType {
-
+    /**
+     * Time measurement.
+     */
     var time: String? = null
 
-    var millis: Long? = null
-}*/
+    // var millis: Long? = null
+}
 
 /**
  * AverageSpeed node in Ergast API.

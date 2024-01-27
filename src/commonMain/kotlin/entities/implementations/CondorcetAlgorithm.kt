@@ -110,13 +110,18 @@ class CondorcetAlgorithm<S : ScoreMetric>(
         return voteMatrix
     }
 
-    private fun <S : ScoreMetric> roundWinner(cand: List<Competitor<S>>, matrix: Array<IntArray>): Competitor<S>? {
+    private fun <S : ScoreMetric> roundWinner(
+        candidatesOriginalList: List<Competitor<S>>,
+        candidatesCurrentList: List<Competitor<S>>,
+        matrix: Array<IntArray>,
+    ): Competitor<S>? {
         var maxVotes = 0
-        cand.indices.forEach { i ->
+        var c: Competitor<S>? = null
+        candidatesOriginalList.indices.forEach { i ->
             var victories = 0
             var defeats = 0
 
-            cand.indices.forEach { j ->
+            candidatesOriginalList.indices.forEach { j ->
                 if (i != j) {
                     if (matrix[i][j] > matrix[j][i]) {
                         victories++
@@ -125,36 +130,49 @@ class CondorcetAlgorithm<S : ScoreMetric>(
                     }
                 }
             }
-
-            if (victories == cand.size - 1 && defeats == 0) {
-                if (maxVotes <= matrix[i].sum()) {
+            if (victories >= defeats) {
+                if (candidatesCurrentList.size == 1) {
+                    c = candidatesCurrentList.first()
+                } else if (matrix[i].sum() > maxVotes) {
                     maxVotes = matrix[i].sum()
-                    return cand[i]
+                    c = candidatesOriginalList[i]
                 }
             }
         }
-        return null
+        return c
     }
 
     private fun <S : ScoreMetric> calculateWinners(
-        candidatesList: List<Competitor<S>>,
+        candidatesOriginalList: List<Competitor<S>>,
         ballots: List<ListOfPreferencesVote<S>>,
     ): List<Set<Competitor<S>>> {
-        val voteMatrix = calculateVoteMatrix(candidatesList, ballots)
+        val voteMatrix = calculateVoteMatrix(candidatesOriginalList.toList(), ballots)
         val winners = mutableListOf<Set<Competitor<S>>>()
-        val candidates = candidatesList.toMutableList()
-        candidates.indices.forEach { _ ->
+        val candidatesCurrentList = candidatesOriginalList.toMutableList()
+        candidatesOriginalList.indices.forEach { _ ->
 
-            val result = roundWinner(candidates.toList(), voteMatrix)
+            val result = roundWinner(candidatesOriginalList.toList(), candidatesCurrentList.toList(), voteMatrix)
 
             if (result != null) {
                 winners.add(setOf(result))
                 // set to 0 the preferences, in order to ignore it in next cycle
-                for (i in candidates.indices) {
-                    voteMatrix[i][candidates.indexOf(result)] = 0
+                for (i in candidatesOriginalList.indices) {
+                    voteMatrix[i][
+                        candidatesOriginalList.indexOfFirst {
+                            it.name == result.name
+                        },
+                    ] = 0
+                }
+
+                for (j in candidatesOriginalList.indices) {
+                    voteMatrix[
+                        candidatesOriginalList.indexOfFirst {
+                            it.name == result.name
+                        },
+                    ][j] = 0
                 }
                 // remove actual winner from the list
-                candidates.remove(result)
+                candidatesCurrentList.remove(result)
             }
         }
 

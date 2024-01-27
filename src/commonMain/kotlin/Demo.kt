@@ -13,8 +13,7 @@ import io.ktor.client.statement.HttpResponse
 import io.ktor.client.statement.bodyAsText
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
-import kotlin.math.pow
-import kotlin.math.roundToInt
+import kotlin.time.Duration
 import kotlin.time.DurationUnit
 import kotlin.time.toDuration
 
@@ -28,25 +27,15 @@ private val json = Json {
     allowSpecialFloatingPointValues = true
 }
 
-/**
- * Return the float receiver as a string display with numOfDec after the decimal (rounded)
- * (e.g. 35.72 with numOfDec = 1 will be 35.7, 35.78 with numOfDec = 2 will be 35.80)
- *
- * @param numOfDec number of decimal places to show (receiver is rounded to that number)
- * @return the String representation of the receiver up to numOfDec decimal places
- */
-private fun Float.toString(numOfDec: Int): String {
-    val integerDigits = this.toInt()
-    val floatDigits = ((this - integerDigits) * 10f.pow(numOfDec)).roundToInt()
-    return "${integerDigits}.${floatDigits}"
-}
-private fun normalize(
-    value: Float,
-    min: Float,
-    max: Float
-): Float {
-    val f =  (1 - (value - min) / (max - min))
-    return f.toString(3).toFloat()
+private fun String.parseTime(): Duration {
+    val parts = this.split(":")
+    val minutes = parts[0].toLong()
+    val secondsAndMilliseconds = parts[1].split(".")
+    val seconds = secondsAndMilliseconds[0].toLong()
+    val milliseconds = secondsAndMilliseconds[1].toLong()
+    return minutes.toDuration(DurationUnit.MINUTES) +
+        seconds.toDuration(DurationUnit.SECONDS) +
+        milliseconds.toDuration(DurationUnit.MILLISECONDS)
 }
 
 /**
@@ -322,7 +311,6 @@ suspend fun main() {
     println("Example #1 CondorcetAlgorithm -> Condorcet result is competitorC - competitorB - competitorA")
     d.printRankings()
 
-    // fun1()
     fun2()
     fun3()
     fun4()
@@ -368,7 +356,7 @@ suspend fun main() {
   val alwaysPresentConcurrent = (s.groupingBy { it }.eachCount().toMap())
   .filter { it.value == alwaysPresentCounter }.keys
   var validConcurrents = raceResults.mapValues { it.value.filter { it in alwaysPresentConcurrent } }
-     */
+ */
     val validConcurrents = raceResults
     println(validConcurrents)
 
@@ -489,9 +477,9 @@ private suspend fun fun3() {
         val resultsParsedStrings = mutableListOf<Pair<String, Float>>()
         resultsJson.forEach { r ->
             resultsParsedStrings += (
-                    (r.driver!!.givenName + "-" + r.driver!!.familyName)
-                            to (r.fastestLap?.averageSpeed?.speed ?: -1.0f)
-                    )
+                (r.driver!!.givenName + "-" + r.driver!!.familyName)
+                    to (r.fastestLap?.averageSpeed?.speed ?: -1.0f)
+                )
         }
 
         val sortedBySpeed = resultsParsedStrings.sortedByDescending { r -> r.second }
@@ -520,20 +508,21 @@ private suspend fun fun3() {
                 }
             }
         }
-    println("Example #2 CondorcetAlgorithm -> ")
+    println("Example #3 CondorcetAlgorithm -> ")
     e.printRankings()
 
     println("Press Enter key to close")
     readln()
     httpClient.close()
 }
+
 private suspend fun fun4() {
     val httpClient = HttpClient()
 
     var response: HttpResponse = httpClient.get("https://ergast.com/api/f1/2018.json")
     println("Downloading championship data...")
 
-    val raceResults = mutableMapOf<String, List<Pair<String, Float>>>()
+    val raceResults = mutableMapOf<String, List<Pair<String, Duration>>>()
 
     val root = json.decodeFromString<RootType>(response.bodyAsText())
     val listOfRaces = root.mRData!!.raceTable!!.races!!
@@ -548,34 +537,30 @@ private suspend fun fun4() {
         // println(resultsJson)
 
         val raceIdentifier = (it.raceName + "-" + it.round + "-" + it.season).replace(" ", "-")
-        var resultsParsedStrings = listOf<Pair<String, Float>>()
+        val resultsParsedStrings = mutableListOf<Pair<String, Duration>>()
         resultsJson.forEach { r ->
-            resultsParsedStrings = resultsParsedStrings + (
+            resultsParsedStrings += (
                 (r.driver!!.givenName + "-" + r.driver!!.familyName)
-                    to (r.fastestLap?.averageSpeed?.speed ?: -1.0f)
+                    to (r.fastestLap?.time?.time?.parseTime() ?: Duration.INFINITE)
                 )
         }
 
-        val maxSpeed = resultsParsedStrings.maxOfOrNull { v -> v.second }
-        val minSpeed =  resultsParsedStrings.minOfOrNull { v -> v.second }
-        resultsParsedStrings = resultsParsedStrings.
-        map {t -> t.first to normalize(value = t.second, min = minSpeed!!, max = maxSpeed!!) }
-        val sortedBySpeed = resultsParsedStrings.sortedByDescending{v -> v.second }
-           //  .sortedByDescending { r -> normalize(value = r.second, min = minSpeed!!, max = maxSpeed!!) }
+        val sortedBySpeed = resultsParsedStrings.sortedBy { r -> r.second }
         raceResults += (raceIdentifier to sortedBySpeed)
     }
 
     println(raceResults)
-  val validConcurrents = raceResults.flatMap { it.value }.groupBy({ it.first }, { it.second })
+
+    val validConcurrents = raceResults.flatMap { it.value }.groupBy({ it.first }, { it.second })
     println(validConcurrents)
 
     val e =
-        PollManagerInstance<FastestLapAvgSpeed, ListOfPreferencesVote<FastestLapAvgSpeed>>() initializedAs {
+        PollManagerInstance<BestTimeInMatch, ListOfPreferencesVote<BestTimeInMatch>>() initializedAs {
             +poll {
                 -competition("F1 2018") {
                     validConcurrents.forEach {
                         +competitor(it.key) {
-                            it.value.forEach { v -> +(FastestLapAvgSpeed realized v) }
+                            it.value.forEach { v -> +(BestTimeInMatch realized v) }
                         }
                     }
                 }
@@ -589,7 +574,7 @@ private suspend fun fun4() {
     println("Example #4 CondorcetAlgorithm -> ")
     e.printRankings()
 
-    println("Press Enter key to continue")
+    println("Press Enter key to close")
     readln()
     httpClient.close()
 }
