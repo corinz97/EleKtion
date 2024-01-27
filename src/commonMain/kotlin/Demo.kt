@@ -224,6 +224,7 @@ suspend fun main() {
                 +("competitor1" votedBy "voter2")
             } // same votes, same lowest score
         }
+
     println("Example #1 MajorityVotesThenLowestScoreAlgorithm -> same score, competitor2 has more votes")
     println("Example #2 MajorityVotesThenLowestScoreAlgorithm -> same votes, competitor1 has the lowest score")
     println("Example #3 MajorityVotesThenLowestScoreAlgorithm -> same votes, same lowest score")
@@ -246,69 +247,20 @@ suspend fun main() {
                 }
                 -condorcetAlgorithm {}
 
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
-                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym" + counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym" + counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym" + counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym" + counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym" + counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym" + counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym" + counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym" + counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym" + counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym" + counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym" + counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym" + counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym" + counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym" + counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym" + counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym" + counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym" + counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym" + counter++)
-                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym" + counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym" + counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym" + counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym" + counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym" + counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym" + counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym" + counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym" + counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym" + counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym" + counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym" + counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym" + counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym" + counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym" + counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym" + counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym" + counter++)
-                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym" + counter++)
+                +("competitorA" then "competitorB" then "competitorC" votedBy "anonym" + counter++)
+                +("competitorA" then "competitorB" then "competitorC" votedBy "anonym" + counter++)
                 +("competitorC" then "competitorA" then "competitorB" votedBy "anonym" + counter++)
                 +("competitorC" then "competitorA" then "competitorB" votedBy "anonym" + counter++)
-            } // competitorC, competitorB, competitorA
+                +("competitorC" then "competitorA" then "competitorB" votedBy "anonym" + counter++)
+                +("competitorC" then "competitorA" then "competitorB" votedBy "anonym" + counter++)
+                +("competitorB" then "competitorC" then "competitorA" votedBy "anonym" + counter++)
+                +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
+                +("competitorB" then "competitorA" then "competitorC" votedBy "anonym" + counter++)
+                +("competitorC" then "competitorB" then "competitorA" votedBy "anonym" + counter++)
+
+            } // competitorC, competitorA, competitorB
         }
-    println("Example #1 CondorcetAlgorithm -> Condorcet result is competitorC - competitorB - competitorA")
+    println("Example #1 CondorcetAlgorithm -> Condorcet result is competitorC - competitorA - competitorB")
     d.printRankings()
 
     fun2()
@@ -403,12 +355,11 @@ private suspend fun fun2() {
             json
                 .decodeFromString<RootType>(response.bodyAsText()).mRData!!.raceTable!!
                 .races!![0].results!!
-        // println(resultsJson)
 
         val raceIdentifier = (it.raceName + "-" + it.round + "-" + it.season).replace(" ", "-")
         val resultsParsedStrings = mutableListOf<String>()
         resultsJson.forEach { r ->
-            resultsParsedStrings += r.driver!!.givenName + "-" + r.driver!!.familyName // + "-" + r.position
+            resultsParsedStrings += r.driver!!.givenName + "-" + r.driver!!.familyName
         }
 
         raceResults += (raceIdentifier to resultsParsedStrings)
@@ -416,16 +367,6 @@ private suspend fun fun2() {
 
     println(raceResults)
 
-    /* val s = mutableListOf<String>()
-  for((_, value) in raceResults){
-      s += value
-  }
-
-  val alwaysPresentCounter = (s.groupingBy { it }.eachCount().toMap()).map { it.value }.max()
-  val alwaysPresentConcurrent = (s.groupingBy { it }.eachCount().toMap())
-  .filter { it.value == alwaysPresentCounter }.keys
-  var validConcurrents = raceResults.mapValues { it.value.filter { it in alwaysPresentConcurrent } }
-     */
     val validConcurrents = raceResults
     println(validConcurrents)
 
@@ -446,7 +387,10 @@ private suspend fun fun2() {
                 }
             }
         }
-    println("Example #2 CondorcetAlgorithm -> ")
+    println(
+        "Example #2 CondorcetAlgorithm -> in input data, for every race, pilots are ordered\n " +
+            "as they arrived in race ranking ",
+    )
     e.printRankings()
 
     println("Press Enter key to continue")
@@ -471,7 +415,6 @@ private suspend fun fun3() {
             json
                 .decodeFromString<RootType>(response.bodyAsText()).mRData!!.raceTable!!
                 .races!![0].results!!
-        // println(resultsJson)
 
         val raceIdentifier = (it.raceName + "-" + it.round + "-" + it.season).replace(" ", "-")
         val resultsParsedStrings = mutableListOf<Pair<String, Float>>()
@@ -508,10 +451,13 @@ private suspend fun fun3() {
                 }
             }
         }
-    println("Example #3 CondorcetAlgorithm -> ")
+    println(
+        "Example #3 CondorcetAlgorithm -> in input data, for every race, pilots are ordered by\n" +
+            "DESCENDING average speed of fastest lap)",
+    )
     e.printRankings()
 
-    println("Press Enter key to close")
+    println("Press Enter key to continue")
     readln()
     httpClient.close()
 }
@@ -534,7 +480,6 @@ private suspend fun fun4() {
             json
                 .decodeFromString<RootType>(response.bodyAsText()).mRData!!.raceTable!!
                 .races!![0].results!!
-        // println(resultsJson)
 
         val raceIdentifier = (it.raceName + "-" + it.round + "-" + it.season).replace(" ", "-")
         val resultsParsedStrings = mutableListOf<Pair<String, Duration>>()
@@ -571,7 +516,10 @@ private suspend fun fun4() {
                 }
             }
         }
-    println("Example #4 CondorcetAlgorithm -> ")
+    println(
+        "Example #4 CondorcetAlgorithm -> -> in input data, for every race, pilots are ordered by \n" +
+            "ASCENDING time of fastest lap",
+    )
     e.printRankings()
 
     println("Press Enter key to close")

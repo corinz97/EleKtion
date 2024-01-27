@@ -2,7 +2,6 @@ package entities.types
 import entities.abstract.ScoreAbstraction
 import entities.interfaces.Score
 import kotlin.time.Duration
-import kotlin.time.DurationUnit
 
 /**
  * Represents a metric useful two compare and evaluate results among competitors.
@@ -23,7 +22,7 @@ data class BestTimeInMatch(val duration: Duration) : ScoreMetric() {
     }
 
     override fun toString(): String {
-        return "time = ${duration.inWholeSeconds} ${DurationUnit.SECONDS}"
+        return "time = $duration"
     }
 
     companion object {
