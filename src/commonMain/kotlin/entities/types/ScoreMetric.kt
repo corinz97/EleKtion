@@ -81,7 +81,7 @@ data class FastestLapAvgSpeed(val speed: Float) : ScoreMetric() {
     }
 
     override fun toString(): String {
-        return "fastestLapAvgSpeed = $speed"
+        return "fastestLapAvgSpeed = $speed km/h"
     }
 
     companion object {

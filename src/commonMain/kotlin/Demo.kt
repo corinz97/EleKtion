@@ -257,7 +257,6 @@ suspend fun main() {
                 +("competitorA" then "competitorC" then "competitorB" votedBy "anonym" + counter++)
                 +("competitorB" then "competitorA" then "competitorC" votedBy "anonym" + counter++)
                 +("competitorC" then "competitorB" then "competitorA" votedBy "anonym" + counter++)
-
             } // competitorC, competitorA, competitorB
         }
     println("Example #1 CondorcetAlgorithm -> Condorcet result is competitorC - competitorA - competitorB")
