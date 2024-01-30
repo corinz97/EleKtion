@@ -8,6 +8,7 @@ import entities.types.BestTimeInMatch.Companion.realized
 import entities.types.ConstantParameter
 import entities.types.WinsInCampionship
 import entities.types.WinsInCampionship.Companion.realized
+import io.kotest.assertions.throwables.shouldNotThrow
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.assertions.throwables.shouldThrowWithMessage
 import io.kotest.core.spec.style.StringSpec
@@ -126,10 +127,8 @@ class PollManagerInstanceTests : StringSpec({
         }
     }
 
-    "Should be thrown exception when listofpreferences vote doesn't contain every allowed candidate" {
-        shouldThrowWithMessage<IllegalStateException>(
-            "Every allowed candidate must be present in every list of preferences",
-        ) {
+    "Should not be thrown exception when listofpreferences vote doesn't contain every allowed candidate" {
+        shouldNotThrow<IllegalStateException> {
             PollManagerInstance<BestTimeInMatch, ListOfPreferencesVote<BestTimeInMatch>>() initializedAs {
                 +poll {
 
@@ -146,6 +145,25 @@ class PollManagerInstanceTests : StringSpec({
                 }
             }
         }
+
+        val a = PollManagerInstance<BestTimeInMatch, ListOfPreferencesVote<BestTimeInMatch>>() initializedAs {
+            +poll {
+
+                -competition("Sport match") {
+                    +competitor("A") {
+                    }
+                    +competitor("B") {
+                    }
+                    +competitor("C") {
+                    }
+                }
+                -condorcetAlgorithm {}
+                +("A" then "B" votedBy "AAA")
+            }
+        }
+
+        a.pollList.first().votesList.first()
+            .votedCompetitors.map { it.name }.shouldBe(listOf("A", "B", "C"))
     }
 
     "Should be thrown exception when listofpreferences vote contains same candidate more than once" {

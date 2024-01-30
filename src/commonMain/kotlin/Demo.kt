@@ -5,8 +5,6 @@ import entities.interfaces.SinglePreferenceVote
 import entities.types.BestTimeInMatch
 import entities.types.BestTimeInMatch.Companion.realized
 import entities.types.ConstantParameter
-import entities.types.FastestLapAvgSpeed
-import entities.types.FastestLapAvgSpeed.Companion.realized
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import io.ktor.client.statement.HttpResponse
@@ -262,12 +260,14 @@ suspend fun main() {
     println("Example #1 CondorcetAlgorithm -> Condorcet result is competitorC - competitorA - competitorB")
     d.printRankings()
 
+    fun1()
     fun2()
-    fun3()
-    fun4()
+    // fun3()
+    // fun4()
+    fun5()
 }
 
-/* private suspend fun fun1() {
+private suspend fun fun1() {
     val httpClient = HttpClient()
 
     var response: HttpResponse = httpClient.get("https://ergast.com/api/f1/2023.json")
@@ -285,12 +285,11 @@ suspend fun main() {
             json
                 .decodeFromString<RootType>(response.bodyAsText()).mRData!!.raceTable!!
                 .races!![0].results!!
-        // println(resultsJson)
 
         val raceIdentifier = (it.raceName + "-" + it.round + "-" + it.season).replace(" ", "-")
         val resultsParsedStrings = mutableListOf<String>()
         resultsJson.forEach { r ->
-            resultsParsedStrings += r.driver!!.givenName + "-" + r.driver!!.familyName // + "-" + r.position
+            resultsParsedStrings += r.driver!!.givenName + "-" + r.driver!!.familyName
         }
 
         raceResults += (raceIdentifier to resultsParsedStrings)
@@ -298,16 +297,6 @@ suspend fun main() {
 
     println(raceResults)
 
-    /* val s = mutableListOf<String>()
-  for((_, value) in raceResults){
-      s += value
-  }
-
-  val alwaysPresentCounter = (s.groupingBy { it }.eachCount().toMap()).map { it.value }.max()
-  val alwaysPresentConcurrent = (s.groupingBy { it }.eachCount().toMap())
-  .filter { it.value == alwaysPresentCounter }.keys
-  var validConcurrents = raceResults.mapValues { it.value.filter { it in alwaysPresentConcurrent } }
- */
     val validConcurrents = raceResults
     println(validConcurrents)
 
@@ -315,7 +304,7 @@ suspend fun main() {
     val e =
         PollManagerInstance<BestTimeInMatch, ListOfPreferencesVote<BestTimeInMatch>>() initializedAs {
             +poll {
-                -competition("F1 2023") {
+                -competition("F1 Pilots 2023") {
                     allConcurrents.forEach {
                         +competitor(it) {
                         }
@@ -328,13 +317,15 @@ suspend fun main() {
                 }
             }
         }
-    println("Example #2 CondorcetAlgorithm -> ")
+    println(
+        "Example #2 CondorcetAlgorithm -> with 2023 data (pilots)",
+    )
     e.printRankings()
 
-    println("Press Enter key to close")
+    println("Press Enter key to continue")
     readln()
     httpClient.close()
-}*/
+}
 
 private suspend fun fun2() {
     val httpClient = HttpClient()
@@ -387,7 +378,7 @@ private suspend fun fun2() {
             }
         }
     println(
-        "Example #2 CondorcetAlgorithm -> in input data, for every race, pilots are ordered\n " +
+        "Example #2 CondorcetAlgorithm -> F1 2018 in input data, for every race, pilots are ordered\n " +
             "as they arrived in race ranking ",
     )
     e.printRankings()
@@ -396,7 +387,7 @@ private suspend fun fun2() {
     readln()
     httpClient.close()
 }
-private suspend fun fun3() {
+/* private suspend fun fun3() {
     val httpClient = HttpClient()
 
     var response: HttpResponse = httpClient.get("https://ergast.com/api/f1/2018.json")
@@ -459,9 +450,9 @@ private suspend fun fun3() {
     println("Press Enter key to continue")
     readln()
     httpClient.close()
-}
+}*/
 
-private suspend fun fun4() {
+/*private suspend fun fun4() {
     val httpClient = HttpClient()
 
     var response: HttpResponse = httpClient.get("https://ergast.com/api/f1/2018.json")
@@ -522,6 +513,77 @@ private suspend fun fun4() {
     e.printRankings()
 
     println("Press Enter key to close")
+    readln()
+    httpClient.close()
+}*/
+
+private suspend fun fun5() {
+    val httpClient = HttpClient()
+
+    var response: HttpResponse = httpClient.get("https://ergast.com/api/f1/2023.json")
+    println("Downloading championship data...")
+
+    val raceResults = emptyMap<String, List<String>>().toMutableMap()
+
+    val root = json.decodeFromString<RootType>(response.bodyAsText())
+    val listOfRaces = root.mRData!!.raceTable!!.races!!
+    listOfRaces.forEach {
+        println("Downloading race data...")
+        response = httpClient.get("https://ergast.com/api/f1/${it.season}/${it.round}/results.json")
+
+        val resultsJson =
+            json
+                .decodeFromString<RootType>(response.bodyAsText()).mRData!!.raceTable!!
+                .races!![0].results!!
+
+        val raceIdentifier = (it.raceName + "-" + it.round + "-" + it.season).replace(" ", "-")
+        var resultsParsedStrings = listOf<String>()
+        var resultsParsedStringsPairs = listOf<Pair<String, Int>>()
+        resultsJson.forEach { r ->
+            resultsParsedStrings = resultsParsedStrings + (r.constructorNode!!.name!!).replace(" ", "-")
+            resultsParsedStringsPairs = resultsParsedStringsPairs +
+                ((r.constructorNode!!.name!!).replace(" ", "-") to r.points!!.toInt())
+        }
+        val revList = resultsParsedStringsPairs
+            .groupBy { e1 -> e1.first }
+            .mapValues { (_, gruppo) -> gruppo.sumOf { e2 -> e2.second } }
+            .toList()
+            .sortedByDescending { p -> p.second }
+
+        resultsParsedStrings = revList
+            .map { c -> c.first }
+        // group by constructor then sum points then order by desc
+        raceResults += (raceIdentifier to resultsParsedStrings)
+    }
+
+    println(raceResults)
+
+    val validConcurrents = raceResults
+    println(validConcurrents)
+
+    val allConcurrents = validConcurrents.values.fold(setOf<String>()) { s, element -> s + element.toSet() }
+    val e =
+        PollManagerInstance<BestTimeInMatch, ListOfPreferencesVote<BestTimeInMatch>>() initializedAs {
+            +poll {
+                -competition("F1 Constructors 2023") {
+                    allConcurrents.forEach {
+                        +competitor(it) {
+                        }
+                    }
+                }
+                -condorcetAlgorithm {}
+
+                validConcurrents.entries.forEach { (runningField, competitors) ->
+                    +(competitors.fold(listOf<String>()) { l, element -> l then element } votedBy runningField)
+                }
+            }
+        }
+    println(
+        "Example #5 CondorcetAlgorithm -> with 2023 data (constructors)",
+    )
+    e.printRankings()
+
+    println("Press Enter key to continue")
     readln()
     httpClient.close()
 }

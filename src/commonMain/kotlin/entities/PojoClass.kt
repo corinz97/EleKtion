@@ -106,15 +106,22 @@ class ResultType {
     // var position: Int? = null
 
     // var positionText: String? = null
+    /**
+     * Points in race
+     */
+    var points: Float? = null
 
-    // var points: Float? = null
     /**
      * Driver node of Ergast API.
      */
     @SerialName("Driver")
     var driver: DriverType? = null
 
-    // var Constructor: ConstructorType? = null
+    /**
+     * Constructor node in Ergast API
+     */
+    @SerialName("Constructor")
+    var constructorNode: ConstructorType? = null
 
     // var grid: Int? = null
 
@@ -183,17 +190,21 @@ class SpeedType {
     var units: String? = null
 }
 
-/* @Serializable
+@Serializable
 class ConstructorType {
 
+    /**
+     * Constructor name
+     */
     var name: String? = null
 
-    var nationality: String? = null
+    // var nationality: String? = null
 
-    var constructorId: String? = null
+    // var constructorId: String? = null
 
-    var url: String? = null
-}*/
+    // var url: String? = null
+}
+
 /**
  * Driver node of Ergast API.
  */

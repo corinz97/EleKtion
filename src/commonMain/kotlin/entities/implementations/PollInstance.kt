@@ -16,8 +16,8 @@ class PollInstance<S : ScoreMetric, V : Vote> : PollAbstraction<S, V>() {
 
     override fun List<String>.asAnonymousVote(): ListOfPreferencesVote<S> {
         if (this.isEmpty()) error("Votes list cannot be empty")
-
-        val setOfCompetitors = this.toSet()
+        var thisList = this
+        val setOfCompetitors = thisList.toSet()
         val candidates = this@PollInstance.competition.competitors.map { it.name }.toSet()
 
         if (setOfCompetitors != candidates) { // mismatch between sets
@@ -26,17 +26,19 @@ class PollInstance<S : ScoreMetric, V : Vote> : PollAbstraction<S, V>() {
             }
             if ((candidates - setOfCompetitors).isNotEmpty()) {
                 // every candidate must be present in the list of competitors
-                error("Every allowed candidate must be present in every list of preferences")
+                // error("Every allowed candidate must be present in every list of preferences")
+                // add missing competitors, will be put at the end for the list
+                thisList = thisList + (candidates - setOfCompetitors)
             }
         }
-        val groupCount = this.groupingBy { it }.eachCount()
+        val groupCount = thisList.groupingBy { it }.eachCount()
         // every candidate can be present only once in the list of competitors
         if (groupCount.any { count -> count.value > 1 }) {
             error("Every allowed candidate can be present only once in the list of competitors")
         }
 
         val listOfCompetitorObject = mutableListOf<Competitor<S>>()
-        this.forEach { actualName ->
+        thisList.forEach { actualName ->
 
             listOfCompetitorObject +=
                 this@PollInstance.competition.competitors.firstOrNull { comp ->
