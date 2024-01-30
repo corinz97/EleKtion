@@ -107,7 +107,7 @@ class ResultType {
 
     // var positionText: String? = null
     /**
-     * Points in race
+     * Points in race.
      */
     var points: Float? = null
 
@@ -118,7 +118,7 @@ class ResultType {
     var driver: DriverType? = null
 
     /**
-     * Constructor node in Ergast API
+     * Constructor node in Ergast API.
      */
     @SerialName("Constructor")
     var constructorNode: ConstructorType? = null
@@ -190,11 +190,14 @@ class SpeedType {
     var units: String? = null
 }
 
+/**
+ * Constructor node in Ergast API.
+ */
 @Serializable
 class ConstructorType {
 
     /**
-     * Constructor name
+     * Constructor name.
      */
     var name: String? = null
 

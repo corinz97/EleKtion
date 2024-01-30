@@ -68,6 +68,36 @@ data class WinsInCampionship(val wins: Int) : ScoreMetric() {
 }
 
 /**
+ * This class represents an abstraction for points realized during a race.
+ * @param points number of points
+ */
+
+data class PointsInRace(val points: Int) : ScoreMetric() {
+    /**
+     * Compare two objects.
+     */
+    override fun compareTo(other: Any): Int {
+        require(other is PointsInRace)
+        return points.compareTo(other.points)
+    }
+
+    override fun toString(): String {
+        return "points = $points"
+    }
+
+    companion object {
+        /**
+         * Returns an object which implements Score<PointsInRace>, given the number of points.
+         *  @param points number of points
+         */
+        infix fun Companion.realized(points: Int): Score<PointsInRace> =
+            object : ScoreAbstraction<PointsInRace>() {
+                override var scoreValue: PointsInRace = PointsInRace(points)
+            }
+    }
+}
+
+/**
  * This class represents an abstraction for average speed realized during the fastest lap in a race.
  * @param speed average speed realized
  */

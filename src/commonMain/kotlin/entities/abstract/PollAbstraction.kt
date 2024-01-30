@@ -4,6 +4,7 @@ import entities.implementations.CondorcetAlgorithm
 import entities.implementations.MajorityVotesAlgorithm
 import entities.implementations.MajorityVotesThenHighestScoreAlgorithm
 import entities.implementations.MajorityVotesThenLowestScoreAlgorithm
+import entities.implementations.SchultzeAlgorithm
 import entities.interfaces.Competition
 import entities.interfaces.ListOfPreferencesVote
 import entities.interfaces.Poll
@@ -69,6 +70,18 @@ abstract class PollAbstraction<S : ScoreMetric, V : Vote> : Poll<S, V> {
     ): PollAlgorithm<S, ListOfPreferencesVote<S>> {
         val a =
             CondorcetAlgorithm<S>()
+                .apply {
+                    this.candidates = this@PollAbstraction.competition.competitors
+                }
+                .apply(algInit)
+        return a.cast<PollAlgorithm<S, ListOfPreferencesVote<S>>>()!!
+    }
+
+    override fun schultzeAlgorithm(
+        algInit: PollAlgorithm<S, ListOfPreferencesVote<S>>.() -> Unit,
+    ): PollAlgorithm<S, ListOfPreferencesVote<S>> {
+        val a =
+            SchultzeAlgorithm<S>()
                 .apply {
                     this.candidates = this@PollAbstraction.competition.competitors
                 }

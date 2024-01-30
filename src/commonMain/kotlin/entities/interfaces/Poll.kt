@@ -59,6 +59,13 @@ interface Poll<S : ScoreMetric, V : Vote> {
     ): PollAlgorithm<S, ListOfPreferencesVote<S>>
 
     /**
+     * DSL-function which initializes [SchultzeAlgorithm].
+     */
+    fun schultzeAlgorithm(
+        algInit: PollAlgorithm<S, ListOfPreferencesVote<S>>.() -> Unit,
+    ): PollAlgorithm<S, ListOfPreferencesVote<S>>
+
+    /**
      * Shortcut which assigns the value to [pollAlgorithm].
      */
     operator fun PollAlgorithm<S, V>.unaryMinus()

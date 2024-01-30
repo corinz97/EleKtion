@@ -356,7 +356,7 @@ class PollManagerInstanceTests : StringSpec({
         entries[1].key.map { it.scores.first().scoreValue }.shouldContainAll(competitor1.scores.first().scoreValue)
     }
 
-    "Poll simulation should return a ranking, computed with MyCondorcetAlgorithm" {
+    "Poll simulation should return a ranking, computed with CondorcetAlgorithm" {
         val a = PollManagerInstance<BestTimeInMatch, ListOfPreferencesVote<BestTimeInMatch>>() initializedAs {
             +poll {
 
@@ -371,6 +371,115 @@ class PollManagerInstanceTests : StringSpec({
                     }
                 }
                 -condorcetAlgorithm {}
+
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
+                +(("competitorB" then "competitorC" then "competitorA").asAnonymousVote())
+                +(("competitorB" then "competitorC" then "competitorA").asAnonymousVote())
+                +(("competitorB" then "competitorC" then "competitorA").asAnonymousVote())
+                +(("competitorB" then "competitorC" then "competitorA").asAnonymousVote())
+                +(("competitorB" then "competitorC" then "competitorA").asAnonymousVote())
+                +(("competitorB" then "competitorC" then "competitorA").asAnonymousVote())
+                +(("competitorB" then "competitorC" then "competitorA").asAnonymousVote())
+                +(("competitorB" then "competitorC" then "competitorA").asAnonymousVote())
+                +(("competitorB" then "competitorC" then "competitorA").asAnonymousVote())
+                +(("competitorB" then "competitorC" then "competitorA").asAnonymousVote())
+                +(("competitorB" then "competitorC" then "competitorA").asAnonymousVote())
+                +(("competitorB" then "competitorC" then "competitorA").asAnonymousVote())
+                +(("competitorB" then "competitorC" then "competitorA").asAnonymousVote())
+                +(("competitorB" then "competitorC" then "competitorA").asAnonymousVote())
+                +(("competitorB" then "competitorC" then "competitorA").asAnonymousVote())
+                +(("competitorB" then "competitorC" then "competitorA").asAnonymousVote())
+                +(("competitorB" then "competitorC" then "competitorA").asAnonymousVote())
+                +(("competitorB" then "competitorC" then "competitorA").asAnonymousVote())
+                +(("competitorB" then "competitorC" then "competitorA").asAnonymousVote())
+                +(("competitorC" then "competitorB" then "competitorA").asAnonymousVote())
+                +(("competitorC" then "competitorB" then "competitorA").asAnonymousVote())
+                +(("competitorC" then "competitorB" then "competitorA").asAnonymousVote())
+                +(("competitorC" then "competitorB" then "competitorA").asAnonymousVote())
+                +(("competitorC" then "competitorB" then "competitorA").asAnonymousVote())
+                +(("competitorC" then "competitorB" then "competitorA").asAnonymousVote())
+                +(("competitorC" then "competitorB" then "competitorA").asAnonymousVote())
+                +(("competitorC" then "competitorB" then "competitorA").asAnonymousVote())
+                +(("competitorC" then "competitorB" then "competitorA").asAnonymousVote())
+                +(("competitorC" then "competitorB" then "competitorA").asAnonymousVote())
+                +(("competitorC" then "competitorB" then "competitorA").asAnonymousVote())
+                +(("competitorC" then "competitorB" then "competitorA").asAnonymousVote())
+                +(("competitorC" then "competitorB" then "competitorA").asAnonymousVote())
+                +(("competitorC" then "competitorB" then "competitorA").asAnonymousVote())
+                +(("competitorC" then "competitorB" then "competitorA").asAnonymousVote())
+                +(("competitorC" then "competitorB" then "competitorA").asAnonymousVote())
+                +(("competitorC" then "competitorA" then "competitorB").asAnonymousVote())
+                +(("competitorC" then "competitorA" then "competitorB").asAnonymousVote())
+            }
+        }
+
+        val rankings = a.computeAllPolls()
+
+        rankings shouldHaveSize 1
+
+        val ranking = rankings.first().ranking
+        ranking shouldHaveSize 3
+        ranking.values shouldContainAll setOf(null)
+
+        ranking.keys.toList() shouldBe listOf(
+            setOf(
+                object : CompetitorAbstraction<BestTimeInMatch>() {}.apply {
+                    this.name = "competitorC"
+                    this.scores = listOf()
+                },
+            ),
+            setOf(
+                object : CompetitorAbstraction<BestTimeInMatch>() {}.apply {
+                    this.name = "competitorB"
+                    this.scores = listOf()
+                },
+            ),
+            setOf(
+                object : CompetitorAbstraction<BestTimeInMatch>() {}.apply {
+                    this.name = "competitorA"
+                    this.scores = listOf()
+                },
+            ),
+        )
+    }
+
+    "Poll simulation should return a ranking, computed with SchultzeAlgorithm" {
+        val a = PollManagerInstance<BestTimeInMatch, ListOfPreferencesVote<BestTimeInMatch>>() initializedAs {
+            +poll {
+
+                -competition("Sport match") {
+                    +competitor("competitorA") {
+                    }
+
+                    +competitor("competitorB") {
+                    }
+
+                    +competitor("competitorC") {
+                    }
+                }
+                -schultzeAlgorithm {}
 
                 +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
                 +(("competitorA" then "competitorC" then "competitorB").asAnonymousVote())
