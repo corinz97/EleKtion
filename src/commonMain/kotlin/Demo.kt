@@ -304,8 +304,8 @@ suspend fun main() {
 
 private suspend fun fun1() {
     val httpClient = HttpClient()
-
-    var response: HttpResponse = httpClient.get("https://ergast.com/api/f1/2023.json")
+    val year = 2023
+    var response: HttpResponse = httpClient.get("https://ergast.com/api/f1/$year.json")
     println("Downloading championship data...")
 
     val raceResults = emptyMap<String, List<Pair<String, Int>>>().toMutableMap()
@@ -340,7 +340,7 @@ private suspend fun fun1() {
     var e =
         PollManagerInstance<PointsInRace, ListOfPreferencesVote<PointsInRace>>() initializedAs {
             +poll {
-                -competition("F1 Pilots 2023") {
+                -competition("F1 Pilots $year") {
                     allConcurrentNames.forEach {
                         +competitor(it) {
                             validConcurrents[it]!!.forEach { v -> +(PointsInRace realized v) }
@@ -355,7 +355,7 @@ private suspend fun fun1() {
             }
         }
     println(
-        "Example #2.1 CondorcetAlgorithm -> F1 Pilots 2023 in input data, for every race, pilots are ordered\n" +
+        "Example #fun1.1 CondorcetAlgorithm -> F1 Pilots $year in input data, for every race, pilots are ordered\n" +
             "as they arrived in race ranking",
     )
     e.printRankings()
@@ -363,7 +363,7 @@ private suspend fun fun1() {
     e =
         PollManagerInstance<PointsInRace, ListOfPreferencesVote<PointsInRace>>() initializedAs {
             +poll {
-                -competition("F1 Pilots 2023") {
+                -competition("F1 Pilots $year") {
                     allConcurrentNames.forEach {
                         +competitor(it) {
                             validConcurrents[it]!!.forEach { v -> +(PointsInRace realized v) }
@@ -378,7 +378,7 @@ private suspend fun fun1() {
             }
         }
     println(
-        "Example #2.2 SchultzeAlgorithm -> F1 Pilots 2023 in input data, for every race, pilots are ordered\n" +
+        "Example #fun1.2 SchultzeAlgorithm -> F1 Pilots $year in input data, for every race, pilots are ordered\n" +
             "as they arrived in race ranking",
     )
     e.printRankings()
@@ -390,8 +390,8 @@ private suspend fun fun1() {
 
 private suspend fun fun2() {
     val httpClient = HttpClient()
-
-    var response: HttpResponse = httpClient.get("https://ergast.com/api/f1/2018.json")
+    val year = 2018
+    var response: HttpResponse = httpClient.get("https://ergast.com/api/f1/$year.json")
     println("Downloading championship data...")
 
     val raceResults = emptyMap<String, List<Pair<String, Int>>>().toMutableMap()
@@ -426,7 +426,7 @@ private suspend fun fun2() {
     var e =
         PollManagerInstance<PointsInRace, ListOfPreferencesVote<PointsInRace>>() initializedAs {
             +poll {
-                -competition("F1 Pilots 2018 ") {
+                -competition("F1 Pilots $year ") {
                     allConcurrentNames.forEach {
                         +competitor(it) {
                             validConcurrents[it]!!.forEach { v -> +(PointsInRace realized v) }
@@ -441,7 +441,7 @@ private suspend fun fun2() {
             }
         }
     println(
-        "Example #2.1 CondorcetAlgorithm -> F1 Pilots 2018 in input data, for every race, pilots are ordered\n " +
+        "Example #fun2.1 CondorcetAlgorithm -> F1 Pilots $year in input data, for every race, pilots are ordered\n " +
             "as they arrived in race ranking ",
     )
     e.printRankings()
@@ -449,7 +449,7 @@ private suspend fun fun2() {
     e =
         PollManagerInstance<PointsInRace, ListOfPreferencesVote<PointsInRace>>() initializedAs {
             +poll {
-                -competition("F1 Pilots 2018 ") {
+                -competition("F1 Pilots $year ") {
                     allConcurrentNames.forEach {
                         +competitor(it) {
                             validConcurrents[it]!!.forEach { v -> +(PointsInRace realized v) }
@@ -464,7 +464,7 @@ private suspend fun fun2() {
             }
         }
     println(
-        "Example #2.2 SchultzeAlgorithm -> F1 Pilots 2018 in input data, for every race, pilots are ordered\n " +
+        "Example #fun2.2 SchultzeAlgorithm -> F1 Pilots $year in input data, for every race, pilots are ordered\n " +
             "as they arrived in race ranking ",
     )
     e.printRankings()
@@ -473,140 +473,11 @@ private suspend fun fun2() {
     readln()
     httpClient.close()
 }
-/* private suspend fun fun3() {
-    val httpClient = HttpClient()
-
-    var response: HttpResponse = httpClient.get("https://ergast.com/api/f1/2018.json")
-    println("Downloading championship data...")
-
-    val raceResults = mutableMapOf<String, List<Pair<String, Float>>>()
-
-    val root = json.decodeFromString<RootType>(response.bodyAsText())
-    val listOfRaces = root.mRData!!.raceTable!!.races!!
-    listOfRaces.forEach {
-        println("Downloading race data...")
-        response = httpClient.get("https://ergast.com/api/f1/${it.season}/${it.round}/results.json")
-
-        val resultsJson =
-            json
-                .decodeFromString<RootType>(response.bodyAsText()).mRData!!.raceTable!!
-                .races!![0].results!!
-
-        val raceIdentifier = (it.raceName + "-" + it.round + "-" + it.season).replace(" ", "-")
-        val resultsParsedStrings = mutableListOf<Pair<String, Float>>()
-        resultsJson.forEach { r ->
-            resultsParsedStrings += (
-                (r.driver!!.givenName + "-" + r.driver!!.familyName)
-                    to (r.fastestLap?.averageSpeed?.speed ?: -1.0f)
-                )
-        }
-
-        val sortedBySpeed = resultsParsedStrings.sortedByDescending { r -> r.second }
-        raceResults += (raceIdentifier to sortedBySpeed)
-    }
-
-    println(raceResults)
-
-    val validConcurrents = raceResults.flatMap { it.value }.groupBy({ it.first }, { it.second })
-    println(validConcurrents)
-
-    val e =
-        PollManagerInstance<FastestLapAvgSpeed, ListOfPreferencesVote<FastestLapAvgSpeed>>() initializedAs {
-            +poll {
-                -competition("F1 2018") {
-                    validConcurrents.forEach {
-                        +competitor(it.key) {
-                            it.value.forEach { v -> +(FastestLapAvgSpeed realized v) }
-                        }
-                    }
-                }
-                -condorcetAlgorithm {}
-
-                raceResults.entries.forEach { (runningField, competitors) ->
-                    +(competitors.fold(listOf<String>()) { l, element -> l then element.first } votedBy runningField)
-                }
-            }
-        }
-    println(
-        "Example #3 CondorcetAlgorithm -> in input data, for every race, pilots are ordered by\n" +
-            "DESCENDING average speed of fastest lap)",
-    )
-    e.printRankings()
-
-    println("Press Enter key to continue")
-    readln()
-    httpClient.close()
-}*/
-
-/*private suspend fun fun4() {
-    val httpClient = HttpClient()
-
-    var response: HttpResponse = httpClient.get("https://ergast.com/api/f1/2018.json")
-    println("Downloading championship data...")
-
-    val raceResults = mutableMapOf<String, List<Pair<String, Duration>>>()
-
-    val root = json.decodeFromString<RootType>(response.bodyAsText())
-    val listOfRaces = root.mRData!!.raceTable!!.races!!
-    listOfRaces.forEach {
-        println("Downloading race data...")
-        response = httpClient.get("https://ergast.com/api/f1/${it.season}/${it.round}/results.json")
-
-        val resultsJson =
-            json
-                .decodeFromString<RootType>(response.bodyAsText()).mRData!!.raceTable!!
-                .races!![0].results!!
-
-        val raceIdentifier = (it.raceName + "-" + it.round + "-" + it.season).replace(" ", "-")
-        val resultsParsedStrings = mutableListOf<Pair<String, Duration>>()
-        resultsJson.forEach { r ->
-            resultsParsedStrings += (
-                (r.driver!!.givenName + "-" + r.driver!!.familyName)
-                    to (r.fastestLap?.time?.time?.parseTime() ?: Duration.INFINITE)
-                )
-        }
-
-        val sortedBySpeed = resultsParsedStrings.sortedBy { r -> r.second }
-        raceResults += (raceIdentifier to sortedBySpeed)
-    }
-
-    println(raceResults)
-
-    val validConcurrents = raceResults.flatMap { it.value }.groupBy({ it.first }, { it.second })
-    println(validConcurrents)
-
-    val e =
-        PollManagerInstance<BestTimeInMatch, ListOfPreferencesVote<BestTimeInMatch>>() initializedAs {
-            +poll {
-                -competition("F1 2018") {
-                    validConcurrents.forEach {
-                        +competitor(it.key) {
-                            it.value.forEach { v -> +(BestTimeInMatch realized v) }
-                        }
-                    }
-                }
-                -condorcetAlgorithm {}
-
-                raceResults.entries.forEach { (runningField, competitors) ->
-                    +(competitors.fold(listOf<String>()) { l, element -> l then element.first } votedBy runningField)
-                }
-            }
-        }
-    println(
-        "Example #4 CondorcetAlgorithm -> -> in input data, for every race, pilots are ordered by \n" +
-            "ASCENDING time of fastest lap",
-    )
-    e.printRankings()
-
-    println("Press Enter key to close")
-    readln()
-    httpClient.close()
-}*/
 
 private suspend fun fun5() {
     val httpClient = HttpClient()
-
-    var response: HttpResponse = httpClient.get("https://ergast.com/api/f1/2023.json")
+    val year = 2023
+    var response: HttpResponse = httpClient.get("https://ergast.com/api/f1/$year.json")
     println("Downloading championship data...")
 
     val raceResults = emptyMap<String, List<Pair<String, Int>>>().toMutableMap()
@@ -646,7 +517,7 @@ private suspend fun fun5() {
     var e =
         PollManagerInstance<PointsInRace, ListOfPreferencesVote<PointsInRace>>() initializedAs {
             +poll {
-                -competition("F1 Constructors 2023") {
+                -competition("F1 Constructors $year") {
                     allConcurrentNames.forEach {
                         +competitor(it) {
                             validConcurrents[it]!!.forEach { v -> +(PointsInRace realized v) }
@@ -661,7 +532,7 @@ private suspend fun fun5() {
             }
         }
     println(
-        "Example #5.1 CondorcetAlgorithm -> F1 Constructors 2023, in input data, for every race,\n" +
+        "Example #fun5.1 CondorcetAlgorithm -> F1 Constructors $year, in input data, for every race,\n" +
             " constructors are ordered by DESCENDING sum of points )",
     )
     e.printRankings()
@@ -669,7 +540,7 @@ private suspend fun fun5() {
     e =
         PollManagerInstance<PointsInRace, ListOfPreferencesVote<PointsInRace>>() initializedAs {
             +poll {
-                -competition("F1 Constructors 2023") {
+                -competition("F1 Constructors $year") {
                     allConcurrentNames.forEach {
                         +competitor(it) {
                             validConcurrents[it]!!.forEach { v -> +(PointsInRace realized v) }
@@ -684,7 +555,7 @@ private suspend fun fun5() {
             }
         }
     println(
-        "Example #5.2 SchultzeAlgorithm -> F1 Constructors 2023, in input data, for every race,\n" +
+        "Example #fun5.2 SchultzeAlgorithm -> F1 Constructors $year, in input data, for every race,\n" +
             " constructors are ordered by DESCENDING sum of points )",
     )
     e.printRankings()
