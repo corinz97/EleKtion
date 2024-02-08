@@ -1,3 +1,32 @@
+## [1.19.0](https://github.com/corinz97/eleKtion/compare/1.18.0...1.19.0) (2024-02-08)
+
+
+### Features
+
+* **common:** changes in competitor and competition, anonymous vote, start of reading from api ([0d8718d](https://github.com/corinz97/eleKtion/commit/0d8718d6ca494552030e8e21f11a9320f1578ed1))
+* **commonMain:** added examples in Demo ([fcaecd5](https://github.com/corinz97/eleKtion/commit/fcaecd502b44d6495109ed9c5e2032dab3d4ad80))
+* **commonMain:** refactor dsl interfaces ([80d64d1](https://github.com/corinz97/eleKtion/commit/80d64d1c75cdc27e52fc77b28f09691e29ce108d))
+* **condorcet:** removed constraint during object creation, new demo with F1 2023 ([8d9dc26](https://github.com/corinz97/eleKtion/commit/8d9dc260d7af408c93661afe111a7a8b4aeeafbc))
+* **condorcet:** ties management ([3d0b8ca](https://github.com/corinz97/eleKtion/commit/3d0b8cae988528cb6de55c9e91c0555e429a1a62))
+* **corrections:** read from api, use data on model, documentation TODO ([d47bdbb](https://github.com/corinz97/eleKtion/commit/d47bdbbe39e46b6348989d62fbeb2baea4d4dbd0))
+* **demo:** added example in Demo ([47cdf5e](https://github.com/corinz97/eleKtion/commit/47cdf5ef77c4da2f08f74b7b91aa5c89a5fcabad))
+* **demo:** changed printed comments ([821a24e](https://github.com/corinz97/eleKtion/commit/821a24e9ee39f6541a3de54c160df98608dc9f93))
+* **demo:** examples and fixes ([df7d98d](https://github.com/corinz97/eleKtion/commit/df7d98df83380b481976347462fc98d4aed02760))
+* **gradle:** changed project name ([d5f2652](https://github.com/corinz97/eleKtion/commit/d5f26524d4b224af1aa80f79cd83663dd631cdc7))
+* **http:** pojos ([53af805](https://github.com/corinz97/eleKtion/commit/53af805171afa60863233d3c2208963fb07688ef))
+* **print:** changed duration print ([58e6968](https://github.com/corinz97/eleKtion/commit/58e696810c7f8cfa222ddabe3503796c6937dd20))
+* **schultze:** schultze algorithm implementation and tests ([b90aa47](https://github.com/corinz97/eleKtion/commit/b90aa4703e6e34a25b8579b88f87a864ef510eba))
+
+
+### Bug Fixes
+
+* **linting:** documentation and lint corrections ([4754e07](https://github.com/corinz97/eleKtion/commit/4754e07b6a06d8530641aeb16cb4f15eb83f3d93))
+
+
+### Build and continuous integration
+
+* **gradle:** changed artifacts ([ffb7f92](https://github.com/corinz97/eleKtion/commit/ffb7f920d688201d991c32e9fd97510a51c44f15))
+
 ## [1.18.0](https://github.com/corinz97/Kotlin-MP-Thesis-Library/compare/1.17.0...1.18.0) (2024-01-22)
 
 
