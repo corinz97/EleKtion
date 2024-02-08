@@ -14,7 +14,7 @@ import entities.types.ScoreMetric
 /**
  * Represents an algorithm implementing Condorcet logic.
  */
-class CondorcetAlgorithm<S : ScoreMetric>(
+class SchultzeAlgorithm<S : ScoreMetric>(
     override var pollAlgorithmParameters: List<PollAlgorithmParameter> = listOf(),
 ) :
     PollAlgorithm<S, ListOfPreferencesVote<S>>, PollAlgorithmDSL {
@@ -166,29 +166,21 @@ class CondorcetAlgorithm<S : ScoreMetric>(
     private fun <S : ScoreMetric> roundWinner(
         candidatesOriginalList: List<Competitor<S>>,
         candidatesCurrentList: List<Competitor<S>>,
-        iteration: Int,
         matrix: Array<IntArray>,
     ): Set<Competitor<S>>? {
         var c: Set<Competitor<S>>? = setOf()
+        var maxSum = 0
+
         candidatesOriginalList.indices.forEach { i ->
-            var victories = 0
-            var defeats = 0
-
-            candidatesOriginalList.indices.forEach { j ->
-                if (i != j && matrix[i][j] != -1 && matrix[j][i] != -1) {
-                    if (matrix[i][j] > matrix[j][i]) {
-                        victories++
-                    } else if (matrix[i][j] < matrix[j][i]) {
-                        defeats++
-                    }
+            if (matrix[i].sum() >= maxSum && candidatesOriginalList[i] in candidatesCurrentList) {
+                if (matrix[i].sum() > maxSum) {
+                    c = setOf(candidatesOriginalList[i])
                 }
-            }
-
-            // Version with ties
-            if (victories == candidatesOriginalList.size - iteration) {
-                if (candidatesOriginalList[i] in candidatesCurrentList) {
+                if (matrix[i].sum() == maxSum) {
                     c = c!! + candidatesOriginalList[i]
                 }
+
+                maxSum = matrix[i].sum()
             }
         }
         return c
@@ -203,31 +195,19 @@ class CondorcetAlgorithm<S : ScoreMetric>(
         val candidatesCurrentList = candidatesOriginalList.toMutableList()
         var k = 0
         while (k < candidatesOriginalList.size && candidatesCurrentList.any()) {
-            val result = roundWinner(
-                candidatesOriginalList.toList(),
-                candidatesCurrentList.toList(),
-                k + 1,
-                voteMatrix,
-            )
+            val result = roundWinner(candidatesOriginalList.toList(), candidatesCurrentList.toList(), voteMatrix)
 
             if (result != null && result.any()) {
                 winners.add(result)
                 // set to 0 the preferences, in order to ignore it in next cycle
                 for (w in result) {
-                    for (i in candidatesOriginalList.indices) {
-                        voteMatrix[i][
-                            candidatesOriginalList.indexOfFirst {
-                                it.name == w.name
-                            },
-                        ] = -1
-                    }
-
+                    // reset matrix row of winner
                     for (j in candidatesOriginalList.indices) {
                         voteMatrix[
                             candidatesOriginalList.indexOfFirst {
                                 it.name == w.name
                             },
-                        ][j] = -1
+                        ][j] = 0
                     }
                     // remove actual winner from the list
                     candidatesCurrentList.remove(w)

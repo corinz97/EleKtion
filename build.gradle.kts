@@ -12,6 +12,7 @@ plugins {
     alias(libs.plugins.npm.publish)
     alias(libs.plugins.publishOnCentral)
     alias(libs.plugins.taskTree)
+    kotlin("plugin.serialization") version "1.9.22"
 }
 
 group = "io.github.corinz97" // "org.jacopocorina"
@@ -34,6 +35,14 @@ kotlin {
 
     sourceSets {
         val commonMain by getting {
+            dependencies {
+                implementation("com.benasher44:uuid:0.8.2")
+                implementation("io.github.pdvrieze.xmlutil:core:0.86.3")
+                implementation("io.github.pdvrieze.xmlutil:serialization:0.86.3")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
+                implementation("io.ktor:ktor-client-core:2.3.7")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines:0.19.2")
+            }
         }
         val commonTest by getting {
             dependencies {
@@ -42,6 +51,11 @@ kotlin {
             }
         }
 
+        val jvmMain by getting {
+            dependencies {
+                implementation("io.ktor:ktor-client-cio:2.3.7")
+            }
+        }
         val jvmTest by getting {
             dependencies {
                 implementation(libs.kotest.runner.junit5)
@@ -49,6 +63,10 @@ kotlin {
         }
         val nativeMain by creating {
             dependsOn(commonMain)
+        }.apply {
+            dependencies {
+                implementation("io.ktor:ktor-client-curl:2.3.7")
+            }
         }
         val nativeTest by creating {
             dependsOn(commonTest)
@@ -59,13 +77,16 @@ kotlin {
         browser()
         nodejs()
         binaries.library()
+        dependencies {
+            implementation("io.ktor:ktor-client-js:2.3.7")
+        }
     }
 
     val nativeSetup: KotlinNativeTarget.() -> Unit = {
         compilations["main"].defaultSourceSet.dependsOn(kotlin.sourceSets["nativeMain"])
         compilations["test"].defaultSourceSet.dependsOn(kotlin.sourceSets["nativeTest"])
         binaries {
-            executable()
+            // executable()
             sharedLib()
             staticLib()
         }

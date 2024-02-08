@@ -2,18 +2,15 @@ package entities.abstract
 
 import entities.interfaces.Competitor
 import entities.interfaces.Score
+import entities.interfaces.dsls.CompetitorDSL
 import entities.types.ScoreMetric
 
 /**
  *
  */
-abstract class CompetitorAbstraction<S : ScoreMetric> : Competitor<S> {
+abstract class CompetitorAbstraction<S : ScoreMetric> : Competitor<S>, CompetitorDSL<S> {
     override lateinit var name: String
     override var scores: List<Score<S>> = listOf()
-
-    override operator fun String.unaryMinus() {
-        this@CompetitorAbstraction.name = this@unaryMinus
-    }
 
     override operator fun Score<S>.unaryPlus() {
         this@CompetitorAbstraction.scores += this@unaryPlus

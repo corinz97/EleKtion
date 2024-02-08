@@ -1,0 +1,256 @@
+<ns:MRData series="string" url="string" limit="100" offset="100" total="100" xmlns:ns="http://ergast.com/mrd/1.5">
+  <!--Optional:-->
+  <ns:SeasonTable season="100" round="100" circuitId="string" constructorId="string" driverId="string" grid="100" position="100" statusId="100">
+    <!--Zero or more repetitions:-->
+    <ns:Season url="string">string</ns:Season>
+  </ns:SeasonTable>
+  <!--Optional:-->
+  <ns:RaceTable season="100" round="100" circuitId="string" constructorId="string" driverId="string" grid="100" position="100" statusId="100">
+    <!--Zero or more repetitions:-->
+    <ns:Race season="100" round="100" url="string">
+      <ns:RaceName>string</ns:RaceName>
+      <!--You have a CHOICE of the next 2 items at this level-->
+      <ns:Circuit circuitId="string" url="string">
+        <ns:CircuitName>string</ns:CircuitName>
+        <ns:Location lat="1.5E2" long="1.5E2" alt="3">
+          <!--1 or more repetitions:-->
+          <ns:Locality>string</ns:Locality>
+          <ns:Country>string</ns:Country>
+        </ns:Location>
+      </ns:Circuit>
+      <ns:CircuitIdRef>string</ns:CircuitIdRef>
+      <ns:Date>2002-09-02</ns:Date>
+      <!--Optional:-->
+      <ns:Time>01:17:35</ns:Time>
+      <!--Optional:-->
+      <ns:FirstPractice>
+        <ns:Date>2000-02-22</ns:Date>
+        <!--Optional:-->
+        <ns:Time>00:06:19+02:00</ns:Time>
+      </ns:FirstPractice>
+      <!--Optional:-->
+      <ns:SecondPractice>
+        <ns:Date>2016-02-03+01:00</ns:Date>
+        <!--Optional:-->
+        <ns:Time>15:38:49+02:00</ns:Time>
+      </ns:SecondPractice>
+      <!--Optional:-->
+      <ns:ThirdPractice>
+        <ns:Date>2019-09-20+02:00</ns:Date>
+        <!--Optional:-->
+        <ns:Time>17:05:50</ns:Time>
+      </ns:ThirdPractice>
+      <!--Optional:-->
+      <ns:Qualifying>
+        <ns:Date>2017-06-25</ns:Date>
+        <!--Optional:-->
+        <ns:Time>14:05:39+02:00</ns:Time>
+      </ns:Qualifying>
+      <!--Optional:-->
+      <ns:Sprint>
+        <ns:Date>2018-08-28+02:00</ns:Date>
+        <!--Optional:-->
+        <ns:Time>12:12:33</ns:Time>
+      </ns:Sprint>
+      <!--Optional:-->
+      <ns:QualifyingList>
+        <!--Zero or more repetitions:-->
+        <ns:QualifyingResult number="100" position="100">
+          <!--You have a CHOICE of the next 2 items at this level-->
+          <ns:Driver driverId="string" url="string">
+            <!--Optional:-->
+            <ns:PermanentNumber>100</ns:PermanentNumber>
+            <ns:GivenName>string</ns:GivenName>
+            <ns:FamilyName>string</ns:FamilyName>
+            <!--Optional:-->
+            <ns:DateOfBirth>2012-04-12</ns:DateOfBirth>
+            <!--Optional:-->
+            <ns:Nationality>string</ns:Nationality>
+          </ns:Driver>
+          <ns:DriverIdRef>string</ns:DriverIdRef>
+          <!--You have a CHOICE of the next 2 items at this level-->
+          <ns:Constructor constructorId="string" url="string">
+            <ns:Name>string</ns:Name>
+            <!--Optional:-->
+            <ns:Nationality>string</ns:Nationality>
+          </ns:Constructor>
+          <ns:ConstructorIdRef>string</ns:ConstructorIdRef>
+          <ns:Q1 millis="100">string</ns:Q1>
+          <!--Optional:-->
+          <ns:Q2 millis="100">string</ns:Q2>
+          <!--Optional:-->
+          <ns:Q3 millis="100">string</ns:Q3>
+        </ns:QualifyingResult>
+      </ns:QualifyingList>
+      <!--Optional:-->
+      <ns:SprintList>
+        <!--Zero or more repetitions:-->
+        <ns:SprintResult number="100" position="100" points="1.5E2">
+          <!--You have a CHOICE of the next 2 items at this level-->
+          <!--1 or more repetitions:-->
+          <ns:Driver driverId="string" url="string">
+            <!--Optional:-->
+            <ns:PermanentNumber>100</ns:PermanentNumber>
+            <ns:GivenName>string</ns:GivenName>
+            <ns:FamilyName>string</ns:FamilyName>
+            <!--Optional:-->
+            <ns:DateOfBirth>2019-06-04</ns:DateOfBirth>
+            <!--Optional:-->
+            <ns:Nationality>string</ns:Nationality>
+          </ns:Driver>
+          <!--1 or more repetitions:-->
+          <ns:DriverIdRef>string</ns:DriverIdRef>
+          <!--You have a CHOICE of the next 2 items at this level-->
+          <ns:Constructor constructorId="string" url="string">
+            <ns:Name>string</ns:Name>
+            <!--Optional:-->
+            <ns:Nationality>string</ns:Nationality>
+          </ns:Constructor>
+          <ns:ConstructorIdRef>string</ns:ConstructorIdRef>
+          <ns:Grid>100</ns:Grid>
+          <ns:Laps>100</ns:Laps>
+          <ns:Status statusId="100" count="100">string</ns:Status>
+          <!--Optional:-->
+          <ns:Time millis="100">string</ns:Time>
+          <!--Optional:-->
+          <ns:FastestLap rank="100" lap="100">
+            <ns:Time millis="100">string</ns:Time>
+            <!--Optional:-->
+            <ns:AverageSpeed units="string">1.5E2</ns:AverageSpeed>
+          </ns:FastestLap>
+        </ns:SprintResult>
+      </ns:SprintList>
+      <!--Optional:-->
+      <ns:ResultsList>
+        <!--Zero or more repetitions:-->
+        <ns:Result number="100" position="100" points="1.5E2">
+          <!--You have a CHOICE of the next 2 items at this level-->
+          <!--1 or more repetitions:-->
+          <ns:Driver driverId="string" url="string">
+            <!--Optional:-->
+            <ns:PermanentNumber>100</ns:PermanentNumber>
+            <ns:GivenName>string</ns:GivenName>
+            <ns:FamilyName>string</ns:FamilyName>
+            <!--Optional:-->
+            <ns:DateOfBirth>2009-04-14+02:00</ns:DateOfBirth>
+            <!--Optional:-->
+            <ns:Nationality>string</ns:Nationality>
+          </ns:Driver>
+          <!--1 or more repetitions:-->
+          <ns:DriverIdRef>string</ns:DriverIdRef>
+          <!--You have a CHOICE of the next 2 items at this level-->
+          <ns:Constructor constructorId="string" url="string">
+            <ns:Name>string</ns:Name>
+            <!--Optional:-->
+            <ns:Nationality>string</ns:Nationality>
+          </ns:Constructor>
+          <ns:ConstructorIdRef>string</ns:ConstructorIdRef>
+          <ns:Grid>100</ns:Grid>
+          <ns:Laps>100</ns:Laps>
+          <ns:Status statusId="100" count="100">string</ns:Status>
+          <!--Optional:-->
+          <ns:Time millis="100">string</ns:Time>
+          <!--Optional:-->
+          <ns:FastestLap rank="100" lap="100">
+            <ns:Time millis="100">string</ns:Time>
+            <!--Optional:-->
+            <ns:AverageSpeed units="string">1.5E2</ns:AverageSpeed>
+          </ns:FastestLap>
+        </ns:Result>
+      </ns:ResultsList>
+      <!--Optional:-->
+      <ns:LapsList>
+        <!--Zero or more repetitions:-->
+        <ns:Lap number="100">
+          <!--Zero or more repetitions:-->
+          <ns:Timing driverId="string" position="100" time="P11M5DT18H50M50S"/>
+        </ns:Lap>
+      </ns:LapsList>
+      <!--Optional:-->
+      <ns:PitStopsList>
+        <!--Zero or more repetitions:-->
+        <ns:PitStop driverId="string" stop="100" lap="100" time="15:59:15" duration="P7M2DT2H24M31S"/>
+      </ns:PitStopsList>
+    </ns:Race>
+  </ns:RaceTable>
+  <!--Optional:-->
+  <ns:StandingsTable season="100" round="100" circuitId="string" constructorId="string" driverId="string" grid="100" position="100" statusId="100">
+    <!--Zero or more repetitions:-->
+    <ns:StandingsList season="100" round="100">
+      <!--Zero or more repetitions:-->
+      <ns:DriverStanding position="100" points="1.5E2" wins="100">
+        <!--You have a CHOICE of the next 2 items at this level-->
+        <ns:Driver driverId="string" url="string">
+          <!--Optional:-->
+          <ns:PermanentNumber>100</ns:PermanentNumber>
+          <ns:GivenName>string</ns:GivenName>
+          <ns:FamilyName>string</ns:FamilyName>
+          <!--Optional:-->
+          <ns:DateOfBirth>2010-11-10+01:00</ns:DateOfBirth>
+          <!--Optional:-->
+          <ns:Nationality>string</ns:Nationality>
+        </ns:Driver>
+        <ns:DriverIdRef>string</ns:DriverIdRef>
+        <!--You have a CHOICE of the next 2 items at this level-->
+        <!--1 or more repetitions:-->
+        <ns:Constructor constructorId="string" url="string">
+          <ns:Name>string</ns:Name>
+          <!--Optional:-->
+          <ns:Nationality>string</ns:Nationality>
+        </ns:Constructor>
+        <!--1 or more repetitions:-->
+        <ns:ConstructorIdRef>string</ns:ConstructorIdRef>
+      </ns:DriverStanding>
+      <!--Zero or more repetitions:-->
+      <ns:ConstructorStanding position="100" points="1.5E2" wins="100">
+        <!--You have a CHOICE of the next 2 items at this level-->
+        <ns:Constructor constructorId="string" url="string">
+          <ns:Name>string</ns:Name>
+          <!--Optional:-->
+          <ns:Nationality>string</ns:Nationality>
+        </ns:Constructor>
+        <ns:ConstructorIdRef>string</ns:ConstructorIdRef>
+      </ns:ConstructorStanding>
+    </ns:StandingsList>
+  </ns:StandingsTable>
+  <!--Optional:-->
+  <ns:DriverTable season="100" round="100" circuitId="string" constructorId="string" driverId="string" grid="100" position="100" statusId="100">
+    <!--Zero or more repetitions:-->
+    <ns:Driver driverId="string" url="string">
+      <!--Optional:-->
+      <ns:PermanentNumber>100</ns:PermanentNumber>
+      <ns:GivenName>string</ns:GivenName>
+      <ns:FamilyName>string</ns:FamilyName>
+      <!--Optional:-->
+      <ns:DateOfBirth>2018-05-20</ns:DateOfBirth>
+      <!--Optional:-->
+      <ns:Nationality>string</ns:Nationality>
+    </ns:Driver>
+  </ns:DriverTable>
+  <!--Optional:-->
+  <ns:ConstructorTable season="100" round="100" circuitId="string" constructorId="string" driverId="string" grid="100" position="100" statusId="100">
+    <!--Zero or more repetitions:-->
+    <ns:Constructor constructorId="string" url="string">
+      <ns:Name>string</ns:Name>
+      <!--Optional:-->
+      <ns:Nationality>string</ns:Nationality>
+    </ns:Constructor>
+  </ns:ConstructorTable>
+  <!--Optional:-->
+  <ns:CircuitTable season="100" round="100" circuitId="string" constructorId="string" driverId="string" grid="100" position="100" statusId="100">
+    <!--Zero or more repetitions:-->
+    <ns:Circuit circuitId="string" url="string">
+      <ns:CircuitName>string</ns:CircuitName>
+      <ns:Location lat="1.5E2" long="1.5E2" alt="3">
+        <!--1 or more repetitions:-->
+        <ns:Locality>string</ns:Locality>
+        <ns:Country>string</ns:Country>
+      </ns:Location>
+    </ns:Circuit>
+  </ns:CircuitTable>
+  <!--Optional:-->
+  <ns:StatusTable season="100" round="100" circuitId="string" constructorId="string" driverId="string" grid="100" position="100" statusId="100">
+    <!--Zero or more repetitions:-->
+    <ns:Status statusId="100" count="100">string</ns:Status>
+  </ns:StatusTable>
+</ns:MRData>

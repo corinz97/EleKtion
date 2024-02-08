@@ -1,11 +1,11 @@
 package entities.implementations
 
 import entities.abstract.PollAbstraction
-import entities.interfaces.Competitor
 import entities.interfaces.ListOfPreferencesVote
+import entities.interfaces.PollAlgorithm
 import entities.interfaces.SinglePreferenceVote
 import entities.interfaces.Vote
-import entities.interfaces.Voter
+import entities.interfaces.dsls.PollAlgorithmDSL
 import entities.types.ScoreMetric
 
 /**
@@ -13,66 +13,67 @@ import entities.types.ScoreMetric
  */
 class PollInstance<S : ScoreMetric, V : Vote> : PollAbstraction<S, V>() {
 
-    override infix fun String.votedBy(voterIdentifier: String): SinglePreferenceVote<S> {
-        val comp =
-            this@PollInstance.competition.competitors.firstOrNull {
-                it.name == this@votedBy
-            } ?: throw NoSuchElementException("Voted candidate doesn't exist as object")
-
-        return object : SinglePreferenceVote<S> {
-            override var voter: Voter =
-                object : Voter {
-                    override val identifier: String
-                        get() = voterIdentifier
+    private inline fun <reified A> Any.cast(): A? {
+        if (this !is A) return null
+        return this
+    }
+    override fun majorityVotesAlgorithm(
+        algInit: PollAlgorithmDSL.() -> Unit,
+    ): PollAlgorithm<S, SinglePreferenceVote<S>> {
+        val a =
+            MajorityVotesAlgorithm<S>()
+                .apply {
+                    this.candidates = this@PollInstance.competition.competitors
                 }
-
-            override var votedCompetitor: Competitor<S> = comp
-        }
+                .apply(algInit)
+        return a.cast<PollAlgorithm<S, SinglePreferenceVote<S>>>()!!
     }
 
-    override infix fun List<String>.votedBy(voterIdentifier: String): ListOfPreferencesVote<S> {
-        if (this.isEmpty()) error("Votes list cannot be empty")
-
-        val setOfCompetitors = this.toSet()
-        val candidates = this@PollInstance.competition.competitors.map { it.name }.toSet()
-
-        if (setOfCompetitors != candidates) { // mismatch between sets
-            if ((setOfCompetitors - candidates).isNotEmpty()) {
-                error("A list of preferences contains one o more not allowed candidate")
-            }
-            if ((candidates - setOfCompetitors).isNotEmpty()) {
-                // every candidate must be present in the list of competitors
-                error("Every allowed candidate must be present in every list of preferences")
-            }
-        }
-        val groupCount = this.groupingBy { it }.eachCount()
-        // every candidate can be present only once in the list of competitors
-        if (groupCount.any { count -> count.value > 1 }) {
-            error("Every allowed candidate can be present only once in the list of competitors")
-        }
-
-        val listOfCompetitorObject = mutableListOf<Competitor<S>>()
-        this.forEach { actualName ->
-
-            listOfCompetitorObject +=
-                this@PollInstance.competition.competitors.firstOrNull { comp ->
-                    comp.name == actualName
-                }.let {
-                    it ?: throw NoSuchElementException("Voted candidate doesn't exist as object")
+    override fun majorityVotesHScoreAlgorithm(
+        algInit: PollAlgorithmDSL.() -> Unit,
+    ): PollAlgorithm<S, SinglePreferenceVote<S>> {
+        val a =
+            MajorityVotesThenHighestScoreAlgorithm<S>()
+                .apply {
+                    this.candidates = this@PollInstance.competition.competitors
                 }
-        }
-
-        return DescendingListOfPreferencesVote<S>().apply {
-            voter =
-                object : Voter {
-                    override val identifier: String
-                        get() = voterIdentifier
-                }
-            votedCompetitors = listOfCompetitorObject
-        }
+                .apply(algInit)
+        return a.cast<PollAlgorithm<S, SinglePreferenceVote<S>>>()!!
     }
 
-    override infix fun List<String>.then(s: String): List<String> = this + s
+    override fun majorityVotesLScoreAlgorithm(
+        algInit: PollAlgorithmDSL.() -> Unit,
+    ): PollAlgorithm<S, SinglePreferenceVote<S>> {
+        val a =
+            MajorityVotesThenLowestScoreAlgorithm<S>()
+                .apply {
+                    this.candidates = this@PollInstance.competition.competitors
+                }
+                .apply(algInit)
+        return a.cast<PollAlgorithm<S, SinglePreferenceVote<S>>>()!!
+    }
 
-    override infix fun String.then(s: String): List<String> = listOf(this, s)
+    override fun condorcetAlgorithm(
+        algInit: PollAlgorithmDSL.() -> Unit,
+    ): PollAlgorithm<S, ListOfPreferencesVote<S>> {
+        val a =
+            CondorcetAlgorithm<S>()
+                .apply {
+                    this.candidates = this@PollInstance.competition.competitors
+                }
+                .apply(algInit)
+        return a.cast<PollAlgorithm<S, ListOfPreferencesVote<S>>>()!!
+    }
+
+    override fun schultzeAlgorithm(
+        algInit: PollAlgorithmDSL.() -> Unit,
+    ): PollAlgorithm<S, ListOfPreferencesVote<S>> {
+        val a =
+            SchultzeAlgorithm<S>()
+                .apply {
+                    this.candidates = this@PollInstance.competition.competitors
+                }
+                .apply(algInit)
+        return a.cast<PollAlgorithm<S, ListOfPreferencesVote<S>>>()!!
+    }
 }

@@ -2,18 +2,16 @@ package entities.abstract
 
 import entities.interfaces.Competition
 import entities.interfaces.Competitor
+import entities.interfaces.dsls.CompetitionDSL
+import entities.interfaces.dsls.CompetitorDSL
 import entities.types.ScoreMetric
 
 /**
  *
  */
-abstract class CompetitionAbstraction<T : ScoreMetric> : Competition<T> {
+abstract class CompetitionAbstraction<T : ScoreMetric> : Competition<T>, CompetitionDSL<T> {
     override lateinit var competitionName: String
     override lateinit var competitors: List<Competitor<T>>
-
-    override operator fun String.unaryMinus() {
-        this@CompetitionAbstraction.competitionName = this@unaryMinus
-    }
 
     override operator fun Competitor<T>.unaryPlus() {
         if (!this@CompetitionAbstraction::competitors.isInitialized) {
@@ -25,8 +23,10 @@ abstract class CompetitionAbstraction<T : ScoreMetric> : Competition<T> {
         this@CompetitionAbstraction.competitors += this
     }
 
-    override fun competitor(compInit: Competitor<T>.() -> Unit): Competitor<T> {
+    override fun competitor(competitorName: String, compInit: CompetitorDSL<T>.() -> Unit): Competitor<T> {
         return object : CompetitorAbstraction<T>() {
-        }.apply(compInit)
+        }
+            .apply { this.name = competitorName }
+            .apply(compInit)
     }
 }

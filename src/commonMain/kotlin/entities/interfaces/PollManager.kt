@@ -20,19 +20,4 @@ interface PollManager<S : ScoreMetric, V : Vote> {
      * Print all rankings.
      */
     fun printRankings()
-
-    /**
-     * DSL-function useful to initialize the manager.
-     */
-    infix fun initializedAs(initializer: PollManager<S, V>.() -> Unit): PollManager<S, V>
-
-    /**
-     * Shortcut to add a poll in [pollList].
-     */
-    operator fun Poll<S, V>.unaryPlus()
-
-    /**
-     * DSL-function useful to initialize a poll.
-     */
-    fun poll(newPoll: Poll<S, V>.() -> Unit): Poll<S, V>
 }
