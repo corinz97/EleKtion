@@ -27,4 +27,4 @@ gitHooks {
     createHooks()
 }
 
-rootProject.name = "Kotlin-MP-Thesis-Library".lowercase()
+rootProject.name = "eleKtion".lowercase()
