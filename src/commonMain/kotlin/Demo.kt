@@ -17,6 +17,8 @@ import kotlin.time.DurationUnit
 import kotlin.time.toDuration
 
 private const val T = 0.1
+private const val YEAR2023 = 2023
+private const val YEAR2018 = 2018
 
 @OptIn(ExperimentalSerializationApi::class)
 private val json = Json {
@@ -52,10 +54,10 @@ suspend fun main() {
                     +competitor("competitor2") {
                     }
                 }
+
                 -majorityVotesAlgorithm {
                     +ConstantParameter.AllowMultipleVoteInPollParameter
                 }
-
                 +("competitor1" votedBy "voter1")
                 +("competitor2" votedBy "voter2")
                 +("competitor1" votedBy "voter2")
@@ -304,7 +306,7 @@ suspend fun main() {
 
 private suspend fun fun1() {
     val httpClient = HttpClient()
-    val year = 2023
+    val year = YEAR2023 // 2023
     var response: HttpResponse = httpClient.get("https://ergast.com/api/f1/$year.json")
     println("Downloading championship data...")
 
@@ -390,7 +392,7 @@ private suspend fun fun1() {
 
 private suspend fun fun2() {
     val httpClient = HttpClient()
-    val year = 2018
+    val year = YEAR2018 // 2018
     var response: HttpResponse = httpClient.get("https://ergast.com/api/f1/$year.json")
     println("Downloading championship data...")
 
@@ -476,7 +478,7 @@ private suspend fun fun2() {
 
 private suspend fun fun5() {
     val httpClient = HttpClient()
-    val year = 2023
+    val year = YEAR2023 // 2023
     var response: HttpResponse = httpClient.get("https://ergast.com/api/f1/$year.json")
     println("Downloading championship data...")
 

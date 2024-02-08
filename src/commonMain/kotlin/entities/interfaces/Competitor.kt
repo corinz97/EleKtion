@@ -15,9 +15,4 @@ interface Competitor<S : ScoreMetric> {
      * List of scores realized.
      */
     var scores: List<Score<S>>
-
-    /**
-     * Shortcut useful to add an element in [scores].
-     */
-    operator fun Score<S>.unaryPlus()
 }

@@ -7,6 +7,7 @@ import entities.interfaces.ListOfPreferencesVote
 import entities.interfaces.PollAlgorithm
 import entities.interfaces.PollAlgorithmParameter
 import entities.interfaces.Ranking
+import entities.interfaces.dsls.PollAlgorithmDSL
 import entities.types.ConstantParameter
 import entities.types.ScoreMetric
 
@@ -16,7 +17,7 @@ import entities.types.ScoreMetric
 class SchultzeAlgorithm<S : ScoreMetric>(
     override var pollAlgorithmParameters: List<PollAlgorithmParameter> = listOf(),
 ) :
-    PollAlgorithm<S, ListOfPreferencesVote<S>> {
+    PollAlgorithm<S, ListOfPreferencesVote<S>>, PollAlgorithmDSL {
     /**
      * List of candidates, useful to check pre-conditions before executing
      * the computation.

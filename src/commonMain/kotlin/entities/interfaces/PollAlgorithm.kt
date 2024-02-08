@@ -15,11 +15,4 @@ interface PollAlgorithm<S : ScoreMetric, V : Vote> {
      * Compute the final ranking, given the votes.
      */
     fun computeByAlgorithmRules(votes: List<V>): Ranking<S>
-
-    /**
-     * Shortcut useful to add an element in [pollAlgorithmParameters].
-     */
-    operator fun PollAlgorithmParameter.unaryPlus() {
-        pollAlgorithmParameters += this@unaryPlus
-    }
 }
