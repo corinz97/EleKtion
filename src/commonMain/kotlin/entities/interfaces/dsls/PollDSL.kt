@@ -8,7 +8,9 @@ import entities.types.ScoreMetric
 /**
  * DSL for polls.
  */
-interface PollDSL<S : ScoreMetric, V : Vote> : SinglePreferenceVoteAlgorithmDSL<S>, ListOfPreferencesVoteAlgorithmDSL<S> {
+interface PollDSL<S : ScoreMetric, V : Vote> :
+    SinglePreferenceVoteAlgorithmDSL<S>,
+    ListOfPreferencesVoteAlgorithmDSL<S> {
 /**
      * Shortcut which assigns the value to pollAlgorithm.
      */
