@@ -45,7 +45,7 @@ class PollManagerInstance<S : ScoreMetric, V : Vote> : PollManagerAbstraction<S,
         return PollManagerInstance<S, V>()
             .apply(initializer)
     }
-    override fun poll(newPoll: PollDSL<S, V>.() -> Unit): Poll<S, V> {
-        return PollInstance<S, V>().apply(newPoll)
+    override fun poll(pollInit: PollDSL<S, V>.() -> Unit): Poll<S, V> {
+        return PollInstance<S, V>().apply(pollInit)
     }
 }

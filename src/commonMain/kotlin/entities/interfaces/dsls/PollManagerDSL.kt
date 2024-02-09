@@ -22,5 +22,5 @@ interface PollManagerDSL<S : ScoreMetric, V : Vote> {
     /**
      * DSL-function useful to initialize a poll.
      */
-    fun poll(newPoll: PollDSL<S, V>.() -> Unit): Poll<S, V>
+    fun poll(pollInit: PollDSL<S, V>.() -> Unit): Poll<S, V>
 }

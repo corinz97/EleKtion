@@ -23,10 +23,10 @@ abstract class CompetitionAbstraction<T : ScoreMetric> : Competition<T>, Competi
         this@CompetitionAbstraction.competitors += this
     }
 
-    override fun competitor(competitorName: String, compInit: CompetitorDSL<T>.() -> Unit): Competitor<T> {
+    override fun competitor(competitorName: String, competitorInit: CompetitorDSL<T>.() -> Unit): Competitor<T> {
         return object : CompetitorAbstraction<T>() {
         }
             .apply { this.name = competitorName }
-            .apply(compInit)
+            .apply(competitorInit)
     }
 }

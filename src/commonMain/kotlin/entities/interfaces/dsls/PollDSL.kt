@@ -8,7 +8,7 @@ import entities.types.ScoreMetric
 /**
  * DSL for polls.
  */
-interface PollDSL<S : ScoreMetric, V : Vote> : SPVoteAlgorithmDSL<S>, LOPVoteAlgorithmDSL<S> {
+interface PollDSL<S : ScoreMetric, V : Vote> : SinglePreferenceVoteAlgorithmDSL<S>, ListOfPreferencesVoteAlgorithmDSL<S> {
 /**
      * Shortcut which assigns the value to pollAlgorithm.
      */
@@ -27,5 +27,5 @@ interface PollDSL<S : ScoreMetric, V : Vote> : SPVoteAlgorithmDSL<S>, LOPVoteAlg
 /**
      * DSL-function which initializes a [Competition].
      */
-    fun competition(competitionName: String, compInit: CompetitionDSL<S>.() -> Unit): Competition<S>
+    fun competition(competitionName: String, competitionInit: CompetitionDSL<S>.() -> Unit): Competition<S>
 }

@@ -15,5 +15,5 @@ interface CompetitionDSL<T : ScoreMetric> {
     /**
      * DSL-function used to initialize a competitor.
      */
-    fun competitor(competitorName: String, compInit: CompetitorDSL<T>.() -> Unit): Competitor<T>
+    fun competitor(competitorName: String, competitorInit: CompetitorDSL<T>.() -> Unit): Competitor<T>
 }

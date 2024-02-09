@@ -9,19 +9,19 @@ import entities.types.ScoreMetric
 /**
  * DSL for initialize list of preferences vote algorithms.
  */
-interface LOPVoteAlgorithmDSL<S : ScoreMetric> {
+interface ListOfPreferencesVoteAlgorithmDSL<S : ScoreMetric> {
     /**
      * DSL-function which initializes Condorcet algorithm.
      */
     fun condorcetAlgorithm(
-        algInit: PollAlgorithmDSL.() -> Unit,
+        algorithmInit: PollAlgorithmDSL.() -> Unit,
     ): PollAlgorithm<S, ListOfPreferencesVote<S>>
 
     /**
      * DSL-function which initializes Schultze algorithm.
      */
     fun schultzeAlgorithm(
-        algInit: PollAlgorithmDSL.() -> Unit,
+        algorithmInit: PollAlgorithmDSL.() -> Unit,
     ): PollAlgorithm<S, ListOfPreferencesVote<S>>
 
     /**

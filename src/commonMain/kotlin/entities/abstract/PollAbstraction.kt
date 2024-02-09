@@ -118,10 +118,10 @@ abstract class PollAbstraction<S : ScoreMetric, V : Vote> :
         this@PollAbstraction.competition = this@unaryMinus
     }
 
-    override fun competition(competitionName: String, compInit: CompetitionDSL<S>.() -> Unit): Competition<S> {
+    override fun competition(competitionName: String, competitionInit: CompetitionDSL<S>.() -> Unit): Competition<S> {
         return object : CompetitionAbstraction<S>() {}
             .apply { this.competitionName = competitionName }
-            .apply(compInit)
+            .apply(competitionInit)
     }
 
     override operator fun V.unaryPlus() {
