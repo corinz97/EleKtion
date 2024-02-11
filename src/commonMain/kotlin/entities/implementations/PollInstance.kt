@@ -3,10 +3,10 @@ package entities.implementations
 import entities.abstract.PollAbstraction
 import entities.interfaces.ListOfPreferencesVote
 import entities.interfaces.PollAlgorithm
+import entities.interfaces.ScoreMetric
 import entities.interfaces.SinglePreferenceVote
 import entities.interfaces.Vote
 import entities.interfaces.dsls.PollAlgorithmDSL
-import entities.types.ScoreMetric
 
 /**
  * This class allows to create a poll with its mandatory members.

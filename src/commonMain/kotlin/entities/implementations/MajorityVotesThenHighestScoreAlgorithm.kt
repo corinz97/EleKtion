@@ -6,10 +6,10 @@ import entities.interfaces.Competitor
 import entities.interfaces.PollAlgorithm
 import entities.interfaces.PollAlgorithmParameter
 import entities.interfaces.Ranking
+import entities.interfaces.ScoreMetric
 import entities.interfaces.SinglePreferenceVote
 import entities.interfaces.dsls.PollAlgorithmDSL
 import entities.types.ConstantParameter
-import entities.types.ScoreMetric
 /**
  * Represents an algorithm which orders intermediate ranking by descending
  * number of votes, then by highest score (about ties).

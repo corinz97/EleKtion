@@ -3,8 +3,8 @@ package entities.interfaces.dsls
 import entities.interfaces.Competitor
 import entities.interfaces.ListOfPreferencesVote
 import entities.interfaces.PollAlgorithm
+import entities.interfaces.ScoreMetric
 import entities.interfaces.Voter
-import entities.types.ScoreMetric
 
 /**
  * DSL for initialize list of preferences vote algorithms.

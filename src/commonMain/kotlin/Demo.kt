@@ -310,10 +310,10 @@ private suspend fun fun1() {
     var response: HttpResponse = httpClient.get("https://ergast.com/api/f1/$year.json")
     println("Downloading championship data...")
 
-    val raceResults = emptyMap<String, List<Pair<String, Int>>>().toMutableMap()
+    var raceResults = emptyMap<String, List<Pair<String, Int>>>()
 
-    val root = json.decodeFromString<RootType>(response.bodyAsText())
-    val listOfRaces = root.mRData!!.raceTable!!.races!!
+    var root = json.decodeFromString<RootType>(response.bodyAsText())
+    var listOfRaces = root.mRData!!.raceTable!!.races!!
     listOfRaces.forEach {
         println("Downloading race data...")
         response = httpClient.get("https://ergast.com/api/f1/${it.season}/${it.round}/results.json")
@@ -328,68 +328,171 @@ private suspend fun fun1() {
         resultsJson.forEach { r ->
             resultsParsedStrings = resultsParsedStrings + (
                 (r.driver!!.givenName + "-" + r.driver!!.familyName)
-                    to (r.points!!.toInt())
+                    to (r.position!!.toInt())
                 )
         }
 
-        raceResults += (raceIdentifier to resultsParsedStrings)
+        raceResults = raceResults + (raceIdentifier to resultsParsedStrings)
     }
 
+    // here i have all concurrents of all GPs
     val validConcurrents = raceResults.flatMap { it.value }.groupBy({ it.first }, { it.second })
 
     val allConcurrentNames = validConcurrents.keys.fold(setOf<String>()) { s, element -> s + element }
 
-    var e =
-        PollManagerInstance<PointsInRace, ListOfPreferencesVote<PointsInRace>>() initializedAs {
-            +poll {
-                -competition("F1 Pilots $year") {
-                    allConcurrentNames.forEach {
-                        +competitor(it) {
-                            validConcurrents[it]!!.forEach { v -> +(PointsInRace realized v) }
+    var election =
+        PollManagerInstance<Nothing, ListOfPreferencesVote<Nothing>>() initializedAs {
+            var currentGPs: Map<String, List<Pair<String, Int>>> = mapOf()
+            var index = 1
+            for (raceResult in raceResults) {
+                currentGPs = currentGPs + raceResult.toPair()
+                +poll {
+                    -competition("F1 Pilots $year - Partial Ranking - GPs #1 to #${index++}") {
+                        allConcurrentNames.forEach {
+                            +competitor(it) {}
                         }
                     }
-                }
-                -condorcetAlgorithm {}
-
-                raceResults.entries.forEach { (runningField, competitors) ->
-                    +(competitors.fold(listOf<String>()) { l, element -> l then element.first } votedBy runningField)
+                    -condorcetAlgorithm {}
+                    // incremental set of votes
+                    currentGPs.entries.forEach { (runningField, competitors) ->
+                        +(
+                            competitors.fold(listOf<String>()) { l, element -> l then element.first }
+                                votedBy runningField
+                            )
+                    }
                 }
             }
         }
+
+    var rankings = election.computeAllPolls()
+
+    val flattenedOrdersInRankings = rankings.map { it.ranking.flatMap { it.key.map { it.name } } }
+    val condorcetFlattenedOrderInFinalRanking = flattenedOrdersInRankings.last()
+
+    var m: Map<String, List<Int>> = mapOf()
+    for (competitor in condorcetFlattenedOrderInFinalRanking) {
+        var listOfPositionsPerCompetitor: List<Int> = listOf()
+        for (ranking in rankings.map { it.ranking.keys.toList() }) {
+            var index = ranking.indexOfFirst { it.map { it.name }.contains(competitor) }
+
+            listOfPositionsPerCompetitor = listOfPositionsPerCompetitor + ++index
+        }
+        m = m + (competitor to listOfPositionsPerCompetitor)
+    }
+
+    println(m)
+    println(m.keys.joinToString(",", "[", "]") { "\"${it}\"" })
+    println(m.values)
+
     println(
         "Example #fun1.1 CondorcetAlgorithm -> F1 Pilots $year in input data, for every race, pilots are ordered\n" +
             "as they arrived in race ranking",
     )
-    e.printRankings()
 
-    e =
-        PollManagerInstance<PointsInRace, ListOfPreferencesVote<PointsInRace>>() initializedAs {
-            +poll {
-                -competition("F1 Pilots $year") {
-                    allConcurrentNames.forEach {
-                        +competitor(it) {
-                            validConcurrents[it]!!.forEach { v -> +(PointsInRace realized v) }
+    election =
+        PollManagerInstance<Nothing, ListOfPreferencesVote<Nothing>>() initializedAs {
+            var currentGPs: Map<String, List<Pair<String, Int>>> = mapOf()
+            var index = 1
+            for (raceResult in raceResults) {
+                currentGPs = currentGPs + raceResult.toPair()
+                +poll {
+                    -competition("F1 Pilots $year - Partial Ranking - GPs #1 to #${index++}") {
+                        allConcurrentNames.forEach {
+                            +competitor(it) {}
                         }
                     }
-                }
-                -schultzeAlgorithm {}
-
-                raceResults.entries.forEach { (runningField, competitors) ->
-                    +(competitors.fold(listOf<String>()) { l, element -> l then element.first } votedBy runningField)
+                    -schultzeAlgorithm {}
+                    // incremental set of votes
+                    currentGPs.entries.forEach { (runningField, competitors) ->
+                        +(
+                            competitors.fold(listOf<String>()) { l, element -> l then element.first }
+                                votedBy runningField
+                            )
+                    }
                 }
             }
         }
+
+    rankings = election.computeAllPolls()
+
+    val schultzeFlattenedOrderInFinalRanking = condorcetFlattenedOrderInFinalRanking
+    m = mapOf()
+    for (competitor in schultzeFlattenedOrderInFinalRanking) {
+        var listOfPositionsPerCompetitor: List<Int> = listOf()
+        for (ranking in rankings.map { it.ranking.keys.toList() }) {
+            var index = ranking.indexOfFirst { it.map { it.name }.contains(competitor) }
+
+            listOfPositionsPerCompetitor = listOfPositionsPerCompetitor + ++index
+        }
+        m = m + (competitor to listOfPositionsPerCompetitor)
+    }
+
+    println(m)
+    println(m.keys.joinToString(",", "[", "]") { "\"${it}\"" })
+    println(m.values)
+
     println(
         "Example #fun1.2 SchultzeAlgorithm -> F1 Pilots $year in input data, for every race, pilots are ordered\n" +
             "as they arrived in race ranking",
     )
-    e.printRankings()
+
+    fun12(condorcetFlattenedOrderInFinalRanking)
+}
+
+private suspend fun fun12(condorcetFlattenedOrderInFinalRanking: List<String>) {
+    val httpClient = HttpClient()
+    val year = YEAR2023 // 2023
+    var response = httpClient.get("https://ergast.com/api/f1/$year.json")
+    println("Downloading championship data...")
+
+    var raceResults = emptyMap<String, List<Pair<String, Int>>>()
+
+    val root = json.decodeFromString<RootType>(response.bodyAsText())
+    val listOfRaces = root.mRData!!.raceTable!!.races!!
+    listOfRaces.forEach {
+        println("Downloading standings data...")
+        response = httpClient.get("https://ergast.com/api/f1/${it.season}/${it.round}/driverStandings.json")
+
+        val resultsJson =
+            json
+                .decodeFromString<RootType>(response.bodyAsText()).mRData!!.standingsTable!!
+                .standingsLists!![0].driverStandings!!
+
+        val raceIdentifier = (it.raceName + "-" + it.round + "-" + it.season).replace(" ", "-")
+        var resultsParsedStrings = listOf<Pair<String, Int>>()
+        resultsJson.forEach { r ->
+            resultsParsedStrings = resultsParsedStrings + (
+                (r.driver!!.givenName + "-" + r.driver!!.familyName)
+                    to (r.position)
+                )
+        }
+
+        raceResults = raceResults + (raceIdentifier to resultsParsedStrings)
+    }
+
+    val realWorldFlattenedOrderInFinalRanking = condorcetFlattenedOrderInFinalRanking
+    var m: Map<String, List<Int>> = mapOf()
+    for (competitor in realWorldFlattenedOrderInFinalRanking) {
+        var listOfPositionsPerCompetitor: List<Int> = listOf()
+
+        for (ranking in raceResults.map { it.value }) {
+            val index = ranking.firstOrNull { it.first == competitor }?.second ?: ranking.maxOf { it.second }
+
+            listOfPositionsPerCompetitor = listOfPositionsPerCompetitor + index
+        }
+        m = m + (competitor to listOfPositionsPerCompetitor)
+    }
+
+    println(m)
+    println(m.keys.joinToString(",", "[", "]") { "\"${it}\"" })
+    println(m.values)
+
+    println("Real arrivals ordered by condorcet arriving")
 
     println("Press Enter key to continue")
     readln()
     httpClient.close()
 }
-
 private suspend fun fun2() {
     val httpClient = HttpClient()
     val year = YEAR2018 // 2018

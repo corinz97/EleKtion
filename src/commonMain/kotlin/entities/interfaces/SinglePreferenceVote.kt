@@ -1,7 +1,5 @@
 package entities.interfaces
 
-import entities.types.ScoreMetric
-
 /**
  * Interface that represents a vote for a single competitor.
  */

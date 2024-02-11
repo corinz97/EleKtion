@@ -1,7 +1,7 @@
 package entities.interfaces.dsls
 
 import entities.interfaces.Competitor
-import entities.types.ScoreMetric
+import entities.interfaces.ScoreMetric
 
 /**
  * DSL for competitions.

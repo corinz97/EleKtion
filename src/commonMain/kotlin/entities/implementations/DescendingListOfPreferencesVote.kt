@@ -2,8 +2,8 @@ package entities.implementations
 
 import entities.interfaces.Competitor
 import entities.interfaces.ListOfPreferencesVote
+import entities.interfaces.ScoreMetric
 import entities.interfaces.Voter
-import entities.types.ScoreMetric
 
 /**
  * This class represents a list of candidate, inserted by most preferred first.

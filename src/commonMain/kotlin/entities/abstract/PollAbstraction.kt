@@ -8,12 +8,12 @@ import entities.interfaces.ListOfPreferencesVote
 import entities.interfaces.Poll
 import entities.interfaces.PollAlgorithm
 import entities.interfaces.Ranking
+import entities.interfaces.ScoreMetric
 import entities.interfaces.SinglePreferenceVote
 import entities.interfaces.Vote
 import entities.interfaces.Voter
 import entities.interfaces.dsls.CompetitionDSL
 import entities.interfaces.dsls.PollDSL
-import entities.types.ScoreMetric
 
 /**
  *

@@ -1,6 +1,7 @@
 package entities.types
 
 import entities.interfaces.Score
+import entities.interfaces.ScoreMetric
 import kotlin.Comparator
 
 /**

@@ -2,9 +2,9 @@ package entities.abstract
 
 import entities.interfaces.Poll
 import entities.interfaces.PollManager
+import entities.interfaces.ScoreMetric
 import entities.interfaces.Vote
 import entities.interfaces.dsls.PollManagerDSL
-import entities.types.ScoreMetric
 
 /**
  * Provides an abstraction on poll manager.

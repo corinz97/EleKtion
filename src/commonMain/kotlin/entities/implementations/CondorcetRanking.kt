@@ -2,7 +2,7 @@ package entities.implementations
 
 import entities.abstract.RankingAbstraction
 import entities.interfaces.Competitor
-import entities.types.ScoreMetric
+import entities.interfaces.ScoreMetric
 
 /**
  * Represents a ranking, without associated number of votes.

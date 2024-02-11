@@ -3,7 +3,7 @@ package entities.implementations
 import entities.abstract.CompetitorAbstraction
 import entities.abstract.ScoreAbstraction
 import entities.interfaces.Competitor
-import entities.types.ScoreMetric
+import entities.interfaces.ScoreMetric
 import entities.types.WinsInCampionship
 import io.kotest.assertions.throwables.shouldNotThrow
 import io.kotest.assertions.throwables.shouldThrow

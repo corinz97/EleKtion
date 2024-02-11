@@ -1,7 +1,5 @@
 package entities.interfaces
 
-import entities.types.ScoreMetric
-
 /**
  * This interface represents the algorithm chosen to compute the final ranking.
  */

@@ -1,7 +1,7 @@
 package entities.abstract
 
 import entities.interfaces.Score
-import entities.types.ScoreMetric
+import entities.interfaces.ScoreMetric
 
 /**
  *

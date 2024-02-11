@@ -42,6 +42,12 @@ class MRDataType {
      */
     @SerialName("RaceTable")
     var raceTable: RaceTableType? = null
+
+    /**
+     * Standings container.
+     */
+    @SerialName("StandingsTable")
+    var standingsTable: StandingsTableType? = null
 }
 
 /* @Serializable
@@ -49,6 +55,57 @@ class MRDataType {
     var date: String? = null
     var time: String? = null
 }*/
+/**
+ * Standings table node of Ergast API.
+ */
+@Serializable
+class StandingsTableType {
+    /**
+     * List of standings.
+     */
+    @SerialName("StandingsLists")
+    var standingsLists: Array<StandingsListType>? = null
+}
+
+/**
+ * Standings list node of Ergast API.
+ */
+@Serializable
+class StandingsListType {
+    /**
+     * List of drivers.
+     */
+    @SerialName("DriverStandings")
+    var driverStandings: List<DriverStandingType>? = null
+
+    /**
+     * Season of standing.
+     */
+    var season: Int? = null
+
+    /**
+     * Round of standing.
+     */
+    var round: Int? = null
+}
+
+/**
+ * Driver in standing node of Ergast API.
+ */
+@Serializable
+class DriverStandingType {
+    /**
+     * Driver in standing.
+     */
+    @SerialName("Driver")
+    var driver: DriverType? = null
+
+    /**
+     * Position in standing..
+     */
+    var position = 0
+}
+
 /**
  * Race node of Ergast API.
  */
@@ -103,7 +160,10 @@ class ResultType {
      */
     var number: Int? = null
 
-    // var position: Int? = null
+    /**
+     * Driver's result position.
+     */
+    var position: Int? = null
 
     // var positionText: String? = null
     /**

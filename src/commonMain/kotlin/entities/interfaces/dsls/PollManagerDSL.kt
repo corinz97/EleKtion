@@ -2,8 +2,8 @@ package entities.interfaces.dsls
 
 import entities.interfaces.Poll
 import entities.interfaces.PollManager
+import entities.interfaces.ScoreMetric
 import entities.interfaces.Vote
-import entities.types.ScoreMetric
 
 /**
  * DSL for poll manager.

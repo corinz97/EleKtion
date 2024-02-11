@@ -1,18 +1,14 @@
 package entities.types
 import entities.abstract.ScoreAbstraction
 import entities.interfaces.Score
+import entities.interfaces.ScoreMetric
 import kotlin.time.Duration
-
-/**
- * Represents a metric useful two compare and evaluate results among competitors.
- */
-abstract class ScoreMetric : Comparable<Any>
 
 /**
  * This class represents an abstraction for best time realized during a match.
  * @param duration time, with time unit associated
  */
-data class BestTimeInMatch(val duration: Duration) : ScoreMetric() {
+data class BestTimeInMatch(val duration: Duration) : ScoreMetric {
     /**
      * Compare two objects.
      */
@@ -42,7 +38,7 @@ data class BestTimeInMatch(val duration: Duration) : ScoreMetric() {
  * @param wins number of wins
  */
 
-data class WinsInCampionship(val wins: Int) : ScoreMetric() {
+data class WinsInCampionship(val wins: Int) : ScoreMetric {
     /**
      * Compare two objects.
      */
@@ -72,7 +68,7 @@ data class WinsInCampionship(val wins: Int) : ScoreMetric() {
  * @param points number of points
  */
 
-data class PointsInRace(val points: Int) : ScoreMetric() {
+data class PointsInRace(val points: Int) : ScoreMetric {
     /**
      * Compare two objects.
      */
@@ -101,7 +97,7 @@ data class PointsInRace(val points: Int) : ScoreMetric() {
  * This class represents an abstraction for average speed realized during the fastest lap in a race.
  * @param speed average speed realized
  */
-data class FastestLapAvgSpeed(val speed: Float) : ScoreMetric() {
+data class FastestLapAvgSpeed(val speed: Float) : ScoreMetric {
     /**
      * Compare two objects.
      */

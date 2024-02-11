@@ -1,7 +1,5 @@
 package entities.interfaces
 
-import entities.types.ScoreMetric
-
 /**
  * This interface represents a competition.
  */

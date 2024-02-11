@@ -3,11 +3,11 @@ package entities.implementations
 import entities.abstract.CompetitorAbstraction
 import entities.abstract.ScoreAbstraction
 import entities.interfaces.Competitor
+import entities.interfaces.ScoreMetric
 import entities.interfaces.SinglePreferenceVote
 import entities.interfaces.Voter
 import entities.types.BestTimeInMatch
 import entities.types.ConstantParameter
-import entities.types.ScoreMetric
 import io.kotest.assertions.throwables.shouldThrowWithMessage
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.collections.shouldContainAll

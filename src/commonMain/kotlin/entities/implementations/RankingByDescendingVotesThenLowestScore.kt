@@ -1,8 +1,8 @@
 package entities.implementations
 
 import entities.interfaces.Competitor
+import entities.interfaces.ScoreMetric
 import entities.types.Comparator
-import entities.types.ScoreMetric
 
 /**
  * Class which orders intermediate ranking by descending number of votes, then by lowest score.

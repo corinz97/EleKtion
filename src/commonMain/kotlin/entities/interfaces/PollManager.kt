@@ -1,6 +1,5 @@
 package entities.interfaces
 
-import entities.types.ScoreMetric
 /**
  * This interface represents a manager that builds then executes one or more poll.
  */

@@ -2,8 +2,8 @@ package entities.abstract
 
 import entities.interfaces.Competitor
 import entities.interfaces.Score
+import entities.interfaces.ScoreMetric
 import entities.interfaces.dsls.CompetitorDSL
-import entities.types.ScoreMetric
 
 /**
  *

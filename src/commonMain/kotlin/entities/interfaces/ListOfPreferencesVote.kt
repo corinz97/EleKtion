@@ -1,7 +1,5 @@
 package entities.interfaces
 
-import entities.types.ScoreMetric
-
 /**
  * Interface which represents a vote composed by a list of preferences,
  * instead of a single one.

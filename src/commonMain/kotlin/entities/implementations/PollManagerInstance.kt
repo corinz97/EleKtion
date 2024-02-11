@@ -4,10 +4,10 @@ import entities.abstract.PollManagerAbstraction
 import entities.interfaces.Poll
 import entities.interfaces.PollManager
 import entities.interfaces.Ranking
+import entities.interfaces.ScoreMetric
 import entities.interfaces.Vote
 import entities.interfaces.dsls.PollDSL
 import entities.interfaces.dsls.PollManagerDSL
-import entities.types.ScoreMetric
 
 /**
  * This class allows to define and execute multiple polls.
